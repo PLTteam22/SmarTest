@@ -17,10 +17,17 @@ import java.util.HashMap;
 // ================================= //
 
 
-program : function_list { System.out.print("found a program\n"); }
+program : optional_function_list
+{
+        System.out.print("found a program\n");
+        $$ = new ParserVal(new ProgramNode($1, yyline, yycolumn));
+}
+
+optional_function_list : function_list { System.out.println("found optional_function_list\n"); }
+| /* emtpy */ { System.out.println("found optional_function_list\n"); }
 
 function_list : function_list function  { System.out.print("found function_list\n"); }
-|/* empty*/ { System.out.print("found function_list\n"); }
+| function { System.out.print("found function_list\n"); }
 
 function : return_type ID '(' optional_param_list ')' '{' statements '}' { System.out.print("found function\n"); }
 
