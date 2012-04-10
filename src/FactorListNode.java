@@ -1,4 +1,3 @@
-package smartest;
 
 import java.util.ArrayList;
 

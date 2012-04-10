@@ -1,4 +1,3 @@
-package smartest;
 
 import java.util.ArrayList;
 
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 public class ASTNode {
 	
 	private ArrayList<ASTNode> children;
-	private Sting type;	
+	private String type;	
 
 	public ASTNode()
 	{
@@ -30,7 +29,7 @@ public class ASTNode {
 		return this.type;
 	} 
 
-	String setType(String typ){
+	void setType(String typ){
 		this.type= typ;
 	}
 
