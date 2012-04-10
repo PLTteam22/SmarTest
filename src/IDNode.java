@@ -30,8 +30,8 @@ public class IDNode extends ASTNode {
 	public void checkSemantics() throws Exception {
 		if (! Parser.symbolsTable.containsKey(this.name))
 		{
-			throw new Exception("Cannot find symbol: " + this.name + " make sure variable has been declared"
-					 + ". Line " + this.getYyline() + ":" + this.getYycolumn());
+			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " + 
+								"cannot find symbol: " + this.name + " make sure variable has been declared");
 		}
 		this.setType(Parser.symbolsTable.get(this.name)[0]);
 	}

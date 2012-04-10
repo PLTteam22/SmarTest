@@ -40,13 +40,13 @@ public class DeclarationNode extends ASTNode {
 		// Verify that this variable has not been already declared before
 		if (Parser.symbolsTable.containsKey(this.getIdNode().getName()))
 		{
-			throw new Exception("Error: Variable " + this.getIdNode().getName() +
-								"has already been declared. Line " + this.getYyline() + ":" + this.getYycolumn());
+			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": variable " + this.getIdNode().getName() +
+								"has already been declared at line " + Parser.symbolsTable.get(this.getIdNode().getName())[2]);
 		}
 		
 		// Now, insert this new ID into symbol table, and generate a new valid target variable name for it
 		String varName = "_smartestVar_" + this.getIdNode().getName();
-		Parser.symbolsTable.put(this.getIdNode().getName(), new String[]{ this.getIdNode().getType(), varName });
+		Parser.symbolsTable.put(this.getIdNode().getName(), new String[]{ this.getIdNode().getType(), varName, ""+this.getYyline() });
 		
 		this.setType(this.getChildAt(0).getType());
 		

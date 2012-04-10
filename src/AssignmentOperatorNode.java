@@ -45,7 +45,7 @@ public class AssignmentOperatorNode extends ASTNode {
 	 *  @param yyline the line where this operator was found in the source code
 	 *  @param yycolumn the column where this operator was found in the source code  
 	 */
-	public AssignmentOperatorNode(ASTNode id, ASTNode expr, int yyline, int yycolumn) {
+	public AssignmentOperatorNode(IDNode id, ASTNode expr, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
 		this.addChild(id);
 		this.addChild(expr);
