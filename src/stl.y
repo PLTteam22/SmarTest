@@ -27,20 +27,24 @@ optional_function_list : function_list { System.out.println("found optional_func
 | /* emtpy */ { System.out.println("found optional_function_list\n"); $$ = new ParserVal(null); }
 
 function_list : function_list function  { System.out.print("found function_list\n"); }
-| function { System.out.print("found function_list\n"); }
+| function { System.out.print("found function_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).append((ASTNode)$1.object); }
 
-function : return_type ID '(' optional_param_list ')' '{' statements '}' { System.out.print("found function\n"); }
+function : return_type ID '(' optional_param_list ')' '{' statements '}'
+{
+        System.out.print("found function\n");
+        $$ = new ParserVal(new FunctionNode((String)$1.obj, $2, (ArrayList<ASTNode>)$4.obj, (ArrayList<ASTNode>)$5.obj, yyline, yycolumn));
+}
 
-optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); }
-| param_list { System.out.print("found optional_param_list\n"); }
+optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); $$ = new ParserVal(null); }
+| param_list { System.out.print("found optional_param_list\n"); $$ = new ParserVal((ASTNode)$1.obj); }
 
 param_list: param_list ',' parameter { System.out.print("found param_list\n"); }
-| parameter { System.out.print("found param_list\n"); }
+| parameter { System.out.print("found param_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>).append((ASTNode)$1.obj)); }
 
 parameter : type ID { System.out.print("found a parameter\n"); }
 
-statements : statements statement { System.out.print("found statements\n"); }
-|/*  empty */ { System.out.print("found statements\n"); }
+statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).append((ASTNode)$2.obj)}
+|/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new ArrayList<ASTNode>()); }
 
 /* statement productions go here */
 
