@@ -23,8 +23,8 @@ program : optional_function_list
         $$ = new ParserVal(new ProgramNode($1, yyline, yycolumn));
 }
 
-optional_function_list : function_list { System.out.println("found optional_function_list\n"); }
-| /* emtpy */ { System.out.println("found optional_function_list\n"); }
+optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = $1 }
+| /* emtpy */ { System.out.println("found optional_function_list\n"); $$ = new ParserVal(null); }
 
 function_list : function_list function  { System.out.print("found function_list\n"); }
 | function { System.out.print("found function_list\n"); }
