@@ -1,7 +1,6 @@
 %{
 
 import java.io.*;
-import smartest.*;
 
 %}
 
