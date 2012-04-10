@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class ASTNode {
 	
 	private ArrayList<ASTNode> children;
-	
+	private Sting type;	
+
 	public ASTNode()
 	{
 		this.children = new ArrayList<ASTNode>();
@@ -25,5 +26,13 @@ public class ASTNode {
 		return this.children.size();
 	}
 	
+	String getType(){
+		return this.type;
+	} 
+
+	String setType(String typ){
+		this.type= typ;
+	}
+
 
 }
