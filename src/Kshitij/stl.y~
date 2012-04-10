@@ -17,34 +17,23 @@ import java.util.HashMap;
 // ================================= //
 
 
-program : optional_function_list
-{
-        System.out.print("found a program\n");
-        $$ = new ParserVal(new ProgramNode($1, yyline, yycolumn));
-}
-
-optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = $1 }
-| /* emtpy */ { System.out.println("found optional_function_list\n"); $$ = new ParserVal(null); }
+program : function_list { System.out.print("found a program\n"); }
 
 function_list : function_list function  { System.out.print("found function_list\n"); }
-| function { System.out.print("found function_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).append((ASTNode)$1.object); }
+|/* empty*/ { System.out.print("found function_list\n"); }
 
-function : return_type ID '(' optional_param_list ')' '{' statements '}'
-{
-        System.out.print("found function\n");
-        $$ = new ParserVal(new FunctionNode((String)$1.obj, $2, (ArrayList<ASTNode>)$4.obj, (ArrayList<ASTNode>)$5.obj, yyline, yycolumn));
-}
+function : return_type ID '(' optional_param_list ')' '{' statements '}' { System.out.print("found function\n"); }
 
-optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); $$ = new ParserVal(null); }
-| param_list { System.out.print("found optional_param_list\n"); $$ = new ParserVal((ASTNode)$1.obj); }
+optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); }
+| param_list { System.out.print("found optional_param_list\n"); }
 
 param_list: param_list ',' parameter { System.out.print("found param_list\n"); }
-| parameter { System.out.print("found param_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>).append((ASTNode)$1.obj)); }
+| parameter { System.out.print("found param_list\n"); }
 
 parameter : type ID { System.out.print("found a parameter\n"); }
 
-statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).append((ASTNode)$2.obj)}
-|/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new ArrayList<ASTNode>()); }
+statements : statements statement { System.out.print("found statements\n"); }
+|/*  empty */ { System.out.print("found statements\n"); }
 
 /* statement productions go here */
 
@@ -54,7 +43,7 @@ statement : type ID ';' { System.out.print("found statement (int i;)\n"); $$ = n
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }
 | if_statement { System.out.print("found statement (if statement)\n"); }
-| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
+| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); }
 | RETURN optional_expression ';' { System.out.print("found statement (return)\n"); }
 
 type : INT { System.out.print("found type (int)\n"); }
@@ -73,8 +62,16 @@ optional_expression : expression { System.out.print("found optional_expression\n
 
 /* begin if productions */
 
-if_statement : IF '(' expression ')' '{' statements '}' { System.out.print("found if_statement\n"); }
-| IF '(' expression ')' '{' statements '}' ELSE '{' statements '}' { System.out.print("found if_statement\n"); }
+if_statement : IF '(' expression ')' '{' statements '}' 
+	{ 
+		$$ = new ParserVal(new IfStatementNode((ASTNode)$3.obj, (ASTNode)$6.obj, yyline, yycolumn));
+		System.out.print("found if_statement\n"); 
+	}
+| IF '(' expression ')' '{' statements '}' ELSE '{' statements '}' 
+	{
+		$$ = new ParserVal(new IfStatementNode((ASTNode)$3.obj, (ASTNode)$6.obj, (ASTNode)$10.obj, yyline, yycolumn));
+	 	System.out.print("found if_statement\n"); 
+	}
 
 /*
 if_statement : matched_statement
@@ -89,27 +86,52 @@ open_statement : IF '(' expression ')' '{' statement '}'
 */
 /* end if productions */
 
-loop : LOOP WHILE '(' expression ')' '{' statements '}' { System.out.print("found loop\n"); }
+loop : LOOP WHILE '(' expression ')' '{' statements '}' 
+{
+	$$ = new ParserVal(new LoopNode((ASTNode)$4.obj, (ASTNode)$7.obj, yyline, yycolumn));
+	System.out.print("found loop\n"); 
+}
 
 
-question_literal : '$' expression ':' expression '[' answer_choices ']' '$' { System.out.print("found question_literal\n"); $$ = new ParserVal(new QuestionLiteralNode((ASTNode)$2.obj, (ASTNode)$4.obj, (ASTNode)$6.obj, yyline, yycolumn)); }
+question_literal : '$' expression ':' expression '[' answer_choices ']' '$' { System.out.print("found question_literal\n"); }
 
-answer_choices : answer_choices ',' answer_choice { System.out.print("found answer_choices\n"); ((AnswerChoicesListNode)$1.obj).addAnswer((ASTNode)$3.obj); $$ = $1; }
-| answer_choice { System.out.print("found answer_choices\n"); $$ = new ParserVal(new AnswerChoicesListNode(yyline, yycolumn)); ((AnswerChoicesListNode)$$.obj).addAnswer((ASTNode)$1.obj); }
+answer_choices : answer_choices ',' answer_choice { System.out.print("found answer_choices\n"); }
+| answer_choice { System.out.print("found answer_choices\n"); }
 
-answer_choice : expression ':' expression { System.out.print("found an answer_choice\n"); $$ = new ParserVal(new AnswerChoiceNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
+answer_choice : expression ':' expression { System.out.print("found an answer_choice\n"); }
 
 
 expression : expression AND not_boolean_operand { System.out.print("found an expression (and)\n"); }
 | expression OR not_boolean_operand { System.out.print("found an expression (or)\n"); }
 | not_boolean_operand { System.out.print("found an expression (not boolean)\n"); }
 
-not_boolean_operand: NOT not_boolean_operand { System.out.print("found a not_boolean_operand\n"); }
-| boolean_operand { System.out.print("found a not_boolean_operand\n"); }
+not_boolean_operand: NOT not_boolean_operand 
+	{ 
+		$$ = new ParserVal(new NotBooleanOperandNode("not",(ASTNode)$2.obj, yyline, yycolumn));
+		System.out.print("found a not_boolean_operand\n"); 
+	}
+| boolean_operand 
+	{ 
+		//$$ = new ParserVal(new NotBooleanOperandNode((ASTNode)$1.obj, yyline, yycolumn));
+		$$ = $1;		
+		System.out.print("found a not_boolean_operand\n"); 
+	}
 
-boolean_operand : boolean_operand EQUALEQUAL equality_operand { System.out.print("found a boolean_operand\n"); }
-| boolean_operand NOTEQUAL equality_operand { System.out.print("found a boolean_operand\n"); }
-          | equality_operand { System.out.print("found a boolean_operand\n"); }
+boolean_operand : boolean_operand EQUALEQUAL equality_operand 
+	{ 
+		$$ = new ParserVal(new BooleanOperandNode("equal",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		System.out.print("found a boolean_operand\n"); 
+	}
+| boolean_operand NOTEQUAL equality_operand 
+	{
+		$$ = new ParserVal(new BooleanOperandNode("not_equal",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		System.out.print("found a boolean_operand\n"); 
+	}
+| equality_operand 
+	{ 	
+		$$ = $1;
+		System.out.print("found a boolean_operand\n"); 
+	}
 
 equality_operand : equality_operand  LT relational_operand { System.out.print("found a equality_operand (LT)\n"); }
    | equality_operand GT relational_operand { System.out.print("found a equality_operand (GT)\n"); }
@@ -117,9 +139,21 @@ equality_operand : equality_operand  LT relational_operand { System.out.print("f
    | equality_operand LE relational_operand { System.out.print("found a equality_operand (LE)\n"); }
    | relational_operand { System.out.print("found a equality_operand\n"); }
 
-relational_operand : relational_operand '+' term { System.out.print("found a relational_operand (+)\n"); }
-| relational_operand '-' term { System.out.print("found a relational_operand (-)\n"); }
-| term { System.out.print("found a relational_operand\n"); }
+relational_operand : relational_operand '+' term 
+	{ 
+		$$ = new ParserVal(new RelationalOperatorNode("addition",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		System.out.print("found a relational_operand (+)\n"); 
+	}
+| relational_operand '-' term 
+	{ 
+		$$ = new ParserVal(new RelationalOperatorNode("subtraction",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		System.out.print("found a relational_operand (-)\n"); 
+	}
+| term 
+	{ 
+	 	$$ = $1;
+	 	System.out.print("found a relational_operand\n"); 
+	}
 
 term : term '*' factor { System.out.print("found a term (*)\n"); }
 | term '/' factor { System.out.print("found a term (/)\n"); }
@@ -168,7 +202,7 @@ private static int yyline, yycolumn;
 public static HashMap<String, String[]> symbolsTable;
 
 
-public static HashMap<String, FunctionSymbolTableEntry> functionSymbolsTable;
+public static HashMap<String, String[]> functionSymbolsTable;
 
 
 
