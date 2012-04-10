@@ -1,6 +1,7 @@
 %{
 
 import java.io.*;
+import java.util.HashMap;
 
 %}
 
@@ -37,7 +38,7 @@ statements : statements statement { System.out.print("found statements\n"); }
 /* statement productions go here */
 
 statement : type ID ';' { System.out.print("found statement (int i;)\n"); }
-| type ID '=' expression ';' { System.out.print("found statement (int i=5;)\n"); }
+| type ID '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode($1.obj, $2.obj, $4.obj, yyline, yycolumn)); }
 | ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }
@@ -144,6 +145,10 @@ factor_list: factor_list ',' factor {
 * Variables
 ***************************************/
 private Yylex lexer;
+private static int yyline, yycolumn;
+public static HashMap<String, String[]> symbolsTable;
+public static HashMap<String, String[]> functionSymbolsTable;
+
 
 
 /**************************************
