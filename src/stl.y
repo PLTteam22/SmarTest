@@ -37,9 +37,9 @@ statements : statements statement { System.out.print("found statements\n"); }
 
 /* statement productions go here */
 
-statement : type ID ';' { System.out.print("found statement (int i;)\n"); }
-| type ID '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode($1.obj, $2.obj, $4.obj, yyline, yycolumn)); }
-| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); }
+statement : type ID ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal(new DeclarationNode((ASTNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn));  }
+| type ID '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode(new DeclarationNode((ASTNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn), (ASTNode)$4.obj, yyline, yycolumn)); }
+| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((IDNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn)); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }
 | if_statement { System.out.print("found statement (if statement)\n"); }
@@ -146,7 +146,17 @@ factor_list: factor_list ',' factor {
 ***************************************/
 private Yylex lexer;
 private static int yyline, yycolumn;
+
+/* 
+ * symbolsTable: Keys are the identifier names as found in the source code
+ * Values are three-element arrays where the first element represents the type of the identifier
+ * and the second element represents a generated variable name to be used in the target code
+ * and the third element is the line which this symbol was declared first at
+ * For more details see DeclarationNode
+ */
 public static HashMap<String, String[]> symbolsTable;
+
+
 public static HashMap<String, String[]> functionSymbolsTable;
 
 
