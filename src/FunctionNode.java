@@ -19,14 +19,14 @@ public class FunctionNode extends ASTNode
         {
                 if (paramList != null)
                 {
-                        for (param : paramList)
+                        for (ASTNode param : paramList)
                         {
                                 param.semanticCheck();
                         }
                 }
                 if (stmtList != null)
                 {
-                        for (statement : stmtList)
+                        for (ASTNode statement : stmtList)
                         {
                                 statement.semanticCheck();
                         }
@@ -40,10 +40,10 @@ public class FunctionNode extends ASTNode
                 else
                 {
                         String javaID = Parser.getNewFunctionID();
-                        ArrayList<String> paramList = new ArrayList<String>();
-                        for (param : paramList)
+                        ArrayList<String> parameterList = new ArrayList<String>();
+                        for (ASTNode param : paramList)
                         {
-                                paramList.append(param.getType());
+                                parameterList.append(param.getType());
                         }
 
                         Parser.functionSymbolsTable.put(id.toLowerCase(), new FunctionSymbolTableEntry(id, javaID, paramList));

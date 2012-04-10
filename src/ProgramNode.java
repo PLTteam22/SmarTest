@@ -13,7 +13,7 @@ public class ProgramNode extends ASTNode
         }
 	public void semanticCheck()
         {      
-                for (function : this.children)
+                for (ASTNode function : this.children)
                 {
                         function.semanticCheck();
                 }
