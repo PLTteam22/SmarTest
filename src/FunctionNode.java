@@ -6,22 +6,30 @@ public class FunctionNode extends ASTNode
 {
         private ArrayList<ASTNode> paramList;
         private ArrayList<ASTNode> stmtList;
+        private String rtrnType;
 
-        public FunctionNode(String id, ArrayList<ASTNode> parameterList, ArrayList<ASTNode> statementList, int yycol)
+        public FunctionNode(String returnType, String id, ArrayList<ASTNode> parameterList, ArrayList<ASTNode> statementList, int yyline, int yycol)
         {
                 super(yyline, yycol);
+                rtrnType = returnType;
                 paramList = parameterList;
                 stmtList = statementList;
         }
 	public void semanticCheck()
         {
-                for (param : paramList)
+                if (paramList != null)
                 {
-                        param.semanticCheck();
+                        for (param : paramList)
+                        {
+                                param.semanticCheck();
+                        }
                 }
-                for (statement : stmtList)
+                if (stmtList != null)
                 {
-                        statement.semanticCheck();
+                        for (statement : stmtList)
+                        {
+                                statement.semanticCheck();
+                        }
                 }
                 if (Parser.getFunctionSymbolTable().contains(id.toLowerCase()))
                 {
@@ -29,6 +37,7 @@ public class FunctionNode extends ASTNode
                                 ": Function " + id.toLowerCase() +
                                 " is already defined");
                 }
+                //TODO: Add function name to table with return type and parameter list
         }
         
 }
