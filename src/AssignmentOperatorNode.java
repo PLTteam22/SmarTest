@@ -1,38 +1,38 @@
-/*
+/**
+ * @author Aiman
  * Implements semantic checking and output code generation
- * of assignment operator ( = )
- * Example: x = y * d
+ * of assignment statements
+ * Example: x = y * d (without declaration)
+ * 			int x = y + z (with declaration)
+ * 
  */
 public class AssignmentOperatorNode extends ASTNode {
 
-	private ASTNode idType, id, expr;
+	/** Indicates whether this assignment statement includes a declaration as well */
 	private boolean isDeclaration = false;
 	
-	/*
+	/**
 	 * Instantiates AssignmentOperatorNode invoked by this grammar:
 	 * type ID '=' expression. Note this contains a declaration as well.
 	 * 
 	 *  Example:
 	 *  int x = 5
 	 *  
-	 *  @param idType represents the type of the identifier (e.g. int)
-	 *  @param id represents the identifier node 
+	 *  @param declaration represents the left-side operand which is a declaration statement
 	 *  @param expr represents the right-hand side of the operator
+	 *  @param yyline the line where this operator was found in the source code
+	 *  @param yycolumn the column where this operator was found in the source code
 	 */
-	public AssignmentOperatorNode(ASTNode idType, ASTNode id, ASTNode expr, int yyline, int yycolumn) {
+	public AssignmentOperatorNode(DeclarationNode declaration, ASTNode expr, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
-		this.addChild(idType);
-		this.addChild(id);
+		this.addChild(declaration);
 		this.addChild(expr);
-		this.setDeclaration(true);
 		this.isDeclaration = true;
-		this.idType = idType;
-		this.id = id;
-		this.expr = expr;		
+		
 	}
 	
 	
-	/*
+	/**
 	 * Instantiates AssignmentOperatorNode invoked by this grammar:
 	 * ID '=' expression
 	 * 
@@ -42,32 +42,42 @@ public class AssignmentOperatorNode extends ASTNode {
 	 *  @param idType represents the type of the identifier (e.g. int)
 	 *  @param id represents the identifier node 
 	 *  @param expr represents the right-hand side of the operator
+	 *  @param yyline the line where this operator was found in the source code
+	 *  @param yycolumn the column where this operator was found in the source code  
 	 */
 	public AssignmentOperatorNode(ASTNode id, ASTNode expr, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
-		this.addChild(idType);
 		this.addChild(id);
 		this.addChild(expr);
-		this.isDeclaration = false;
-		this.id = id;
-		this.expr = expr;
-		
 	}
 	
-	/*
-	 * Verifies that right side type matches the type of the identifier as in the symbol table
+	/**
+	 * Assignment operator semantics:
+	 * Verifies that right side type matches the left hand side type
+	 * @throws Exception 
 	 * @see ASTNode#checkSemantics()
 	 */
 	@Override
-	public void checkSemantics() {
+	public void checkSemantics() throws Exception {
 		this.getChildAt(0).checkSemantics();
 		this.getChildAt(1).checkSemantics();
-		
-		// TODO Auto-generated method stub
-		if (idType.getType() == expr.getType())
+
+
+		// Now, verify the rhs and lhs types are equal
+		if (! this.getChildAt(0).getType().equals(this.getChildAt(1).getType()))
 		{
-			
+			String varName = "";
+			if (this.isDeclaration)
+				varName = ((DeclarationNode)this.getChildAt(0)).getIdNode().getName();
+			else
+				varName = ((IDNode)this.getChildAt(0)).getName();
+			throw new Exception("Type mismatch: variable " + varName + " was declared "
+								+ this.getChildAt(0).getType() + ", but right-hand side value is "
+								+ this.getChildAt(1).getType() + ". Line " + this.getYyline() + ":" + this.getYycolumn());
 		}
+		
+		this.setType(this.getChildAt(0).getType());
+		
 			
 	}
 
@@ -80,40 +90,11 @@ public class AssignmentOperatorNode extends ASTNode {
 	}
 
 	
-
-	public ASTNode getIdType() {
-		return idType;
-	}
-
-	public void setIdType(ASTNode idType) {
-		this.idType = idType;
-	}
-
-	public ASTNode getId() {
-		return id;
-	}
-
-	public void setId(ASTNode id) {
-		this.id = id;
-	}
-
-	public ASTNode getExpr() {
-		return expr;
-	}
-
-	public void setExpr(ASTNode expr) {
-		this.expr = expr;
-	}
-
-
 	public boolean isDeclaration() {
 		return isDeclaration;
 	}
 
 
-	public void setDeclaration(boolean isDeclaration) {
-		this.isDeclaration = isDeclaration;
-	}
-	
-	
+
+
 }
