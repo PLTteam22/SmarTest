@@ -5,12 +5,15 @@ import java.util.ArrayList;
 /*
  * 
  */
-public class ASTNode {
+public abstract class ASTNode {
 	
 	private ArrayList<ASTNode> children;
 	private String type;	
 	private int yyline;
 	private int yycolumn;
+	
+	public abstract void checkSemantics();
+	public abstract String generateCode();
 	
 	
 	public ASTNode(int yyline, int yycolumn)
@@ -24,6 +27,12 @@ public class ASTNode {
 	{
 		return this.children.get(index);	
 	}
+	
+	void addChild(ASTNode node)
+	{
+		this.children.add(node);
+	}
+	
 
 	int getChildCount()
 	{
