@@ -8,7 +8,8 @@ public class ProgramNode extends ASTNode
         public ProgramNode(ArrayList<ASTNode> functionList, int yyline, int yycol)
         {
                 super(yyline, yycol);
-                this.children.addAll(functionList);
+                if (functionList != null)
+                        this.children.addAll(functionList);
         }
 	public void semanticCheck()
         {      
