@@ -12,7 +12,7 @@ public abstract class ASTNode {
 	private int yyline;
 	private int yycolumn;
 	
-	public abstract void checkSemantics();
+	public abstract void checkSemantics() throws Exception;
 	public abstract String generateCode();
 	
 	
