@@ -81,12 +81,12 @@ open_statement : IF '(' expression ')' '{' statement '}'
 loop : LOOP WHILE '(' expression ')' '{' statements '}' { System.out.print("found loop\n"); }
 
 
-question_literal : '$' expression ':' expression '[' answer_choices ']' '$' { System.out.print("found question_literal\n"); }
+question_literal : '$' expression ':' expression '[' answer_choices ']' '$' { System.out.print("found question_literal\n"); $$ = new ParserVal(new QuestionLiteralNode((ASTNode)$2.obj, (ASTNode)$4.obj, (ASTNode)$6.obj, yyline, yycolumn)); }
 
-answer_choices : answer_choices ',' answer_choice { System.out.print("found answer_choices\n"); }
-| answer_choice { System.out.print("found answer_choices\n"); }
+answer_choices : answer_choices ',' answer_choice { System.out.print("found answer_choices\n"); ((AnswerChoicesListNode)$1.obj).addAnswer((ASTNode)$3.obj); $$ = $1; }
+| answer_choice { System.out.print("found answer_choices\n"); $$ = new ParserVal(new AnswerChoicesListNode(yyline, yycolumn)); ((AnswerChoicesListNode)$$.obj).addAnswer((ASTNode)$1.obj); }
 
-answer_choice : expression ':' expression { System.out.print("found an answer_choice\n"); }
+answer_choice : expression ':' expression { System.out.print("found an answer_choice\n"); $$ = new ParserVal(new AnswerChoiceNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
 
 
 expression : expression AND not_boolean_operand { System.out.print("found an expression (and)\n"); }
