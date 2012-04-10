@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 public class FunctionNode extends ASTNode
 {
-        
-        public FunctionNode(String id, ArrayList<ASTNode> paramList, ArrayList<ASTNode> statementList, int yycol)
+        private ArrayList<ASTNode> paramList;
+        private ArrayList<ASTNode> stmtList;
+
+        public FunctionNode(String id, ArrayList<ASTNode> parameterList, ArrayList<ASTNode> statementList, int yycol)
         {
                 super(yyline, yycol);
-                this.children.addAll(functionList);
+                paramList = parameterList;
+                stmtList = statementList;
         }
 	public void semanticCheck()
         {
@@ -16,7 +19,7 @@ public class FunctionNode extends ASTNode
                 {
                         param.semanticCheck();
                 }
-                for (statement : statementList)
+                for (statement : stmtList)
                 {
                         statement.semanticCheck();
                 }

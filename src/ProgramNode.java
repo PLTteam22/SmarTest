@@ -8,7 +8,8 @@ public class ProgramNode extends ASTNode
         public ProgramNode(ArrayList<ASTNode> functionList, int yyline, int yycol)
         {
                 super(yyline, yycol);
-                this.children.addAll(functionList);
+                if (functionList != null)
+                        this.children.addAll(functionList);
         }
 	public void semanticCheck()
         {      
@@ -16,7 +17,7 @@ public class ProgramNode extends ASTNode
                 {
                         function.semanticCheck();
                 }
-                if (!((FunctionNode)this.children.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
+                if (this.children.getChildCount() == 0 || !((FunctionNode)this.children.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
                 {
                         throw new Exception("No function called main defined");
                 }
