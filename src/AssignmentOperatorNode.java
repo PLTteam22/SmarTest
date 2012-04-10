@@ -51,6 +51,7 @@ public class AssignmentOperatorNode extends ASTNode {
 		this.isDeclaration = false;
 		this.id = id;
 		this.expr = expr;
+		
 	}
 	
 	/*
@@ -59,8 +60,15 @@ public class AssignmentOperatorNode extends ASTNode {
 	 */
 	@Override
 	public void checkSemantics() {
-		// TODO Auto-generated method stub
+		this.getChildAt(0).checkSemantics();
+		this.getChildAt(1).checkSemantics();
 		
+		// TODO Auto-generated method stub
+		if (idType.getType() == expr.getType())
+		{
+			
+		}
+			
 	}
 
 	
