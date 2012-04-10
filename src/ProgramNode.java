@@ -16,7 +16,7 @@ public class ProgramNode extends ASTNode
                 {
                         function.semanticCheck();
                 }
-                if (!((FunctionNode)this.children.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
+                if (this.children.getChildCount() == 0 || !((FunctionNode)this.children.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
                 {
                         throw new Exception("No function called main defined");
                 }
