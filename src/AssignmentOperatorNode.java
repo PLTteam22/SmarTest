@@ -1,10 +1,10 @@
 /**
- * @author Aiman
  * Implements semantic checking and output code generation
  * of assignment statements
  * Example: x = y * d (without declaration)
  * 			int x = y + z (with declaration)
- * 
+
+ * @author Aiman
  */
 public class AssignmentOperatorNode extends ASTNode {
 

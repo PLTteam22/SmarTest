@@ -1,6 +1,6 @@
 /**
- * @author Aiman
  * Implements node representation for Identifiers
+ * @author Aiman 
  */
 public class IDNode extends ASTNode {
 

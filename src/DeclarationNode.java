@@ -1,7 +1,7 @@
 /**
- * @author Aiman
  * Represents a declaration statement
  * This is where identifiers are inserted into the symbols tables
+ * @author Aiman
  */
 public class DeclarationNode extends ASTNode {
 
