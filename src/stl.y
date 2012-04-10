@@ -43,7 +43,7 @@ statement : type ID ';' { System.out.print("found statement (int i;)\n"); $$ = n
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }
 | if_statement { System.out.print("found statement (if statement)\n"); }
-| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); }
+| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
 | RETURN optional_expression ';' { System.out.print("found statement (return)\n"); }
 
 type : INT { System.out.print("found type (int)\n"); }
