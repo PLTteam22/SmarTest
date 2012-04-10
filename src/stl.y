@@ -109,32 +109,32 @@ equality_operand : equality_operand  LT relational_operand { System.out.print("f
    | equality_operand LE relational_operand { System.out.print("found a equality_operand\n"); }
    | relational_operand { System.out.print("found a equality_operand\n"); }
 
-relational_operand : relational_operand '+' term { System.out.print("found a relational_operand\n"); }
-| relational_operand '-' term { System.out.print("found a relational_operand\n"); }
-| term { System.out.print("found a relational_operand\n"); }
+relational_operand : relational_operand '+' term { System.out.print("found a relational_operand\n"); $$ = new RelationalOperandNode("addition",$1,$3); }
+| relational_operand '-' term { System.out.print("found a relational_operand\n"); $$ = new RelationalOperandNode("subtract",$1,$3); }
+| term { System.out.print("found a relational_operand\n"); $$ = $1 }
 
-term : term '*' factor { System.out.print("found a term\n"); }
-| term '/' factor { System.out.print("found a term\n"); }
-| term MOD factor { System.out.print("found a term\n"); }
-| factor { System.out.print("found a term\n"); }
-| '-' factor { System.out.print("found a term\n"); }
+term : term '*' factor { System.out.print("found a term\n"); $$ = new ArithmeticOperatorNode("multiply",$1,$3); }
+| term '/' factor { System.out.print("found a term\n"); $$ = new ArithmeticOperatorNode("divide",$1,$3); }
+| term MOD factor { System.out.print("found a term\n"); $$ = new ArithmeticOperatorNode("modulus",$1,$3); }
+| factor { System.out.print("found a term\n");  $$ = $1; }
+| '-' factor { System.out.print("found a term\n"); $$ = new Uminus($2); }
 
-factor : INTLITERAL { System.out.print("found a factor\n"); }
-| FLOATLITERAL { System.out.print("found a factor\n"); }
-| CHARLITERAL { System.out.print("found a factor\n"); }
-| STRINGLITERAL { System.out.print("found a factor\n"); }
-| BOOLLITERAL { System.out.print("found a factor\n"); }
-| ID
-| question_literal
-| '(' expression ')' 
-| function_call
+factor : INTLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("int", $1);}
+| FLOATLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("float", $1); }
+| CHARLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("char", $1); }
+| STRINGLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("string", $1); }
+| BOOLLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("boolean", $1); }
+| ID { $$ = new FactorNode($1);}
+| question_literal { $$ = new FactorNode($1); }
+| '(' expression ')' { $$ = $2; } 
+| function_call { $$ = $1; }
 
-function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); }
-optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); }
+function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); $$ = new FunctionCallNode($1,$3); }
+optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); $$ = $1; }
 | /* empty */
 
-factor_list: factor_list ',' factor { System.out.print("found a factor_list\n"); }
-| factor  { System.out.print("found a factor_list\n"); }
+factor_list: factor_list ',' factor { System.out.print("found a factor_list\n"); new FactorListNode($1,$3); }
+| factor  { System.out.print("found a factor_list\n"); $$ = new FactorNode($1); }
 
 %%
 
