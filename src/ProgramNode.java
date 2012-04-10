@@ -11,15 +11,16 @@ public class ProgramNode extends ASTNode
                 this.children.addAll(functionList);
         }
 	public void semanticCheck()
-        {
-                if (!((FunctionNode)this.children.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
-                {
-                        throw new Exception("No function called main defined");
-                }
+        {      
                 for (function : this.children)
                 {
                         function.semanticCheck();
                 }
+                if (!((FunctionNode)this.children.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
+                {
+                        throw new Exception("No function called main defined");
+                }
+
         }
         
 }
