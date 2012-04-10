@@ -168,7 +168,7 @@ private static int yyline, yycolumn;
 public static HashMap<String, String[]> symbolsTable;
 
 
-public static HashMap<String, String[]> functionSymbolsTable;
+public static HashMap<String, FunctionSymbolTableEntry> functionSymbolsTable;
 
 
 

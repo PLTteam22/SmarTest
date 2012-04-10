@@ -31,13 +31,24 @@ public class FunctionNode extends ASTNode
                                 statement.semanticCheck();
                         }
                 }
-                if (Parser.getFunctionSymbolTable().contains(id.toLowerCase()))
+                if (Parser.functionSymbolsTable.contains(id.toLowerCase()))
                 {
                         throw new Exception("Line " + this.getYyline() +
                                 ": Function " + id.toLowerCase() +
                                 " is already defined");
                 }
-                //TODO: Add function name to table with return type and parameter list
+                else
+                {
+                        String javaID = Parser.getNewFunctionID();
+                        ArrayList<String> paramList = new ArrayList<String>();
+                        for (param : paramList)
+                        {
+                                paramList.append(param.getType());
+                        }
+
+                        Parser.functionSymbolsTable.put(id.toLowerCase(), new FunctionSymbolTableEntry(id, javaID, paramList));
+                }
+                setType(returnType);
         }
         
 }
