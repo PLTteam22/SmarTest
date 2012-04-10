@@ -4,13 +4,9 @@ import java.io.*;
 
 %}
 
-%token  IF ELSE ID INT FLOAT QUESTION SET AND OR NOT NOTEQUAL CHAR BOOLEAN VOID EQUALEQUAL GE LE LT GT MOD BOOLLITERAL LOOP WHILE STRING INSERT RETURN
+%token  IF ELSE ID INT FLOAT QUESTION SET AND OR NOT NOTEQUAL CHAR BOOLEAN VOID EQUALEQUAL GE LE LT GT MOD BOOLLITERAL LOOP WHILE STRING INSERT RETURN LPARAN RPARAN LCURLY RCURLY COMMA SEMICOLON EQUAL DOLLAR LSQUARE RSQUARE COLON PLUS MINUS MULTIPLY DIVIDE CHARLITERAL STRINGLITERAL FLOATLITERAL INTLITERAL
  
 
-%token <sval> CHARLITERAL 
-%token <sval> STRINGLITERAL
-%token <dval> FLOATLITERAL
-%token <ival> INTLITERAL
 
 %%
 
@@ -20,7 +16,7 @@ import java.io.*;
 // ================================= //
 
 
-program : function_list { System.out.print("found program\n"); }
+program : function_list { System.out.print("found a program\n"); }
 
 function_list : function_list function  { System.out.print("found function_list\n"); }
 |/* empty*/ { System.out.print("found function_list\n"); }
@@ -33,29 +29,29 @@ optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"
 param_list: param_list ',' parameter { System.out.print("found param_list\n"); }
 | parameter { System.out.print("found param_list\n"); }
 
-parameter : type ID { System.out.print("found parameter\n"); }
+parameter : type ID { System.out.print("found a parameter\n"); }
 
 statements : statements statement { System.out.print("found statements\n"); }
 |/*  empty */ { System.out.print("found statements\n"); }
 
 /* statement productions go here */
 
-statement : type ID ';' { System.out.print("found statement\n"); }
-| type ID '=' expression ';' { System.out.print("found statement\n"); }
-| ID '=' expression ';' { System.out.print("found statement\n"); }
-| function_call ';' { System.out.print("found statement\n"); }
-| loop { System.out.print("found statement\n"); }
-| if_statement { System.out.print("found statement\n"); }
-| ID INSERT expression ';' { System.out.print("found statement\n"); }
-| RETURN optional_expression ';' { System.out.print("found statement\n"); }
+statement : type ID ';' { System.out.print("found statement (int i;)\n"); }
+| type ID '=' expression ';' { System.out.print("found statement (int i=5;)\n"); }
+| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); }
+| function_call ';' { System.out.print("found statement (func call)\n"); }
+| loop { System.out.print("found statement (loop)\n"); }
+| if_statement { System.out.print("found statement (if statement)\n"); }
+| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); }
+| RETURN optional_expression ';' { System.out.print("found statement (return)\n"); }
 
-type : INT { System.out.print("found type\n"); }
-| FLOAT { System.out.print("found type\n"); }
-| CHAR { System.out.print("found type\n"); }
-| BOOLEAN { System.out.print("found type\n"); }
-| STRING { System.out.print("found type\n"); }
-| QUESTION { System.out.print("found type\n"); }
-| SET { System.out.print("found type\n"); }
+type : INT { System.out.print("found type (int)\n"); }
+| FLOAT { System.out.print("found type (float)\n"); }
+| CHAR { System.out.print("found type (char)\n"); }
+| BOOLEAN { System.out.print("found type (boolean)\n"); }
+| STRING { System.out.print("found type (string)\n"); }
+| QUESTION { System.out.print("found type (question)\n"); }
+| SET { System.out.print("found type (set)\n"); }
 
 return_type : type | VOID { System.out.print("found return_type\n"); }
 
@@ -92,9 +88,9 @@ answer_choices : answer_choices ',' answer_choice { System.out.print("found answ
 answer_choice : expression ':' expression { System.out.print("found an answer_choice\n"); }
 
 
-expression : expression AND not_boolean_operand { System.out.print("found an expression\n"); }
-| expression OR not_boolean_operand { System.out.print("found an expression\n"); }
-| not_boolean_operand { System.out.print("found an expression\n"); }
+expression : expression AND not_boolean_operand { System.out.print("found an expression (and)\n"); }
+| expression OR not_boolean_operand { System.out.print("found an expression (or)\n"); }
+| not_boolean_operand { System.out.print("found an expression (not boolean)\n"); }
 
 not_boolean_operand: NOT not_boolean_operand { System.out.print("found a not_boolean_operand\n"); }
 | boolean_operand { System.out.print("found a not_boolean_operand\n"); }
@@ -103,38 +99,44 @@ boolean_operand : boolean_operand EQUALEQUAL equality_operand { System.out.print
 | boolean_operand NOTEQUAL equality_operand { System.out.print("found a boolean_operand\n"); }
           | equality_operand { System.out.print("found a boolean_operand\n"); }
 
-equality_operand : equality_operand  LT relational_operand { System.out.print("found a equality_operand\n"); }
-   | equality_operand GT relational_operand { System.out.print("found a equality_operand\n"); }
-   | equality_operand GE relational_operand { System.out.print("found a equality_operand\n"); }
-   | equality_operand LE relational_operand { System.out.print("found a equality_operand\n"); }
+equality_operand : equality_operand  LT relational_operand { System.out.print("found a equality_operand (LT)\n"); }
+   | equality_operand GT relational_operand { System.out.print("found a equality_operand (GT)\n"); }
+   | equality_operand GE relational_operand { System.out.print("found a equality_operand (GE)\n"); }
+   | equality_operand LE relational_operand { System.out.print("found a equality_operand (LE)\n"); }
    | relational_operand { System.out.print("found a equality_operand\n"); }
 
-relational_operand : relational_operand '+' term { System.out.print("found a relational_operand\n"); $$ = new RelationalOperandNode("addition",$1,$3); }
-| relational_operand '-' term { System.out.print("found a relational_operand\n"); $$ = new RelationalOperandNode("subtract",$1,$3); }
-| term { System.out.print("found a relational_operand\n"); $$ = $1 }
+relational_operand : relational_operand '+' term { System.out.print("found a relational_operand (+)\n"); }
+| relational_operand '-' term { System.out.print("found a relational_operand (-)\n"); }
+| term { System.out.print("found a relational_operand\n"); }
 
-term : term '*' factor { System.out.print("found a term\n"); $$ = new ArithmeticOperatorNode("multiply",$1,$3); }
-| term '/' factor { System.out.print("found a term\n"); $$ = new ArithmeticOperatorNode("divide",$1,$3); }
-| term MOD factor { System.out.print("found a term\n"); $$ = new ArithmeticOperatorNode("modulus",$1,$3); }
-| factor { System.out.print("found a term\n");  $$ = $1; }
-| '-' factor { System.out.print("found a term\n"); $$ = new Uminus($2); }
+term : term '*' factor { System.out.print("found a term (*)\n"); }
+| term '/' factor { System.out.print("found a term (/)\n"); }
+| term MOD factor { System.out.print("found a term (%)\n"); }
+| factor { System.out.print("found a term\n"); }
+| '-' factor { System.out.print("found a term (unary -)\n"); }
 
-factor : INTLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("int", $1);}
-| FLOATLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("float", $1); }
-| CHARLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("char", $1); }
-| STRINGLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("string", $1); }
-| BOOLLITERAL { System.out.print("found a factor\n"); $$ = new LiteralNode("boolean", $1); }
-| ID { $$ = new FactorNode($1);}
-| question_literal { $$ = new FactorNode($1); }
-| '(' expression ')' { $$ = $2; } 
-| function_call { $$ = $1; }
+factor : INTLITERAL { System.out.print("found a factor (int)\n"); }
+| FLOATLITERAL { System.out.print("found a factor (float)\n"); }
+| CHARLITERAL { System.out.print("found a factor (char)\n"); }
+| STRINGLITERAL { System.out.print("found a factor (string)\n"); }
+| BOOLLITERAL { System.out.print("found a factor (bool)\n"); }		// Do checking for true and false ignoreCase
+| ID
+| question_literal
+| '(' expression ')' 
+| function_call
 
-function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); $$ = new FunctionCallNode($1,$3); }
-optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); $$ = $1; }
+function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); }
+optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); }
 | /* empty */
 
-factor_list: factor_list ',' factor { System.out.print("found a factor_list\n"); new FactorListNode($1,$3); }
-| factor  { System.out.print("found a factor_list\n"); $$ = new FactorNode($1); }
+factor_list: factor_list ',' factor { 
+					System.out.print("found a factor_list\n"); 
+					$$ = new ParserVal(((FactorListNode)$1.obj).add($3.obj)); 
+				    }
+| factor  { 
+		System.out.print("found a factor_list\n"); 
+		$$ = new ParserVal(new FactorListNode((ASTNode)$1.obj)); 
+	}
 
 %%
 
@@ -163,7 +165,7 @@ public void yyerror(String error)
 /**************************************
 * Constructor
 ***************************************/
-public Parser(Reader r, boolean createFile)
+public Parser(Reader r)
 {
   lexer = new Yylex(r, this);
 }
@@ -189,5 +191,24 @@ private int yylex()
   }
   
   return yyl_return;
+}
+
+public static void main(String args[]) throws IOException
+{
+
+  Parser yyparser;
+  boolean createFile = false;
+
+  if (args.length < 1)
+  {
+    System.out.println("Usage: java Parser <filename.stl>");
+    return;
+  }
+ 
+  // parse a file
+  yyparser = new Parser(new FileReader(args[0]));
+
+  System.out.println("\nCompiling ...\n");
+  yyparser.yyparse();
 }
 

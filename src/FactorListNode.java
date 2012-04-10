@@ -1,4 +1,3 @@
-package smartest;
 
 import java.util.ArrayList;
 
@@ -8,15 +7,14 @@ class FactorNode extends ASTNode
 }
 
 
-public class FactorListNode extends ArrayList {
-	
+public class FactorListNode {
+	ArrayList array = new ArrayList();
 	public FactorListNode(ASTNode node)
 	{
-		super();
 		this.add(node);
 	}
 
 	public FactorListNode add(FactorNode factor)
-	{ this.add(factor); return this; }
+	{ array.add(factor); return this; }
 }
 
