@@ -23,11 +23,11 @@ program : optional_function_list
         $$ = new ParserVal(new ProgramNode($1, yyline, yycolumn));
 }
 
-optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = $1 }
+optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = new ParserVal((ArrayList<FunctionNode>)$1); }
 | /* emtpy */ { System.out.println("found optional_function_list\n"); $$ = new ParserVal(null); }
 
-function_list : function_list function  { System.out.print("found function_list\n"); }
-| function { System.out.print("found function_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).append((ASTNode)$1.object); }
+function_list : function_list function  { System.out.print("found function_list\n"); $$ = new ParserVal(((ArrayList<ASTNode>)$1.obj).append((ASTNode)$2.obj)); }
+| function { System.out.print("found function_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).append((ASTNode)$1.obj)); }
 
 function : return_type ID '(' optional_param_list ')' '{' statements '}'
 {
@@ -39,11 +39,11 @@ optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"
 | param_list { System.out.print("found optional_param_list\n"); $$ = new ParserVal((ASTNode)$1.obj); }
 
 param_list: param_list ',' parameter { System.out.print("found param_list\n"); }
-| parameter { System.out.print("found param_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>).append((ASTNode)$1.obj)); }
+| parameter { System.out.print("found param_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).append((ASTNode)$1.obj)); }
 
 parameter : type ID { System.out.print("found a parameter\n"); }
 
-statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).append((ASTNode)$2.obj)}
+statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).append((ASTNode)$2.obj); }
 |/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new ArrayList<ASTNode>()); }
 
 /* statement productions go here */
