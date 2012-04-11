@@ -70,7 +70,9 @@ public class ArithmeticOperatorNode extends ASTNode{
 	public void checkSemantics() throws Exception {
 		// TODO Auto-generated method stub
 		this.getChildAt(0).checkSemantics();
-		this.getChildAt(1).checkSemantics();
+		
+		if (this.getChildCount() > 1)
+			this.getChildAt(1).checkSemantics();
 		
 		/*
 		 * The grammar should look into that only boolean expressions or relational expressions are executed.
