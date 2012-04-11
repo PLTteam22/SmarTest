@@ -5,7 +5,7 @@
  * Example - a  LT 3
  * 			 b  LT 5
  */
-class EqualityOperandNode extends ASTNode {
+class RelationalOperatorNode extends ASTNode {
 	/*
 	 * Instantiates EqualityOperator invoked by this grammar:
 	 *  equality_operand  LT relational_operand 
@@ -16,7 +16,7 @@ class EqualityOperandNode extends ASTNode {
 	 *  @param lcNode,rcNode represents nodes of operand
 	 *  @param yyline,yycolumn represents nodes line number and column number 
 	 */
-	public EqualityOperandNode(String op, ASTNode lcNode, ASTNode rcNode,
+	public RelationalOperatorNode(String op, ASTNode lcNode, ASTNode rcNode,
 			int yyline, int yycolumn) {
 		super(yyline, yycolumn);
 		this.addChild(lcNode);
