@@ -15,9 +15,9 @@ public class ProgramNode extends ASTNode
                 {
                         function.checkSemantics();
                 }
-                if (this.getChildCount() == 0 || !((FunctionNode)this.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
+                if (! Parser.functionSymbolsTable.containsKey("main") )
                 {
-                        throw new Exception("No function called main defined");
+                        throw new Exception(this.getYyline() + ":" + this.getYycolumn() + ": No function called main defined");
                 }
 
         }

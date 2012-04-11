@@ -27,7 +27,8 @@ public class FunctionCallNode extends ASTNode
 	
 	public void checkSemantics() throws Exception 
 	{
-			this.getChildAt(0).checkSemantics();
+			if (this.getChildCount() > 0)
+				this.getChildAt(0).checkSemantics();
 
 			if(!hashMap.containsKey(functionName.toLowerCase()))
 				throw new Exception("Function does not Exist: " + this.getYyline() + ":" + 

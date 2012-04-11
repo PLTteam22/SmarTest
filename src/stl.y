@@ -20,7 +20,7 @@ import java.util.*;
 program : optional_function_list
 {
         System.out.print("found a program\n");
-        $$ = new ParserVal(new ProgramNode((ArrayList<ASTNode>)$1.obj, yyline, yycolumn));
+        $$ = new ParserVal(new ProgramNode((ArrayList<ASTNode>)$1.obj, line, column));
         try
         {
         	((ASTNode)$$.obj).checkSemantics();
@@ -43,7 +43,7 @@ function_list : function_list function  { System.out.print("found function_list\
 function : return_type ID '(' optional_param_list ')' '{' statements '}'
 {
         System.out.print("found function\n");
-        $$ = new ParserVal(new FunctionNode($1.sval, $2.sval, (ArrayList<ASTNode>)$4.obj, (ASTNode)$7.obj, yyline, yycolumn));
+        $$ = new ParserVal(new FunctionNode($1.sval, $2.sval, (ArrayList<ASTNode>)$4.obj, (ASTNode)$7.obj, line, column));
 }
 
 optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); $$ = new ParserVal(null); }
@@ -53,19 +53,19 @@ param_list: param_list ',' declaration { System.out.print("found param_list\n");
 | declaration { System.out.print("found param_list\n"); ArrayList<ASTNode> plist = new ArrayList<ASTNode>(); plist.add((ASTNode)$1.obj); $$ = new ParserVal(plist); }
 
 statements : statements statement { System.out.print("found statements\n"); ((StatementsNode)$1.obj).addChild((ASTNode)$2.obj); $$ = $1; }
-|/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new StatementsNode(yyline, yycolumn)); }
+|/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new StatementsNode(line, column)); }
 
 /* statement productions go here */
 
-declaration : type ID { $$ = new ParserVal(new DeclarationNode($1.sval, new IDNode($2.sval, yyline, yycolumn), yyline, yycolumn)); }
+declaration : type ID { $$ = new ParserVal(new DeclarationNode($1.sval, new IDNode($2.sval, line, column), line, column)); }
 
 statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal((ASTNode)$1.obj); }
-| declaration '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
-| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((IDNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn)); }
+| declaration '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$3.obj, line, column)); }
+| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((IDNode)$1.obj, (ASTNode)$2.obj, line, column)); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }
 | if_statement { System.out.print("found statement (if statement)\n"); }
-| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
+| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode((ASTNode)$1.obj, (ASTNode)$3.obj, line, column)); }
 | RETURN optional_expression ';' { System.out.print("found statement (return)\n"); }
 
 type : INT { System.out.print("found type (int)\n"); $$ = new ParserVal("int"); }
@@ -78,12 +78,12 @@ type : INT { System.out.print("found type (int)\n"); $$ = new ParserVal("int"); 
 
 return_type : type 
 	{ 
-		$$ = new ParserVal(new ReturnNode($1.sval,yyline,yycolumn));
+		$$ = new ParserVal(new ReturnNode($1.sval,line,column));
 	}
 | VOID 
 	{ 
 		System.out.print("found return_type\n"); 
-		$$ = new ParserVal(new ReturnNode($1.sval,yyline,yycolumn)); 
+		$$ = new ParserVal(new ReturnNode($1.sval,line,column)); 
 	}
 
 optional_expression : expression { System.out.print("found optional_expression\n"); }
@@ -94,12 +94,12 @@ optional_expression : expression { System.out.print("found optional_expression\n
 
 if_statement : IF '(' expression ')' '{' statements '}' 
 	{ 
-		$$ = new ParserVal(new IfStatementNode((ASTNode)$3.obj, (ASTNode)$6.obj, yyline, yycolumn));
+		$$ = new ParserVal(new IfStatementNode((ASTNode)$3.obj, (ASTNode)$6.obj, line, column));
 		System.out.print("found if_statement\n"); 
 	}
 | IF '(' expression ')' '{' statements '}' ELSE '{' statements '}' 
 	{
-		$$ = new ParserVal(new IfStatementNode((ASTNode)$3.obj, (ASTNode)$6.obj, (ASTNode)$10.obj, yyline, yycolumn));
+		$$ = new ParserVal(new IfStatementNode((ASTNode)$3.obj, (ASTNode)$6.obj, (ASTNode)$10.obj, line, column));
 	 	System.out.print("found if_statement\n"); 
 	}
 /*
@@ -117,26 +117,26 @@ open_statement : IF '(' expression ')' '{' statement '}'
 
 loop : LOOP WHILE '(' expression ')' '{' statements '}' 
 {
-	$$ = new ParserVal(new LoopNode((ASTNode)$4.obj, (ASTNode)$7.obj, yyline, yycolumn));
+	$$ = new ParserVal(new LoopNode((ASTNode)$4.obj, (ASTNode)$7.obj, line, column));
 	System.out.print("found loop\n"); 
 }
 
 
-question_literal : '$' expression ':' expression '[' answer_choices ']' '$' { System.out.print("found question_literal\n"); $$ = new ParserVal(new QuestionLiteralNode((ASTNode)$2.obj, (ASTNode)$4.obj, (ASTNode)$6.obj, yyline, yycolumn)); }
+question_literal : '$' expression ':' expression '[' answer_choices ']' '$' { System.out.print("found question_literal\n"); $$ = new ParserVal(new QuestionLiteralNode((ASTNode)$2.obj, (ASTNode)$4.obj, (ASTNode)$6.obj, line, column)); }
 
 answer_choices : answer_choices ',' answer_choice { System.out.print("found answer_choices\n"); ((AnswerChoicesListNode)$1.obj).addAnswer((ASTNode)$3.obj); $$ = $1; }
-| answer_choice { System.out.print("found answer_choices\n"); $$ = new ParserVal(new AnswerChoicesListNode(yyline, yycolumn)); ((AnswerChoicesListNode)$$.obj).addAnswer((ASTNode)$1.obj); }
+| answer_choice { System.out.print("found answer_choices\n"); $$ = new ParserVal(new AnswerChoicesListNode(line, column)); ((AnswerChoicesListNode)$$.obj).addAnswer((ASTNode)$1.obj); }
 
-answer_choice : expression ':' expression { System.out.print("found an answer_choice\n"); $$ = new ParserVal(new AnswerChoiceNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
+answer_choice : expression ':' expression { System.out.print("found an answer_choice\n"); $$ = new ParserVal(new AnswerChoiceNode((ASTNode)$1.obj, (ASTNode)$3.obj, line, column)); }
 
 
 expression : expression AND not_boolean_operand 
 	{ 	
-		System.out.print("found an expression (and)\n"); $$ = new ParserVal(new ExpressionNode("and",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); 
+		System.out.print("found an expression (and)\n"); $$ = new ParserVal(new ExpressionNode("and",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column)); 
 	}
 | expression OR not_boolean_operand 
 	{ 
-		System.out.print("found an expression (or)\n"); $$ = new ParserVal(new ExpressionNode("or",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); 
+		System.out.print("found an expression (or)\n"); $$ = new ParserVal(new ExpressionNode("or",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column)); 
 	}
 | not_boolean_operand 
 	{ 
@@ -145,24 +145,24 @@ expression : expression AND not_boolean_operand
 
 not_boolean_operand: NOT not_boolean_operand 
 	{ 
-		$$ = new ParserVal(new NotBooleanOperandNode("not",(ASTNode)$2.obj, yyline, yycolumn));
+		$$ = new ParserVal(new NotBooleanOperandNode("not",(ASTNode)$2.obj, line, column));
 		System.out.print("found a not_boolean_operand\n"); 
 	}
 | boolean_operand 
 	{ 
-		//$$ = new ParserVal(new NotBooleanOperandNode((ASTNode)$1.obj, yyline, yycolumn));
+		//$$ = new ParserVal(new NotBooleanOperandNode((ASTNode)$1.obj, line, column));
 		$$ = $1;		
 		System.out.print("found a not_boolean_operand\n"); 
 	}
 
 boolean_operand : boolean_operand EQUALEQUAL equality_operand 
 	{ 
-		$$ = new ParserVal(new BooleanOperandNode("equal",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		$$ = new ParserVal(new BooleanOperandNode("equal",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 		System.out.print("found a boolean_operand\n"); 
 	}
 | boolean_operand NOTEQUAL equality_operand 
 	{
-		$$ = new ParserVal(new BooleanOperandNode("not_equal",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		$$ = new ParserVal(new BooleanOperandNode("not_equal",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 		System.out.print("found a boolean_operand\n"); 
 	}
 | equality_operand 
@@ -174,33 +174,33 @@ boolean_operand : boolean_operand EQUALEQUAL equality_operand
 equality_operand : equality_operand  LT relational_operand 
 				{
 					System.out.print("found a equality_operand (LT)\n");
-					$$ = new ParserVal(new RelationalOperatorNode("LT", (ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+					$$ = new ParserVal(new RelationalOperatorNode("LT", (ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 				}
    | equality_operand GT relational_operand 
 				{
 					System.out.print("found a equality_operand (GT)\n");
-					$$ = new ParserVal(new RelationalOperatorNode("GT", (ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+					$$ = new ParserVal(new RelationalOperatorNode("GT", (ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 				}   
    | equality_operand GE relational_operand 
 				{
 					System.out.print("found a equality_operand (GE)\n");
-					$$ = new ParserVal(new RelationalOperatorNode("GE", (ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+					$$ = new ParserVal(new RelationalOperatorNode("GE", (ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 				}   
    | equality_operand LE relational_operand 
 				{
 					System.out.print("found a equality_operand (LE)\n");
-					$$ = new ParserVal(new RelationalOperatorNode("LE", (ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+					$$ = new ParserVal(new RelationalOperatorNode("LE", (ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 				}   
    | relational_operand { System.out.print("found a equality_operand\n"); $$ = $1; }
 
 relational_operand : relational_operand '+' term 
 	{ 
-		$$ = new ParserVal(new ArithmeticOperatorNode("addition",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		$$ = new ParserVal(new ArithmeticOperatorNode("addition",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 		System.out.print("found a relational_operand (+)\n"); 
 	}
 | relational_operand '-' term 
 	{ 
-		$$ = new ParserVal(new ArithmeticOperatorNode("subtraction",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		$$ = new ParserVal(new ArithmeticOperatorNode("subtraction",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 		System.out.print("found a relational_operand (-)\n"); 
 	}
 | term 
@@ -211,17 +211,17 @@ relational_operand : relational_operand '+' term
 
 term : term '*' factor 
 	{
-		$$ = new ParserVal(new ArithmeticOperatorNode("multiplication",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		$$ = new ParserVal(new ArithmeticOperatorNode("multiplication",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column));
 		System.out.print("found a term (*)\n"); 
 	}
 | term '/' factor 
 	{
-		$$ = new ParserVal(new ArithmeticOperatorNode("division",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); 
+		$$ = new ParserVal(new ArithmeticOperatorNode("division",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column)); 
 		System.out.print("found a term (/)\n"); 
 	}
 | term MOD factor 
 	{
-		$$ = new ParserVal(new ArithmeticOperatorNode("modulus",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); 
+		$$ = new ParserVal(new ArithmeticOperatorNode("modulus",(ASTNode)$1.obj, (ASTNode)$3.obj, line, column)); 
 		System.out.print("found a term (%)\n"); 
 	}
 | factor 
@@ -231,21 +231,21 @@ term : term '*' factor
 	}
 | '-' factor 
 	{ 
-		$$ = new ParserVal(new ArithmeticOperatorNode("unary",(ASTNode)$2.obj, yyline, yycolumn));
+		$$ = new ParserVal(new ArithmeticOperatorNode("unary",(ASTNode)$2.obj, line, column));
 		System.out.print("found a term (unary -)\n"); 
 	}
 
-factor : INTLITERAL { System.out.print("found a factor (int)\n"); $$ = new ParserVal(new LiteralNode("int", yyline, yycolumn)); }
-| FLOATLITERAL { System.out.print("found a factor (float)\n"); $$ = new ParserVal(new LiteralNode("float", yyline, yycolumn)); }
-| CHARLITERAL { System.out.print("found a factor (char)\n"); $$ = new ParserVal(new LiteralNode("char", yyline, yycolumn)); }
-| STRINGLITERAL { System.out.print("found a factor (string)\n"); $$ = new ParserVal(new LiteralNode("string", yyline, yycolumn));}
-| BOOLLITERAL { System.out.print("found a factor (bool)\n"); $$ = new ParserVal(new LiteralNode("boolean", yyline, yycolumn)); }		// Do checking for true and false ignoreCase
-| ID 					{ $$ = new ParserVal(new IDNode($1.sval, yyline, yycolumn)); }
+factor : INTLITERAL { System.out.print("found a factor (int)\n"); $$ = new ParserVal(new LiteralNode("int", line, column)); }
+| FLOATLITERAL { System.out.print("found a factor (float)\n"); $$ = new ParserVal(new LiteralNode("float", line, column)); }
+| CHARLITERAL { System.out.print("found a factor (char)\n"); $$ = new ParserVal(new LiteralNode("char", line, column)); }
+| STRINGLITERAL { System.out.print("found a factor (string)\n"); $$ = new ParserVal(new LiteralNode("string", line, column));}
+| BOOLLITERAL { System.out.print("found a factor (bool)\n"); $$ = new ParserVal(new LiteralNode("boolean", line, column)); }		// Do checking for true and false ignoreCase
+| ID 					{ $$ = new ParserVal(new IDNode($1.sval, line, column)); }
 | question_literal 		{ $$ = $1; }
 | '(' expression ')'	{ $$ = $2; }  	
 | function_call			{ $$ = $1; }
 
-function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); $$ = new ParserVal(new FunctionCallNode($1.sval, (FactorListNode)$3.obj, yyline,yycolumn)); }
+function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); $$ = new ParserVal(new FunctionCallNode($1.sval, (FactorListNode)$3.obj, line,column)); }
 
 optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); $$ = $1; }
 | /* empty */ { $$= new ParserVal(null); }
@@ -258,7 +258,7 @@ factor_list: factor_list ',' factor {
 				    }
 | factor  { 
 		System.out.print("found a factor_list\n"); 
-		$$ = new ParserVal(new FactorListNode((ASTNode)$1.obj, yyline, yycolumn)); 
+		$$ = new ParserVal(new FactorListNode((ASTNode)$1.obj, line, column)); 
 	}
 
 %%
@@ -267,7 +267,7 @@ factor_list: factor_list ',' factor {
 * Variables
 ***************************************/
 private Yylex lexer;
-public int yyline = 1, yycolumn;
+public int line = 1, column;
 public static boolean DEBUG = true;
 
 /* 
@@ -358,5 +358,14 @@ public static void main(String args[]) throws IOException
   	System.out.println("Variable: " + itr.next());
   }
   
+  System.out.println("\n========================\n");
+  System.out.println("Functions Table:\n");
+  itr = Parser.functionSymbolsTable.keySet().iterator();
+  while (itr.hasNext())
+  {
+  	System.out.println("Variable: " + itr.next());
+  }
+
+
 }
 
