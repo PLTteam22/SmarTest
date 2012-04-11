@@ -1,5 +1,3 @@
-package smartest;
-
 import java.util.ArrayList;
 
 public class ProgramNode extends ASTNode
@@ -22,6 +20,10 @@ public class ProgramNode extends ASTNode
                         throw new Exception("No function called main defined");
                 }
 
+        }
+        public String generateCode()
+        {
+                return "";
         }
         
 }
