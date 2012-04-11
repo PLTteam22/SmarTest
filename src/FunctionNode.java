@@ -7,13 +7,13 @@ public class FunctionNode extends ASTNode
         private String rtrnType;
         private String identifier;
 
-        public FunctionNode(String returnType, String id, ArrayList<ASTNode> parameterList, ArrayList<ASTNode> statementList, int yyline, int yycol)
+        public FunctionNode(String returnType, IDNode id, ArrayList<ASTNode> parameterList, ArrayList<ASTNode> statementList, int yyline, int yycol)
         {
                 super(yyline, yycol);
                 rtrnType = returnType;
                 paramList = parameterList;
                 stmtList = statementList;
-                identifier = id;
+                identifier = id.getName();
         }
 	public void checkSemantics() throws Exception
         {
