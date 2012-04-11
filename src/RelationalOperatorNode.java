@@ -39,7 +39,7 @@ class RelationalOperatorNode extends ASTNode {
 						+ " and " + this.getChildAt(1).getType()+ "-- at "
 						+ this.getChildAt(0).getYyline() + ":" + this.getChildAt(0).getYycolumn());
 			}
-			this.setType(this.getChildAt(0).getType());
+			this.setType("boolean");
 		return;	
 	}
 
