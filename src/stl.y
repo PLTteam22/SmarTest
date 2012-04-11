@@ -52,8 +52,8 @@ optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"
 param_list: param_list ',' declaration { System.out.print("found param_list\n"); }
 | declaration { System.out.print("found param_list\n"); ArrayList<ASTNode> plist = new ArrayList<ASTNode>(); plist.add((ASTNode)$1.obj); $$ = new ParserVal(plist); }
 
-statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj); $$ = $1; }
-|/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new ArrayList<ASTNode>()); }
+statements : statements statement { System.out.print("found statements\n"); ((StatementsNode)$1.obj).addChild((ASTNode)$2.obj); $$ = $1; }
+|/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new StatementsNode(yyline, yycolumn)); }
 
 /* statement productions go here */
 
