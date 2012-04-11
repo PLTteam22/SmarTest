@@ -18,6 +18,7 @@ public abstract class ASTNode {
 	
 	public ASTNode(int yyline, int yycolumn)
 	{
+		System.out.println("Created Node of Type: " + this.getClass().getName());
 		this.setChildren(new ArrayList<ASTNode>());
 		this.yyline = yyline;
 		this.yycolumn = yycolumn;

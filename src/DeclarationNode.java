@@ -35,8 +35,7 @@ public class DeclarationNode extends ASTNode {
 	 */
 	@Override
 	public void checkSemantics() throws Exception {
-		
-		
+
 		// Verify that this variable has not been already declared before
 		if (Parser.symbolsTable.containsKey(this.getIdNode().getName()))
 		{
@@ -46,9 +45,26 @@ public class DeclarationNode extends ASTNode {
 		
 		// Now, insert this new ID into symbols table, and generate a new valid target variable name for it
 		String varName = "_smartestVar_" + this.getIdNode().getName();
-		Parser.symbolsTable.put(this.getIdNode().getName(), new String[]{ this.getDeclaredType().toLowerCase(), varName, ""+this.getYyline() });
+		
+		
+		if (Parser.DEBUG)
+		{
+			System.out.println("** Inserting new variable into symbols table:");
+			System.out.println("Type:" + declaredType.toLowerCase());
+			System.out.println("Var Name: " + varName);
+			System.out.println("Line Number: " + ""+this.getYyline());		
+		}
+		
+		
+		String[] data = { this.getDeclaredType().toLowerCase(),varName, ""+this.getYyline() }; 
+		
+		
+		
+		Parser.symbolsTable.put(this.getIdNode().getName(), data);
+		
 		
 		this.setType(this.getDeclaredType());
+		
 		
 		this.getChildAt(0).checkSemantics();
 
