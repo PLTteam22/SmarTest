@@ -36,7 +36,6 @@ public class DeclarationNode extends ASTNode {
 	@Override
 	public void checkSemantics() throws Exception {
 		
-		this.getChildAt(0).checkSemantics();
 		
 		// Verify that this variable has not been already declared before
 		if (Parser.symbolsTable.containsKey(this.getIdNode().getName()))
@@ -51,7 +50,7 @@ public class DeclarationNode extends ASTNode {
 		
 		this.setType(this.getDeclaredType());
 		
-		this.getChildAt(1).checkSemantics();
+		this.getChildAt(0).checkSemantics();
 
 	}
 

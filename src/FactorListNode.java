@@ -18,6 +18,7 @@ class FactorListNode extends ASTNode {
 	
 	public FactorListNode(ASTNode lcNode, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
+		
 		this.addChild(lcNode);
 	}
 

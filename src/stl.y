@@ -1,8 +1,8 @@
 %{
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.*;
+
 %}
 
 %token  IF ELSE ID INT FLOAT QUESTION SET AND OR NOT NOTEQUAL CHAR BOOLEAN VOID EQUALEQUAL GE LE LT GT MOD BOOLLITERAL LOOP WHILE STRING INSERT RETURN LPARAN RPARAN LCURLY RCURLY COMMA SEMICOLON EQUAL DOLLAR LSQUARE RSQUARE COLON PLUS MINUS MULTIPLY DIVIDE CHARLITERAL STRINGLITERAL FLOATLITERAL INTLITERAL
@@ -21,18 +21,27 @@ program : optional_function_list
 {
         System.out.print("found a program\n");
         $$ = new ParserVal(new ProgramNode((ArrayList<ASTNode>)$1.obj, yyline, yycolumn));
+        try
+        {
+        	((ASTNode)$$.obj).checkSemantics();
+        	System.out.println("\nCompiled successfully");
+        }
+        catch (Exception e)
+        {
+        	System.out.println(e.getMessage());
+        }
 }
 
-optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = $1); }
+optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = $1; }
 | /* emtpy */ { System.out.println("found optional_function_list\n"); $$ = new ParserVal(null); }
 
-function_list : function_list function  { System.out.print("found function_list\n"); (ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj); $$ = $1; }
+function_list : function_list function  { System.out.print("found function_list\n"); ((ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj); $$ = $1; }
 | function { System.out.print("found function_list\n"); ArrayList<ASTNode> flist = new ArrayList<ASTNode>(); flist.add((ASTNode)$1.obj); $$ = new ParserVal(flist); }
 
 function : return_type ID '(' optional_param_list ')' '{' statements '}'
 {
         System.out.print("found function\n");
-        $$ = new ParserVal(new FunctionNode($1.sval, new IDNode($2.sval, yyline, yycolumn), (ArrayList<ASTNode>)$4.obj, (ArrayList<ASTNode>)$7.obj, yyline, yycolumn));
+        $$ = new ParserVal(new FunctionNode($1.sval, $2.sval, (ArrayList<ASTNode>)$4.obj, (ArrayList<ASTNode>)$7.obj, yyline, yycolumn));
 }
 
 optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); $$ = new ParserVal(null); }
@@ -41,7 +50,7 @@ optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"
 param_list: param_list ',' declaration { System.out.print("found param_list\n"); }
 | declaration { System.out.print("found param_list\n"); ArrayList<ASTNode> plist = new ArrayList<ASTNode>(); plist.add((ASTNode)$1.obj); $$ = new ParserVal(plist); }
 
-statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj); $$ = $1 }
+statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj); $$ = $1; }
 |/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new ArrayList<ASTNode>()); }
 
 /* statement productions go here */
@@ -256,7 +265,7 @@ factor_list: factor_list ',' factor {
 * Variables
 ***************************************/
 private Yylex lexer;
-private static int yyline, yycolumn;
+public int yyline = 1, yycolumn;
 
 /* 
  * symbolsTable: Keys are the identifier names as found in the source code
@@ -336,5 +345,15 @@ public static void main(String args[]) throws IOException
 
   System.out.println("\nCompiling ...\n");
   yyparser.yyparse();
+  
+  
+  System.out.println("\n========================\n");
+  System.out.println("\nSymbols Table:\n");
+  Iterator itr = Parser.symbolsTable.keySet().iterator();
+  while (itr.hasNext())
+  {
+  	System.out.println("Variable: " + itr.next());
+  }
+  
 }
 
