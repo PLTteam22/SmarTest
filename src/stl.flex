@@ -174,9 +174,10 @@
 						}
 
 
-[a-zA-Z_][a-zA-Z_0-9]*			{
+[a-zA-Z_][a-zA-Z_0-9]*			
+				   {
 						System.out.println("lex: found id\n"); 
-						yyparser.yylval = new ParserVal(new IDNode(yytext(), yyline, yycolumn));
+						yyparser.yylval = new ParserVal($1.sval);
 						return (Parser.ID);
 					}	
 
