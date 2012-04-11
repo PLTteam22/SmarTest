@@ -44,7 +44,7 @@ public class FunctionNode extends ASTNode
                                 parameterList.append(param.getType());
                         }
 
-                        Parser.functionSymbolsTable.put(id.toLowerCase(), new FunctionSymbolTableEntry(id, javaID, paramList));
+                        Parser.functionSymbolsTable.put(id.toLowerCase(), new FunctionSymbolTableEntry(id, javaID, rtrnType, paramList));
                 }
                 setType(returnType);
         }
