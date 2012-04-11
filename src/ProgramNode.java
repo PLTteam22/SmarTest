@@ -9,13 +9,13 @@ public class ProgramNode extends ASTNode
                 if (functionList != null)
                         this.children.addAll(functionList);
         }
-	public void semanticCheck()
+	public void checkSemantics() throws Exception
         {      
                 for (ASTNode function : this.children)
                 {
                         function.semanticCheck();
                 }
-                if (this.children.getChildCount() == 0 || !((FunctionNode)this.children.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
+                if (this.getChildCount() == 0 || !((FunctionNode)this.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
                 {
                         throw new Exception("No function called main defined");
                 }

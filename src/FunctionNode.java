@@ -13,7 +13,7 @@ public class FunctionNode extends ASTNode
                 paramList = parameterList;
                 stmtList = statementList;
         }
-	public void semanticCheck()
+	public void checkSemantics() throws Exception
         {
                 if (paramList != null)
                 {
