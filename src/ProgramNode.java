@@ -7,13 +7,13 @@ public class ProgramNode extends ASTNode
         {
                 super(yyline, yycol);
                 if (functionList != null)
-                        this.children.addAll(functionList);
+                        this.getChildren().addAll(functionList);
         }
 	public void checkSemantics() throws Exception
         {      
-                for (ASTNode function : this.children)
+                for (ASTNode function : this.getChildren())
                 {
-                        function.semanticCheck();
+                        function.checkSemantics();
                 }
                 if (this.getChildCount() == 0 || !((FunctionNode)this.getChildAt(0)).getIdentifier().equalsIgnoreCase("main"))
                 {

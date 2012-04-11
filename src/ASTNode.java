@@ -18,25 +18,25 @@ public abstract class ASTNode {
 	
 	public ASTNode(int yyline, int yycolumn)
 	{
-		this.children = new ArrayList<ASTNode>();
+		this.setChildren(new ArrayList<ASTNode>());
 		this.yyline = yyline;
 		this.yycolumn = yycolumn;
 	}
 	
 	ASTNode getChildAt(int index)
 	{
-		return this.children.get(index);	
+		return this.getChildren().get(index);	
 	}
 	
 	void addChild(ASTNode node)
 	{
-		this.children.add(node);
+		this.getChildren().add(node);
 	}
 	
 
 	int getChildCount()
 	{
-		return this.children.size();
+		return this.getChildren().size();
 	}
 	
 	String getType(){
@@ -61,6 +61,18 @@ public abstract class ASTNode {
 
 	public void setYycolumn(int yycolumn) {
 		this.yycolumn = yycolumn;
+	}
+	/**
+	 * @return the children
+	 */
+	public ArrayList<ASTNode> getChildren() {
+		return children;
+	}
+	/**
+	 * @param children the children to set
+	 */
+	public void setChildren(ArrayList<ASTNode> children) {
+		this.children = children;
 	}
 
 
