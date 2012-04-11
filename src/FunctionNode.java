@@ -42,9 +42,12 @@ public class FunctionNode extends ASTNode
                 {
                         String javaID = "_smartestFunction_" + identifier;
                         ArrayList<String> parameterList = new ArrayList<String>();
-                        for (ASTNode param : paramList)
+                        if (paramList != null)
                         {
-                                parameterList.add(param.getType());
+	                        for (ASTNode param : paramList)
+	                        {
+	                                parameterList.add(param.getType());
+	                        }
                         }
                         Parser.functionSymbolsTable.put(identifier.toLowerCase(), new FunctionSymbolTableEntry(identifier, javaID, rtrnType, parameterList));
                 }
