@@ -23,11 +23,11 @@ program : optional_function_list
         $$ = new ParserVal(new ProgramNode((ArrayList<ASTNode>)$1.obj, yyline, yycolumn));
 }
 
-optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = new ParserVal((ArrayList<FunctionNode>)$1.obj); }
+optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = $1); }
 | /* emtpy */ { System.out.println("found optional_function_list\n"); $$ = new ParserVal(null); }
 
-function_list : function_list function  { System.out.print("found function_list\n"); $$ = new ParserVal(((ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj)); }
-| function { System.out.print("found function_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).add((ASTNode)$1.obj)); }
+function_list : function_list function  { System.out.print("found function_list\n"); (ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj); $$ = $1; }
+| function { System.out.print("found function_list\n"); ArrayList<ASTNode> flist = new ArrayList<ASTNode>(); flist.add((ASTNode)$1.obj); $$ = new ParserVal(flist); }
 
 function : return_type ID '(' optional_param_list ')' '{' statements '}'
 {
@@ -39,9 +39,9 @@ optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"
 | param_list { System.out.print("found optional_param_list\n"); $$ = new ParserVal((ASTNode)$1.obj); }
 
 param_list: param_list ',' declaration { System.out.print("found param_list\n"); }
-| declaration { System.out.print("found param_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).add((ASTNode)$1.obj)); }
+| declaration { System.out.print("found param_list\n"); ArrayList<ASTNode> plist = new ArrayList<ASTNode>(); plist.add((ASTNode)$1.obj); $$ = new ParserVal(plist); }
 
-statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj); }
+statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).add((ASTNode)$2.obj); $$ = $1 }
 |/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new ArrayList<ASTNode>()); }
 
 /* statement productions go here */
