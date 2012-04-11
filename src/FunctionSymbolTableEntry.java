@@ -4,10 +4,13 @@ public class FunctionSymbolTableEntry
 {
         private String stlID, javaID;
         private ArrayList<String> paramTypes;
-        public FunctionSymbolTableEntry(String id, String javaID, ArrayList<String> parameterTypes)
+        private String returnType;
+        
+        public FunctionSymbolTableEntry(String id, String javaID, String returnType, ArrayList<String> parameterTypes)
         {
                 stlID = id;
                 this.javaID = javaID;
+                this.setReturnType(returnType);
                 paramTypes = parameterTypes;
         }
         public String getID()
@@ -22,4 +25,16 @@ public class FunctionSymbolTableEntry
         {
                 return paramTypes;
         }
+		/**
+		 * @return the returnType
+		 */
+		public String getReturnType() {
+			return returnType;
+		}
+		/**
+		 * @param returnType the returnType to set
+		 */
+		public void setReturnType(String returnType) {
+			this.returnType = returnType;
+		}
 }

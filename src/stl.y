@@ -67,12 +67,12 @@ type : INT { System.out.print("found type (int)\n"); $$ = $1; }
 
 return_type : type 
 	{ 
-		$$ = new ParserVal(new ReturnNode($1.sval,yyline,yycolumn);
+		$$ = new ParserVal(new ReturnNode($1.sval,yyline,yycolumn));
 	}
 | VOID 
 	{ 
 		System.out.print("found return_type\n"); 
-		$$ = new ParserVal(new ReturnNode($1.sval,yyline,yycolumn); 
+		$$ = new ParserVal(new ReturnNode($1.sval,yyline,yycolumn)); 
 	}
 
 optional_expression : expression { System.out.print("found optional_expression\n"); }
@@ -234,7 +234,7 @@ factor : INTLITERAL { System.out.print("found a factor (int)\n"); }
 | '(' expression ')'	{ $$ = $2; }  	
 | function_call			{ $$ = $1; }
 
-function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); $$ = new ParserVal(new FunctionCallNode($1.sval, (FactorListNode)$3.obj, yyline,yycolumn); }
+function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); $$ = new ParserVal(new FunctionCallNode($1.sval, (FactorListNode)$3.obj, yyline,yycolumn)); }
 
 optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); $$ = $1; }
 | /* empty */ { $$= new ParserVal(null); }

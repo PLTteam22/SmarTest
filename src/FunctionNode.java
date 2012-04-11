@@ -17,7 +17,8 @@ public class FunctionNode extends ASTNode
         }
 	public void checkSemantics() throws Exception
         {
-                ident
+                identifier.checkSemantics();
+                
                 if (paramList != null)
                 {
                         for (ASTNode param : paramList)
