@@ -24,11 +24,13 @@ public class DeclarationNode extends ASTNode {
 		this.declaredType = idType;
 		this.idNode = (IDNode)idNode;
 		
+		
 	}
 
 	/**
 	 * Declaration semantics:
 	 * Verify that the declared name has not been declared before
+	 * Inserts the symbol into the symbols table
 	 * @throws Exception
 	 */
 	@Override
@@ -45,7 +47,7 @@ public class DeclarationNode extends ASTNode {
 		
 		// Now, insert this new ID into symbols table, and generate a new valid target variable name for it
 		String varName = "_smartestVar_" + this.getIdNode().getName();
-		Parser.symbolsTable.put(this.getIdNode().getName(), new String[]{ this.getDeclaredType(), varName, ""+this.getYyline() });
+		Parser.symbolsTable.put(this.getIdNode().getName(), new String[]{ this.getDeclaredType().toLowerCase(), varName, ""+this.getYyline() });
 		
 		this.setType(this.getDeclaredType());
 		
