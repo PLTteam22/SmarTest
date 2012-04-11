@@ -69,6 +69,8 @@ NL    = \n | \r | \r\n
 
 [sS][eE][tT]                    { yyparser.yycolumn += yytext().length(); System.out.println("lex: found set\n"); return (Parser.SET);}
 
+[sS][tT][rR][iI][nN][gG]                    { yyparser.yycolumn += yytext().length(); System.out.println("lex: found string\n"); return (Parser.STRING);}
+
 
 "<<"                            { yyparser.yycolumn += yytext().length(); System.out.println("lex: found <<\n"); return (Parser.INSERT);}
 

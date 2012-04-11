@@ -235,11 +235,11 @@ term : term '*' factor
 		System.out.print("found a term (unary -)\n"); 
 	}
 
-factor : INTLITERAL { System.out.print("found a factor (int)\n"); }
-| FLOATLITERAL { System.out.print("found a factor (float)\n"); }
-| CHARLITERAL { System.out.print("found a factor (char)\n"); }
-| STRINGLITERAL { System.out.print("found a factor (string)\n"); }
-| BOOLLITERAL { System.out.print("found a factor (bool)\n"); }		// Do checking for true and false ignoreCase
+factor : INTLITERAL { System.out.print("found a factor (int)\n"); $$ = new ParserVal(new LiteralNode("int", yyline, yycolumn)); }
+| FLOATLITERAL { System.out.print("found a factor (float)\n"); $$ = new ParserVal(new LiteralNode("float", yyline, yycolumn)); }
+| CHARLITERAL { System.out.print("found a factor (char)\n"); $$ = new ParserVal(new LiteralNode("char", yyline, yycolumn)); }
+| STRINGLITERAL { System.out.print("found a factor (string)\n"); $$ = new ParserVal(new LiteralNode("string", yyline, yycolumn));}
+| BOOLLITERAL { System.out.print("found a factor (bool)\n"); $$ = new ParserVal(new LiteralNode("boolean", yyline, yycolumn)); }		// Do checking for true and false ignoreCase
 | ID 					{ $$ = new ParserVal(new IDNode($1.sval, yyline, yycolumn)); }
 | question_literal 		{ $$ = $1; }
 | '(' expression ')'	{ $$ = $2; }  	
