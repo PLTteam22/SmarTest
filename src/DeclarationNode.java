@@ -40,7 +40,7 @@ public class DeclarationNode extends ASTNode {
 		if (Parser.symbolsTable.containsKey(this.getIdNode().getName()))
 		{
 			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": variable " + this.getIdNode().getName() +
-								"has already been declared at line " + Parser.symbolsTable.get(this.getIdNode().getName())[2]);
+								" has already been declared at line " + Parser.symbolsTable.get(this.getIdNode().getName())[2]);
 		}
 		
 		// Now, insert this new ID into symbols table, and generate a new valid target variable name for it
