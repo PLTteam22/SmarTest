@@ -25,12 +25,21 @@ public class AnswerChoicesListNode extends ASTNode {
 
 	/**
 	 * Verifies the semantics of each answer choice in the list
+	 * Verifies all children are of type "answer"
 	 * @see ASTNode#checkSemantics()
 	 */
 	@Override
 	public void checkSemantics() throws Exception {
 		for (int i=0; i<this.getChildCount(); i++)
 			this.getChildAt(0).checkSemantics();
+
+		for (int i=0; i<this.getChildCount(); i++)
+			if (!this.getChildAt(0).getType().equalsIgnoreCase("answer"))
+			{
+				throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
+						+ " question answers must be of type answer");				
+			}
+		
 		
 		this.setType("answer_list");
 	}
