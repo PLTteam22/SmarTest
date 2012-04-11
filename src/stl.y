@@ -48,7 +48,7 @@ statements : statements statement { System.out.print("found statements\n"); ((Ar
 
 /* statement productions go here */
 
-statement : type ID ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal(new DeclarationNode((ASTNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn));  }
+statement : type ID ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal(new DeclarationNode((ASTNode)$1.obj, new IDNode($2.obj, yyline, yycolumn), yyline, yycolumn));  }
 | type ID '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode(new DeclarationNode((ASTNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn), (ASTNode)$4.obj, yyline, yycolumn)); }
 | ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((IDNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn)); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
