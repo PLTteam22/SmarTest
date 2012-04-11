@@ -75,9 +75,9 @@ public class IfStatementNode extends ASTNode{
 			this.getChildAt(2).checkSemantics();
 		}
 		
-		if (! this.getChildAt(1).getType().equals("boolean"))
+		if (! this.getChildAt(0).getType().equals("boolean"))
 		{
-			throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + this.getYycolumn()+"should be a booelean");
+			throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + this.getYycolumn()+" should be a boolean; found: " + this.getChildAt(0).getType());
 		}
 		
 	}
