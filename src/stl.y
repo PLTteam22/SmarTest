@@ -38,18 +38,18 @@ function : return_type ID '(' optional_param_list ')' '{' statements '}'
 optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); $$ = new ParserVal(null); }
 | param_list { System.out.print("found optional_param_list\n"); $$ = new ParserVal((ASTNode)$1.obj); }
 
-param_list: param_list ',' parameter { System.out.print("found param_list\n"); }
-| parameter { System.out.print("found param_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).append((ASTNode)$1.obj)); }
-
-parameter : type ID { System.out.print("found a parameter\n"); }
+param_list: param_list ',' declaration { System.out.print("found param_list\n"); }
+| declaration { System.out.print("found param_list\n"); $$ = new ParserVal((new ArrayList<ASTNode>()).append((ASTNode)$1.obj)); }
 
 statements : statements statement { System.out.print("found statements\n"); ((ArrayList<ASTNode>)$1.obj).append((ASTNode)$2.obj); }
 |/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new ArrayList<ASTNode>()); }
 
 /* statement productions go here */
 
-statement : type ID ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal(new DeclarationNode((ASTNode)$1.obj, new IDNode($2.obj, yyline, yycolumn), yyline, yycolumn));  }
-| type ID '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode(new DeclarationNode((ASTNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn), (ASTNode)$4.obj, yyline, yycolumn)); }
+declaration : type ID { $$ = new ParserVal(new DeclarationNode((ASTNode)$1.obj, new IDNode($2.obj, yyline, yycolumn), yyline, yycolumn)); }
+
+statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal((ASTNode)$1.obj); }
+| declaration '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
 | ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((IDNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn)); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }

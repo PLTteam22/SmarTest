@@ -1,5 +1,3 @@
-package smartest;
-
 import java.util.ArrayList;
 
 public class FunctionNode extends ASTNode
@@ -49,6 +47,10 @@ public class FunctionNode extends ASTNode
                         Parser.functionSymbolsTable.put(id.toLowerCase(), new FunctionSymbolTableEntry(id, javaID, paramList));
                 }
                 setType(returnType);
+        }
+        public String generateCode()
+        {
+                return "";
         }
         
 }
