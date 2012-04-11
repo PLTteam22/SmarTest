@@ -57,15 +57,23 @@ statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$
 | ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
 | RETURN optional_expression ';' { System.out.print("found statement (return)\n"); }
 
-type : INT { System.out.print("found type (int)\n"); }
-| FLOAT { System.out.print("found type (float)\n"); }
-| CHAR { System.out.print("found type (char)\n"); }
-| BOOLEAN { System.out.print("found type (boolean)\n"); }
-| STRING { System.out.print("found type (string)\n"); }
-| QUESTION { System.out.print("found type (question)\n"); }
-| SET { System.out.print("found type (set)\n"); }
+type : INT { System.out.print("found type (int)\n"); $$ = $1; }
+| FLOAT { System.out.print("found type (float)\n"); $$ = $1; }
+| CHAR { System.out.print("found type (char)\n"); $$ = $1; }
+| BOOLEAN { System.out.print("found type (boolean)\n"); $$ = $1; }
+| STRING { System.out.print("found type (string)\n"); $$ = $1; } 
+| QUESTION { System.out.print("found type (question)\n"); $$ = $1; }
+| SET { System.out.print("found type (set)\n"); $$ = $1; }
 
-return_type : type | VOID { System.out.print("found return_type\n"); }
+return_type : type 
+	{ 
+		$$ = new ParserVal(new ReturnNode($1.sval,yyline,yycolumn);
+	}
+| VOID 
+	{ 
+		System.out.print("found return_type\n"); 
+		$$ = new ParserVal(new ReturnNode($1.sval,yyline,yycolumn); 
+	}
 
 optional_expression : expression { System.out.print("found optional_expression\n"); }
 | /* empty */ { System.out.print("found optional_expression\n"); }
@@ -111,9 +119,18 @@ answer_choices : answer_choices ',' answer_choice { System.out.print("found answ
 answer_choice : expression ':' expression { System.out.print("found an answer_choice\n"); $$ = new ParserVal(new AnswerChoiceNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
 
 
-expression : expression AND not_boolean_operand { System.out.print("found an expression (and)\n"); }
-| expression OR not_boolean_operand { System.out.print("found an expression (or)\n"); }
-| not_boolean_operand { System.out.print("found an expression (not boolean)\n"); }
+expression : expression AND not_boolean_operand 
+	{ 	
+		System.out.print("found an expression (and)\n"); $$ = new ParserVal(new ExpressionNode("and",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); 
+	}
+| expression OR not_boolean_operand 
+	{ 
+		System.out.print("found an expression (or)\n"); $$ = new ParserVal(new ExpressionNode("or",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); 
+	}
+| not_boolean_operand 
+	{ 
+		System.out.print("found an expression (not boolean)\n"); $$ = $1;
+	}
 
 not_boolean_operand: NOT not_boolean_operand 
 	{ 
@@ -217,9 +234,11 @@ factor : INTLITERAL { System.out.print("found a factor (int)\n"); }
 | '(' expression ')'	{ $$ = $2; }  	
 | function_call			{ $$ = $1; }
 
-function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); }
-optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); }
-| /* empty */
+function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); $$ = new ParserVal(new FunctionCallNode($1.sval, (FactorListNode)$3.obj, yyline,yycolumn); }
+
+optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); $$ = $1; }
+| /* empty */ { $$= new ParserVal(null); }
+
 
 factor_list: factor_list ',' factor { 
 					System.out.print("found a factor_list\n"); 
