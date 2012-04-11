@@ -143,11 +143,27 @@ boolean_operand : boolean_operand EQUALEQUAL equality_operand
 		System.out.print("found a boolean_operand\n"); 
 	}
 
-equality_operand : equality_operand  LT relational_operand { System.out.print("found a equality_operand (LT)\n"); }
-   | equality_operand GT relational_operand { System.out.print("found a equality_operand (GT)\n"); }
-   | equality_operand GE relational_operand { System.out.print("found a equality_operand (GE)\n"); }
-   | equality_operand LE relational_operand { System.out.print("found a equality_operand (LE)\n"); }
-   | relational_operand { System.out.print("found a equality_operand\n"); }
+equality_operand : equality_operand  LT relational_operand 
+				{
+					System.out.print("found a equality_operand (LT)\n");
+					$$ = new ParserVal(new RelationalOperatorNode("LT", (ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+				}
+   | equality_operand GT relational_operand 
+				{
+					System.out.print("found a equality_operand (GT)\n");
+					$$ = new ParserVal(new RelationalOperatorNode("GT", (ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+				}   
+   | equality_operand GE relational_operand 
+				{
+					System.out.print("found a equality_operand (GE)\n");
+					$$ = new ParserVal(new RelationalOperatorNode("GE", (ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+				}   
+   | equality_operand LE relational_operand 
+				{
+					System.out.print("found a equality_operand (LE)\n");
+					$$ = new ParserVal(new RelationalOperatorNode("LE", (ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+				}   
+   | relational_operand { System.out.print("found a equality_operand\n"); $$ = $1; }
 
 relational_operand : relational_operand '+' term 
 	{ 
@@ -199,7 +215,7 @@ factor : INTLITERAL { System.out.print("found a factor (int)\n"); }
 | ID 					{ $$ = new ParserVal(new IDNode($1.sval, yyline, yycolumn)); }
 | question_literal 		{ $$ = $1; }
 | '(' expression ')'	{ $$ = $2; }  	
-| function_call
+| function_call			{ $$ = $1; }
 
 function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); }
 optional_factor_list : factor_list { System.out.print("found an optional_factor_list\n"); }
