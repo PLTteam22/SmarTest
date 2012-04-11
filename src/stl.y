@@ -165,11 +165,31 @@ relational_operand : relational_operand '+' term
 	 	System.out.print("found a relational_operand\n"); 
 	}
 
-term : term '*' factor { System.out.print("found a term (*)\n"); }
-| term '/' factor { System.out.print("found a term (/)\n"); }
-| term MOD factor { System.out.print("found a term (%)\n"); }
-| factor { System.out.print("found a term\n"); }
-| '-' factor { System.out.print("found a term (unary -)\n"); }
+term : term '*' factor 
+	{
+		$$ = new ParserVal(new ArithmeticOperatorNode("multiplication",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		System.out.print("found a term (*)\n"); 
+	}
+| term '/' factor 
+	{
+		$$ = new ParserVal(new ArithmeticOperatorNode("division",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); 
+		System.out.print("found a term (/)\n"); 
+	}
+| term MOD factor 
+	{
+		$$ = new ParserVal(new ArithmeticOperatorNode("modulus",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); 
+		System.out.print("found a term (%)\n"); 
+	}
+| factor 
+	{ 
+		$$ = $1;
+		System.out.print("found a term\n"); 
+	}
+| '-' factor 
+	{ 
+		$$ = new ParserVal(new ArithmeticOperatorNode("unary",(ASTNode)$2.obj, yyline, yycolumn));
+		System.out.print("found a term (unary -)\n"); 
+	}
 
 factor : INTLITERAL { System.out.print("found a factor (int)\n"); }
 | FLOATLITERAL { System.out.print("found a factor (float)\n"); }
