@@ -5,6 +5,7 @@ public class FunctionNode extends ASTNode
         private ArrayList<ASTNode> paramList;
         private ArrayList<ASTNode> stmtList;
         private String rtrnType;
+        private String identifier;
 
         public FunctionNode(String returnType, String id, ArrayList<ASTNode> parameterList, ArrayList<ASTNode> statementList, int yyline, int yycol)
         {
@@ -12,6 +13,7 @@ public class FunctionNode extends ASTNode
                 rtrnType = returnType;
                 paramList = parameterList;
                 stmtList = statementList;
+                identifier = id;
         }
 	public void checkSemantics() throws Exception
         {
@@ -19,35 +21,41 @@ public class FunctionNode extends ASTNode
                 {
                         for (ASTNode param : paramList)
                         {
-                                param.semanticCheck();
+                                param.checkSemantics();
                         }
                 }
                 if (stmtList != null)
                 {
                         for (ASTNode statement : stmtList)
                         {
-                                statement.semanticCheck();
+                                statement.checkSemantics();
                         }
                 }
-                if (Parser.functionSymbolsTable.contains(id.toLowerCase()))
+                if (Parser.functionSymbolsTable.containsKey(identifier.toLowerCase()))
                 {
                         throw new Exception("Line " + this.getYyline() +
-                                ": Function " + id.toLowerCase() +
+                                ": Function " + identifier.toLowerCase() +
                                 " is already defined");
                 }
                 else
                 {
-                        String javaID = Parser.getNewFunctionID();
+                        String javaID = "_smartestFunction_" + identifier;
                         ArrayList<String> parameterList = new ArrayList<String>();
                         for (ASTNode param : paramList)
                         {
-                                parameterList.append(param.getType());
+                                parameterList.add(param.getType());
                         }
 
-                        Parser.functionSymbolsTable.put(id.toLowerCase(), new FunctionSymbolTableEntry(id, javaID, paramList));
+                        Parser.functionSymbolsTable.put(identifier.toLowerCase(), new FunctionSymbolTableEntry(identifier, javaID, parameterList));
                 }
-                setType(returnType);
+                setType(rtrnType);
         }
+	
+		public String getIdentifier()
+		{
+			return identifier;
+		}
+	
         public String generateCode()
         {
                 return "";
