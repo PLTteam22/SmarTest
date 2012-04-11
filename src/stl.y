@@ -43,7 +43,7 @@ function_list : function_list function  { System.out.print("found function_list\
 function : return_type ID '(' optional_param_list ')' '{' statements '}'
 {
         System.out.print("found function\n");
-        $$ = new ParserVal(new FunctionNode($1.sval, $2.sval, (ArrayList<ASTNode>)$4.obj, (ArrayList<ASTNode>)$7.obj, yyline, yycolumn));
+        $$ = new ParserVal(new FunctionNode($1.sval, $2.sval, (ArrayList<ASTNode>)$4.obj, (ASTNode)$7.obj, yyline, yycolumn));
 }
 
 optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); $$ = new ParserVal(null); }

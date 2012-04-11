@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class FunctionNode extends ASTNode
 {
         private ArrayList<ASTNode> paramList;
-        private ArrayList<ASTNode> stmtList;
+        private ASTNode stmtList;
         private String rtrnType;
         private String identifier;
 
-        public FunctionNode(String returnType, String id, ArrayList<ASTNode> parameterList, ArrayList<ASTNode> statementList, int yyline, int yycol)
+        public FunctionNode(String returnType, String id, ArrayList<ASTNode> parameterList, ASTNode statementList, int yyline, int yycol)
         {
                 super(yyline, yycol);
                 rtrnType = returnType;
@@ -27,10 +27,7 @@ public class FunctionNode extends ASTNode
                 }
                 if (stmtList != null)
                 {
-                        for (ASTNode statement : stmtList)
-                        {
-                                statement.checkSemantics();
-                        }
+                        stmtList.checkSemantics();
                 }
                 if (Parser.functionSymbolsTable.containsKey(identifier.toLowerCase()))
                 {
