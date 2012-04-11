@@ -6,7 +6,7 @@
 public class DeclarationNode extends ASTNode {
 
 	
-	private ASTNode typeNode;
+	private String declaredType;
 	private IDNode idNode;
 	
 	/**
@@ -18,11 +18,10 @@ public class DeclarationNode extends ASTNode {
 	 *  @param yyline the line where this operator was found in the source code
 	 *  @param yycolumn the column where this operator was found in the source code
 	 */
-	public DeclarationNode(ASTNode typeNode, ASTNode idNode, int yyline, int yycolumn) {
+	public DeclarationNode(String idType, ASTNode idNode, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
-		this.addChild(typeNode);
 		this.addChild(idNode);
-		this.typeNode = typeNode;
+		this.declaredType = idType;
 		this.idNode = (IDNode)idNode;
 		
 	}
@@ -44,14 +43,13 @@ public class DeclarationNode extends ASTNode {
 								"has already been declared at line " + Parser.symbolsTable.get(this.getIdNode().getName())[2]);
 		}
 		
-		// Now, insert this new ID into symbol table, and generate a new valid target variable name for it
+		// Now, insert this new ID into symbols table, and generate a new valid target variable name for it
 		String varName = "_smartestVar_" + this.getIdNode().getName();
-		Parser.symbolsTable.put(this.getIdNode().getName(), new String[]{ this.getIdNode().getType(), varName, ""+this.getYyline() });
+		Parser.symbolsTable.put(this.getIdNode().getName(), new String[]{ this.getDeclaredType(), varName, ""+this.getYyline() });
 		
-		this.setType(this.getChildAt(0).getType());
+		this.setType(this.getDeclaredType());
 		
 		this.getChildAt(1).checkSemantics();
-
 
 	}
 
@@ -61,20 +59,26 @@ public class DeclarationNode extends ASTNode {
 		return null;
 	}
 
-	public ASTNode getTypeNode() {
-		return typeNode;
-	}
-
-	public void setTypeNode(ASTNode typeNode) {
-		this.typeNode = typeNode;
-	}
-
 	public IDNode getIdNode() {
 		return idNode;
 	}
 
 	public void setIdNode(IDNode idNode) {
 		this.idNode = idNode;
+	}
+
+	/**
+	 * @return the declaredType
+	 */
+	public String getDeclaredType() {
+		return declaredType;
+	}
+
+	/**
+	 * @param declaredType the declaredType to set
+	 */
+	public void setDeclaredType(String declaredType) {
+		this.declaredType = declaredType;
 	}
 
 	

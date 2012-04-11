@@ -46,10 +46,10 @@ statements : statements statement { System.out.print("found statements\n"); ((Ar
 
 /* statement productions go here */
 
-declaration : type ID { $$ = new ParserVal(new DeclarationNode((ASTNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn)); }
+declaration : type ID { $$ = new ParserVal(new DeclarationNode((ASTNode)$1.obj, new IDNode($2.obj, yyline, yycolumn), yyline, yycolumn)); }
 
 statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal((ASTNode)$1.obj); }
-| declaration '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((ASTNode)$1.obj, yyline, yycolumn), (ASTNode)$3.obj, yyline, yycolumn)); }
+| declaration '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
 | ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((IDNode)$1.obj, (ASTNode)$2.obj, yyline, yycolumn)); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }
