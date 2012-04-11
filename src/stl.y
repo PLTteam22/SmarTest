@@ -29,6 +29,8 @@ program : optional_function_list
         catch (Exception e)
         {
         	System.out.println(e.getMessage());
+        	e.printStackTrace();
+        	
         }
 }
 
@@ -66,13 +68,13 @@ statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$
 | ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode((ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn)); }
 | RETURN optional_expression ';' { System.out.print("found statement (return)\n"); }
 
-type : INT { System.out.print("found type (int)\n"); $$ = $1; }
-| FLOAT { System.out.print("found type (float)\n"); $$ = $1; }
-| CHAR { System.out.print("found type (char)\n"); $$ = $1; }
-| BOOLEAN { System.out.print("found type (boolean)\n"); $$ = $1; }
-| STRING { System.out.print("found type (string)\n"); $$ = $1; } 
-| QUESTION { System.out.print("found type (question)\n"); $$ = $1; }
-| SET { System.out.print("found type (set)\n"); $$ = $1; }
+type : INT { System.out.print("found type (int)\n"); $$ = new ParserVal("int"); }
+| FLOAT { System.out.print("found type (float)\n"); $$ = new ParserVal("float"); }
+| CHAR { System.out.print("found type (char)\n"); $$ = new ParserVal("char"); }
+| BOOLEAN { System.out.print("found type (boolean)\n"); $$ = new ParserVal("boolean"); }
+| STRING { System.out.print("found type (string)\n"); $$ = new ParserVal("string"); } 
+| QUESTION { System.out.print("found type (question)\n"); $$ = new ParserVal("question"); }
+| SET { System.out.print("found type (set)\n"); $$ = new ParserVal("set"); }
 
 return_type : type 
 	{ 
@@ -266,6 +268,7 @@ factor_list: factor_list ',' factor {
 ***************************************/
 private Yylex lexer;
 public int yyline = 1, yycolumn;
+public static boolean DEBUG = true;
 
 /* 
  * symbolsTable: Keys are the identifier names as found in the source code

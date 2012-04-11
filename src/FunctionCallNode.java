@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class FunctionCallNode extends ASTNode
 {
@@ -27,7 +28,7 @@ public class FunctionCallNode extends ASTNode
 	public void checkSemantics() throws Exception 
 	{
 			this.getChildAt(0).checkSemantics();
-			
+
 			if(!hashMap.containsKey(functionName.toLowerCase()))
 				throw new Exception("Function does not Exist: " + this.getYyline() + ":" + 
 						this.getYycolumn()+". Please declare the function first."); 
@@ -58,7 +59,6 @@ public class FunctionCallNode extends ASTNode
 				
 			}
 			this.setType(functionSymbolTableEntry.getReturnType());
-								
 	}
 
 	
