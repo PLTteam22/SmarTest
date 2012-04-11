@@ -151,12 +151,12 @@ equality_operand : equality_operand  LT relational_operand { System.out.print("f
 
 relational_operand : relational_operand '+' term 
 	{ 
-		$$ = new ParserVal(new RelationalOperatorNode("addition",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		$$ = new ParserVal(new ArithmeticOperatorNode("addition",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
 		System.out.print("found a relational_operand (+)\n"); 
 	}
 | relational_operand '-' term 
 	{ 
-		$$ = new ParserVal(new RelationalOperatorNode("subtraction",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
+		$$ = new ParserVal(new ArithmeticOperatorNode("subtraction",(ASTNode)$1.obj, (ASTNode)$3.obj, yyline, yycolumn));
 		System.out.print("found a relational_operand (-)\n"); 
 	}
 | term 
@@ -196,9 +196,9 @@ factor : INTLITERAL { System.out.print("found a factor (int)\n"); }
 | CHARLITERAL { System.out.print("found a factor (char)\n"); }
 | STRINGLITERAL { System.out.print("found a factor (string)\n"); }
 | BOOLLITERAL { System.out.print("found a factor (bool)\n"); }		// Do checking for true and false ignoreCase
-| ID
-| question_literal
-| '(' expression ')' 
+| ID 					{ $$ = new ParserVal(new IDNode($1.sval, yyline, yycolumn)); }
+| question_literal 		{ $$ = $1; }
+| '(' expression ')'	{ $$ = $2; }  	
 | function_call
 
 function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); }
@@ -207,11 +207,12 @@ optional_factor_list : factor_list { System.out.print("found an optional_factor_
 
 factor_list: factor_list ',' factor { 
 					System.out.print("found a factor_list\n"); 
-					$$ = new ParserVal(((FactorListNode)$1.obj).add($3.obj)); 
+					((ArrayList<FactorListNode>)$1.obj).add((FactorListNode)$3.obj);
+					$$ = $1;
 				    }
 | factor  { 
 		System.out.print("found a factor_list\n"); 
-		$$ = new ParserVal(new FactorListNode((ASTNode)$1.obj)); 
+		$$ = new ParserVal(new FactorListNode((ASTNode)$1.obj, yyline, yycolumn)); 
 	}
 
 %%
