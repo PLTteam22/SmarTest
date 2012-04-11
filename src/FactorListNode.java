@@ -31,11 +31,10 @@ class FactorListNode extends ASTNode {
 			//symantic check for children
 		   if(this.getChildCount() == 2){
 			   this.getChildAt(0).checkSemantics();
+			   this.getChildAt(1).checkSemantics();			   
 		   }
 		   else if(this.getChildCount() == 1){
 			   this.getChildAt(0).checkSemantics();
-			   this.getChildAt(1).checkSemantics();
-	           
 		   }
 		   
 		   //no symantic check required for the parent node 
