@@ -196,9 +196,9 @@ factor : INTLITERAL { System.out.print("found a factor (int)\n"); }
 | CHARLITERAL { System.out.print("found a factor (char)\n"); }
 | STRINGLITERAL { System.out.print("found a factor (string)\n"); }
 | BOOLLITERAL { System.out.print("found a factor (bool)\n"); }		// Do checking for true and false ignoreCase
-| ID
-| question_literal
-| '(' expression ')' 
+| ID 					{ $$ = new ParserVal(new IDNode($1.sval, yyline, yycolumn)); }
+| question_literal 		{ $$ = $1; }
+| '(' expression ')'	{ $$ = $2; }  	
 | function_call
 
 function_call : ID '(' optional_factor_list ')' { System.out.print("found a function_call\n"); }
