@@ -11,7 +11,11 @@ public abstract class ASTNode {
 	private String type;	
 	private int yyline;
 	private int yycolumn;
-	
+	private int ivalue; 
+	private float fvalue;
+	private boolean bvalue;
+	private String svalue;
+	private char cvalue;
 	public abstract void checkSemantics() throws Exception;
 	public abstract String generateCode();
 	
@@ -22,6 +26,7 @@ public abstract class ASTNode {
 		this.setChildren(new ArrayList<ASTNode>());
 		this.yyline = yyline;
 		this.yycolumn = yycolumn;
+		
 	}
 	
 	ASTNode getChildAt(int index)
@@ -75,6 +80,36 @@ public abstract class ASTNode {
 	public void setChildren(ArrayList<ASTNode> children) {
 		this.children = children;
 	}
-
+	public int getIvalue() {
+		return ivalue;
+	}
+	public void setIvalue(int ivalue) {
+		this.ivalue = ivalue;
+	}
+	public float getFvalue() {
+		return fvalue;
+	}
+	public void setFvalue(float fvalue) {
+		this.fvalue = fvalue;
+	}
+	public boolean isBvalue() {
+		return bvalue;
+	}
+	public void setBvalue(boolean bvalue) {
+		this.bvalue = bvalue;
+	}
+	public String getSvalue() {
+		return svalue;
+	}
+	public void setSvalue(String svalue) {
+		this.svalue = svalue;
+	}
+	public char getCvalue() {
+		return cvalue;
+	}
+	public void setCvalue(char cvalue) {
+		this.cvalue = cvalue;
+	}
+	
 
 }
