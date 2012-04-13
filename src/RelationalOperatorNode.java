@@ -37,7 +37,7 @@ class RelationalOperatorNode extends ASTNode {
 			}		  
 		   //type check
 			if (!this.getChildAt(0).getType().equals(this.getChildAt(1).getType())) {
-				throw new Exception("Type Mismatch : Cannot Add" + this.getChildAt(0).getType()
+				throw new Exception("Type Mismatch : Cannot Compare " + this.getChildAt(0).getType()
 						+ " and " + this.getChildAt(1).getType()+ "-- at "
 						+ this.getChildAt(0).getYyline() + ":" + this.getChildAt(0).getYycolumn());
 			}
