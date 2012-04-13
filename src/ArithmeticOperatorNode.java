@@ -10,10 +10,10 @@
  */
 
 public class ArithmeticOperatorNode extends ASTNode{
-	
+
 	String arithType="";
-	
-	
+
+
 	/*
 	 * Instantiates ArithmeticOperator invoked by this grammar:
 	 * relational_operand '+' term 
@@ -41,7 +41,7 @@ public class ArithmeticOperatorNode extends ASTNode{
 		this.setType(str);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/*
 	 *
 	 * Instantiates ArithmeticOperator invoked by this grammar:
@@ -58,7 +58,7 @@ public class ArithmeticOperatorNode extends ASTNode{
 		this.addChild(lcNode);
 		this.setType(str);
 	}
-	
+
 	/*
 	 * Checks the semantics to make sure that integer is being operated with an integer.
 	 * Implicit conversions are not allowed
@@ -70,10 +70,10 @@ public class ArithmeticOperatorNode extends ASTNode{
 	public void checkSemantics() throws Exception {
 		// TODO Auto-generated method stub
 		this.getChildAt(0).checkSemantics();
-		
+
 		if (this.getChildCount() > 1)
 			this.getChildAt(1).checkSemantics();
-		
+
 		/*
 		 * The grammar should look into that only boolean expressions or relational expressions are executed.
 		 */
@@ -84,20 +84,29 @@ public class ArithmeticOperatorNode extends ASTNode{
 					|| this.getChildAt(0).getType().equalsIgnoreCase("float"))) 
 			{
 				throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
-							this.getYycolumn()+"should be of the same type.");
+						this.getYycolumn()+"should be of the same type.");
 			}					
 		}
-		
-		else if (! (this.getChildAt(0).getType().equals(this.getChildAt(1).getType()) 
-				&& (this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))))
+
+		if((this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))
+			&& (this.getChildAt(1).getType().equals("float") || this.getChildAt(1).getType().equals("int")))
 		{
-			throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
+			if (! (this.getChildAt(0).getType().equals(this.getChildAt(1).getType())))
+			{
+				throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
 						this.getYycolumn()+"should be of the same type.");
+			}
+		}
+		else
+		{
+			throw new Exception("Cannot do Arithmetic operation on "+this.getChildAt(0).getType()+ " & " + 
+					this.getChildAt(1).getType()+" on line "+ this.getYyline() + ":" + 
+					this.getYycolumn());
 		}
 		this.setType(this.getChildAt(0).getType());
 	}
 
-	
+
 	@Override
 	public String generateCode() {
 		// TODO Auto-generated method stub
