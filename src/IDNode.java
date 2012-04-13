@@ -6,6 +6,7 @@ public class IDNode extends ASTNode {
 
 
 	private String name;
+        private boolean isDeclaration;
 	
 	/**
 	 * Instantiates IDNode
@@ -14,9 +15,10 @@ public class IDNode extends ASTNode {
 	 *  @param yyline the line where this operator was found in the source code
 	 *  @param yycolumn the column where this operator was found in the source code
 	 */
-	public IDNode(String name, int yyline, int yycolumn) {
+	public IDNode(String name, boolean isDeclaration, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
 		this.name = name;
+                this.isDeclaration = isDeclaration;
 	}
 
 
@@ -28,13 +30,25 @@ public class IDNode extends ASTNode {
 	 */
 	@Override
 	public void checkSemantics() throws Exception {
-		if (! Parser.symbolsTable.containsKey(this.name))
-		{
-			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " + 
+                boolean inSymbolTable = Parser.symbolsTable.containsKey(this.name);
+                if (!isDeclaration)
+                {
+                        if (! inSymbolTable)
+		        {
+		                throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " + 
 								"cannot find symbol: " + this.name + " make sure variable has been declared");
-		}
+		        }
+                }
+                else
+                {
+                        if (inSymbolTable)
+                        {
+                                throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " +
+                                                        "symbol: " + this.name + " already declared");
+                        }
+                }
 		this.setType(Parser.symbolsTable.get(this.name)[0]);
-	}
+        }
 
 	/* (non-Javadoc)
 	 * @see ASTNode#generateCode()
