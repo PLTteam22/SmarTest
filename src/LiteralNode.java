@@ -7,18 +7,22 @@ public class LiteralNode extends ASTNode {
 		this.setType(type);
 		if(type.equalsIgnoreCase("boolean"))
 		{
-			boolean value=(boolean)object;
-			this.setBvalue(value);
+			Boolean value=(Boolean)object;
+			boolean result=value.booleanValue();
+			
+			this.setBvalue(result);
 		}
 		else if(type.equalsIgnoreCase("int"))
 		{
-			int value=(int)object;
-			this.setIvalue(value);
+			Integer value=(Integer)object;
+			int result=value.intValue();
+			this.setIvalue(result);
 		}
 		else if(type.equalsIgnoreCase("float"))
 		{
-			float value=(float)object;
-			this.setFvalue(value);
+			Float value=(Float)object;
+			float result= value.floatValue();
+			this.setFvalue(result);
 		}
 		else if(type.equalsIgnoreCase("string"))
 		{
@@ -27,8 +31,9 @@ public class LiteralNode extends ASTNode {
 		}
 		else
 		{
-			int value =(int)object;
-			char c=(char)value;
+			Integer value =(Integer)object;
+			int result=value.intValue();
+			char c=(char)result;
 			this.setCvalue(c);
 		}
 	}
