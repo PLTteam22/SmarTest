@@ -32,7 +32,9 @@ class RelationalOperatorNode extends ASTNode {
 			//symantic check for children
 		   this.getChildAt(0).checkSemantics();
 		   this.getChildAt(1).checkSemantics();
-		  
+            		if (!(this.getChildAt(0).getType().equals("int") || this.getChildAt(0).getType().equals("float"))) {
+				throw new Exception("Relational Operators can be applied only to integer and float values: statement at Line. Error at " + this.getYyline() + ":" +	this.getYycolumn());
+			}		  
 		   //type check
 			if (!this.getChildAt(0).getType().equals(this.getChildAt(1).getType())) {
 				throw new Exception("Type Mismatch : Cannot Add" + this.getChildAt(0).getType()
