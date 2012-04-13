@@ -47,9 +47,9 @@ function : return_type ID '(' optional_param_list ')' '{' statements '}'
 }
 
 optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"); $$ = new ParserVal(null); }
-| param_list { System.out.print("found optional_param_list\n"); $$ = new ParserVal((ASTNode)$1.obj); }
+| param_list { System.out.print("found optional_param_list\n"); $$ = $1; }
 
-param_list: param_list ',' declaration { System.out.print("found param_list\n"); }
+param_list: param_list ',' declaration { System.out.print("found param_list\n"); ((ArrayList<ASTNode>)$1.obj).add((ASTNode)$3.obj); }
 | declaration { System.out.print("found param_list\n"); ArrayList<ASTNode> plist = new ArrayList<ASTNode>(); plist.add((ASTNode)$1.obj); $$ = new ParserVal(plist); }
 
 statements : statements statement { System.out.print("found statements\n"); ((StatementsNode)$1.obj).addChild((ASTNode)$2.obj); $$ = $1; }
