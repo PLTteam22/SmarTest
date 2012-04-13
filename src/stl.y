@@ -52,7 +52,7 @@ optional_param_list : /*empty*/ { System.out.print("found optional_param_list\n"
 param_list: param_list ',' declaration { System.out.print("found param_list\n"); ((ArrayList<ASTNode>)$1.obj).add((ASTNode)$3.obj); }
 | declaration { System.out.print("found param_list\n"); ArrayList<ASTNode> plist = new ArrayList<ASTNode>(); plist.add((ASTNode)$1.obj); $$ = new ParserVal(plist); }
 
-statements : statements statement { System.out.print("found statements\n"); ((StatementsNode)$1.obj).addChild((ASTNode)$2.obj); $$ = $1; }
+statements : statements statement { System.out.print("found statements\n"); ((StatementsNode)$1.obj).addChild((ASTNode)$2.obj); $$ = $1;}
 |/*  empty */ { System.out.print("found statements\n"); $$ = new ParserVal(new StatementsNode(line, column)); }
 
 /* statement productions go here */
@@ -66,7 +66,7 @@ statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$
 | loop { System.out.print("found statement (loop)\n"); }
 | if_statement { System.out.print("found statement (if statement)\n"); }
 | ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode((ASTNode)$1.obj, (ASTNode)$3.obj, line, column)); }
-| RETURN optional_expression ';' { System.out.print("found statement (return)\n"); }
+| RETURN optional_expression ';' { System.out.print("found statement (return)\n"); $$ = new ParserVal(new ReturnNode(currentReturnType, (ASTNode)$2.obj, line, column)); }
 
 type : INT { System.out.print("found type (int)\n"); $$ = new ParserVal("int"); }
 | FLOAT { System.out.print("found type (float)\n"); $$ = new ParserVal("float"); }
@@ -78,12 +78,14 @@ type : INT { System.out.print("found type (int)\n"); $$ = new ParserVal("int"); 
 
 return_type : type 
 	{ 
-		$$ = new ParserVal(new ReturnNode($1.sval,line,column));
+		$$ = new ParserVal($1.sval);
+		Parser.currentReturnType = $1.sval;
 	}
 | VOID 
 	{ 
 		System.out.print("found return_type\n"); 
-		$$ = new ParserVal(new ReturnNode($1.sval,line,column)); 
+		$$ = new ParserVal($1.sval);
+		Parser.currentReturnType = $1.sval;
 	}
 
 optional_expression : expression { System.out.print("found optional_expression\n"); }
@@ -281,6 +283,7 @@ public static HashMap<String, String[]> symbolsTable = new HashMap<String, Strin
 
 
 public static HashMap<String, FunctionSymbolTableEntry> functionSymbolsTable = new HashMap<String, FunctionSymbolTableEntry>();
+public static String currentReturnType = "";
 
 
 
