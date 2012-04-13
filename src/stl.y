@@ -57,15 +57,15 @@ statements : statements statement { System.out.print("found statements\n"); ((St
 
 /* statement productions go here */
 
-declaration : type ID { $$ = new ParserVal(new DeclarationNode($1.sval, new IDNode($2.sval, true, line, column), line, column)); }
+declaration : type ID { $$ = new ParserVal(new DeclarationNode($1.sval, new IDNode($2.sval, line, column), line, column)); }
 
 statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal((ASTNode)$1.obj); }
 | declaration '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$3.obj, line, column)); }
-| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode(new IDNode($1.sval, false, line, column), (ASTNode)$3.obj, line, column)); }
+| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((IDNode)$1.obj, (ASTNode)$3.obj, line, column)); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }
 | if_statement { System.out.print("found statement (if statement)\n"); }
-| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode(new IDNode($1.sval, false, line, column), (ASTNode)$3.obj, line, column)); }
+| ID INSERT expression ';' { System.out.print("found statement (insert ques to set)\n"); $$ = new ParserVal(new InsertOperatorNode((ASTNode)$1.obj, (ASTNode)$3.obj, line, column)); }
 | RETURN optional_expression ';' { System.out.print("found statement (return)\n"); $$ = new ParserVal(new ReturnNode(currentReturnType, (ASTNode)$2.obj, line, column)); }
 
 type : INT { System.out.print("found type (int)\n"); $$ = new ParserVal("int"); }
@@ -237,12 +237,12 @@ term : term '*' factor
 		System.out.print("found a term (unary -)\n"); 
 	}
 
-factor : INTLITERAL { System.out.print("found a factor (int)\n"); $$ = new ParserVal(new LiteralNode("int", line, column)); }
-| FLOATLITERAL { System.out.print("found a factor (float)\n"); $$ = new ParserVal(new LiteralNode("float", line, column)); }
-| CHARLITERAL { System.out.print("found a factor (char)\n"); $$ = new ParserVal(new LiteralNode("char", line, column)); }
-| STRINGLITERAL { System.out.print("found a factor (string)\n"); $$ = new ParserVal(new LiteralNode("string", line, column));}
-| BOOLLITERAL { System.out.print("found a factor (bool)\n"); $$ = new ParserVal(new LiteralNode("boolean", line, column)); }		// Do checking for true and false ignoreCase
-| ID 					{ $$ = new ParserVal(new IDNode($1.sval, false, line, column)); }
+factor : INTLITERAL { System.out.print("found a factor (int)\n"); $$ = new ParserVal(new LiteralNode("int",(Object) $1.ival, line, column)); }
+| FLOATLITERAL { System.out.print("found a factor (float)\n"); $$ = new ParserVal(new LiteralNode("float", (Object) $1.dval, line, column)); }
+| CHARLITERAL { System.out.print("found a factor (char)\n"); $$ = new ParserVal(new LiteralNode("char", (Object) $1.ival,line, column)); }
+| STRINGLITERAL { System.out.print("found a factor (string)\n"); $$ = new ParserVal(new LiteralNode("string", (Object) $1.sval, line, column));}
+| BOOLLITERAL { System.out.print("found a factor (bool)\n"); $$ = new ParserVal(new LiteralNode("boolean", (Object) $1.sval,line, column)); }		// Do checking for true and false ignoreCase
+| ID 					{ $$ = new ParserVal(new IDNode($1.sval, line, column)); }
 | question_literal 		{ $$ = $1; }
 | '(' expression ')'	{ $$ = $2; }  	
 | function_call			{ $$ = $1; }
