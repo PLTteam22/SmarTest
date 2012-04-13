@@ -84,12 +84,12 @@ return_type : type
 | VOID 
 	{ 
 		System.out.print("found return_type\n"); 
-		$$ = new ParserVal($1.sval);
-		Parser.currentReturnType = $1.sval;
+		$$ = new ParserVal("void");
+		Parser.currentReturnType = "void";
 	}
 
-optional_expression : expression { System.out.print("found optional_expression\n"); }
-| /* empty */ { System.out.print("found optional_expression\n"); }
+optional_expression : expression { System.out.print("found optional_expression\n"); $$ = $1; }
+| /* empty */ { System.out.print("found optional_expression\n"); $$ = new ParserVal(null);}
 
 
 /* begin if productions */

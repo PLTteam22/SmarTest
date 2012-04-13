@@ -49,9 +49,9 @@ public class FunctionNode extends ASTNode
                         Parser.functionSymbolsTable.put(identifier.toLowerCase(), new FunctionSymbolTableEntry(identifier, javaID, rtrnType, parameterList));
                 }
 
-                if (!"void".equalsIgnoreCase(rtrnType) && !stmtList.getType.equalsIgnoreCase("return"))
+                if (!"void".equalsIgnoreCase(rtrnType) && !"return".equalsIgnoreCase(stmtList.getType()))
                 {
-                        throw new Exception("Line " + this.getYyLine() + 
+                        throw new Exception("Line " + this.getYyline() + 
                                 ": Missing return statement");
                 }
 

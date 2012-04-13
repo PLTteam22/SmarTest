@@ -8,7 +8,6 @@ public class StatementsNode extends ASTNode
         }
 	public void checkSemantics() throws Exception
         {
-                
                 for (ASTNode statement : this.getChildren())
                 {
                         statement.checkSemantics();

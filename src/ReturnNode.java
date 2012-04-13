@@ -17,10 +17,23 @@ public class ReturnNode extends ASTNode{
 				if (child != null)
 					child.checkSemantics();
 			}
-			if (!returnType.equalsIgnoreCase(this.getChildAt(0).getType()))
+                        if (returnType.equalsIgnoreCase("void") && this.getChildAt(0) != null )
+                        {
+                                throw new Exception("Cannot return a value in a void function");
+                        }
+
+                        String returnExpressionType;
+                        if (this.getChildAt(0) == null)
+                                returnExpressionType = "void";
+                        else
+                                returnExpressionType = this.getChildAt(0).getType();
+
+
+			if (!returnType.equalsIgnoreCase(returnExpressionType))
 			{
-				throw new Exception("Expecting return type " + returnType + " not " + this.getChildAt(0).getType());
+				throw new Exception("Expecting return type " + returnType + " not " + returnExpressionType);
 			}
+                        this.setType("return");
 	}
 	public String generateCode() 
 	{
