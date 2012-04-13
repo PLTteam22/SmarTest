@@ -29,14 +29,11 @@ class FactorListNode extends ASTNode {
 	@Override
 	public void checkSemantics() throws Exception{
 			//symantic check for children
-		   if(this.getChildCount() == 2){
-			   this.getChildAt(0).checkSemantics();
-			   this.getChildAt(1).checkSemantics();			   
-		   }
-		   else if(this.getChildCount() == 1){
-			   this.getChildAt(0).checkSemantics();
-		   }
-		   
+
+                for (ASTNode factor : this.getChildren())
+                   {
+                        factor.checkSemantics();
+                   }
 		   //no symantic check required for the parent node 
 		   
 		   return;	

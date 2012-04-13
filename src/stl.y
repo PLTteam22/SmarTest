@@ -255,8 +255,8 @@ optional_factor_list : factor_list { System.out.print("found an optional_factor_
 
 
 factor_list: factor_list ',' factor { 
-					System.out.print("found a factor_list\n"); 
-					((ArrayList<FactorListNode>)$1.obj).add((FactorListNode)$3.obj);
+					System.out.print("found a factor_list\n");
+                                        ((FactorListNode)$1.obj).addChild((ASTNode)$3.obj); 
 					$$ = $1;
 				    }
 | factor  { 
