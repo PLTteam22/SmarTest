@@ -36,12 +36,9 @@ public class DeclarationNode extends ASTNode {
 	@Override
 	public void checkSemantics() throws Exception {
 
-		// Verify that this variable has not been already declared before
-		if (Parser.symbolsTable.containsKey(this.getIdNode().getName()))
-		{
-			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": variable " + this.getIdNode().getName() +
-								" has already been declared at line " + Parser.symbolsTable.get(this.getIdNode().getName())[2]);
-		}
+
+		this.getChildAt(0).checkSemantics();
+		
 		
 		// Now, insert this new ID into symbols table, and generate a new valid target variable name for it
 		String varName = "_smartestVar_" + this.getIdNode().getName();
@@ -61,12 +58,13 @@ public class DeclarationNode extends ASTNode {
 		
 		
 		Parser.symbolsTable.put(this.getIdNode().getName(), data);
+                this.getChildAt(0).setType(getDeclaredType().toLowerCase());
+
+
+                this.setType(this.getChildAt(0).getType());
 		
 		
-		this.setType(this.getDeclaredType());
-		
-		
-		this.getChildAt(0).checkSemantics();
+
 
 	}
 

@@ -38,16 +38,23 @@ public class IDNode extends ASTNode {
 		                throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " + 
 								"cannot find symbol: " + this.name + " make sure variable has been declared");
 		        }
+		        this.setType(Parser.symbolsTable.get(this.name)[0]);
                 }
                 else
                 {
-                        if (inSymbolTable)
-                        {
-                                throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " +
-                                                        "symbol: " + this.name + " already declared");
-                        }
+
+
+
+		        // Verify that this variable has not been already declared before
+        		if (inSymbolTable)
+        		{
+        			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": variable " + name +
+        								" has already been declared at line " + Parser.symbolsTable.get(name)[2]);
+        		}
+		
+
                 }
-		this.setType(Parser.symbolsTable.get(this.name)[0]);
+
         }
 
 	/* (non-Javadoc)
