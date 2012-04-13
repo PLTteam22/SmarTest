@@ -61,7 +61,7 @@ declaration : type ID { $$ = new ParserVal(new DeclarationNode($1.sval, new IDNo
 
 statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal((ASTNode)$1.obj); }
 | declaration '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$3.obj, line, column)); }
-| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((IDNode)$1.obj, (ASTNode)$2.obj, line, column)); }
+| ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode($1.sval, (ASTNode)$3.obj, line, column)); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
 | loop { System.out.print("found statement (loop)\n"); }
 | if_statement { System.out.print("found statement (if statement)\n"); }
