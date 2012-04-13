@@ -67,12 +67,16 @@ public class IfStatementNode extends ASTNode{
 		{	
 			this.getChildAt(0).checkSemantics();
 			this.getChildAt(1).checkSemantics();
+                        if ("return".equalsIgnoreCase(this.getChildAt(1).getType()))
+                                this.setType("return");
 		}
 		else if(this.getChildCount()==3)
 		{	
 			this.getChildAt(0).checkSemantics();
 			this.getChildAt(1).checkSemantics();
 			this.getChildAt(2).checkSemantics();
+                        if ("return".equalsIgnoreCase(this.getChildAt(1).getType()) && "return".equalsIgnoreCase(this.getChildAt(2).getType()))
+                                this.setType("return");
 		}
 		
 		if (! this.getChildAt(0).getType().equals("boolean"))
