@@ -1,0 +1,14 @@
+%%%
+This is a valid program, and should compile. The function switch if written
+in java would cause an error as switch is a keyword, and therefore the name
+mangling must rename it.
+
+%%%
+
+void main()
+{
+}
+
+void switch()
+{
+}
