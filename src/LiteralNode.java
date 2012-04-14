@@ -20,9 +20,9 @@ public class LiteralNode extends ASTNode {
 		}
 		else if(type.equalsIgnoreCase("float"))
 		{
-			Float value=(Float)object;
-			float result= value.floatValue();
-			this.setFvalue(result);
+			Double value=(Double)object;
+			double result= value.doubleValue();
+			this.setDvalue(result);
 		}
 		else if(type.equalsIgnoreCase("string"))
 		{
@@ -51,3 +51,4 @@ public class LiteralNode extends ASTNode {
 	}
 
 }
+
