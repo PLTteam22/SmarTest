@@ -13,7 +13,7 @@ public abstract class ASTNode {
 	private int yycolumn;
 	private int ivalue; 
 	private double dvalue;
-	private String bvalue;
+	private boolean bvalue;
 	private String svalue;
 	private char cvalue;
 	public abstract void checkSemantics() throws Exception;
@@ -87,10 +87,10 @@ public abstract class ASTNode {
 		this.ivalue = ivalue;
 	}
 	
-	public String getBvalue() {
+	public boolean isBvalue() {
 		return bvalue;
 	}
-	public void setBvalue(String bvalue) {
+	public void setBvalue(boolean bvalue) {
 		this.bvalue = bvalue;
 	}
 	public String getSvalue() {
