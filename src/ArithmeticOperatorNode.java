@@ -84,18 +84,19 @@ public class ArithmeticOperatorNode extends ASTNode{
 					|| this.getChildAt(0).getType().equalsIgnoreCase("float"))) 
 			{
 				throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
-						this.getYycolumn()+"should be of the same type.");
+						this.getYycolumn()+"should be of the same type. Unary");
 			}					
 		}
 
 		if((this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))
 			&& (this.getChildAt(1).getType().equals("float") || this.getChildAt(1).getType().equals("int")))
 		{
-			if (! (this.getChildAt(0).getType().equals(this.getChildAt(1).getType())))
+			/*if (! (this.getChildAt(0).getType().equals(this.getChildAt(1).getType())))
 			{
 				throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
-						this.getYycolumn()+"should be of the same type.");
-			}
+						this.getYycolumn()+"should be of the same type. Types are - "+this.getChildAt(0).getType()+" and "+
+						this.getChildAt(1).getType());
+			}*/
 		}
 		else
 		{
@@ -103,7 +104,10 @@ public class ArithmeticOperatorNode extends ASTNode{
 					this.getChildAt(1).getType()+" on line "+ this.getYyline() + ":" + 
 					this.getYycolumn());
 		}
-		this.setType(this.getChildAt(0).getType());
+		if(this.getChildAt(0).getType().equals("float") || this.getChildAt(1).getType().equals("float"))
+			this.setType("float");
+		else
+			this.setType("int");
 	}
 
 
