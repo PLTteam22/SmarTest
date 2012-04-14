@@ -1,4 +1,14 @@
-
+/**
+ * Implements semantic checking and output code generation
+ * of function call statements
+ * Example: int sum (int a, int b){
+ *				int c = a + b;
+ *				return c;          
+ *          } 
+ *          sum(a, b, d); // number of parameters are not consistent with function definition
+ *          avg(a, b); //use of undefined function
+ * 			
+ */
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +58,10 @@ public class FunctionCallNode extends ASTNode
 					arrayList  = functionSymbolTableEntry.getParamTypes();
 					for(int i = 0; i < arrayList.size(); i++)
 					{
-						if(!arrayList.get(i).equalsIgnoreCase(this.getChildAt(0).getChildAt(i).getType()))
+						if(arrayList.get(i).equalsIgnoreCase("float") & this.getChildAt(0).getChildAt(i).getType().equalsIgnoreCase("int"))
+							continue;
+						
+						else if(!arrayList.get(i).equalsIgnoreCase(this.getChildAt(0).getChildAt(i).getType()))
 						{
 							throw new Exception ("Parameter is of Incompatible Type: " + this.getYyline() + ":" + 
 									this.getYycolumn()+" See function definition.");
@@ -86,3 +99,4 @@ public class FunctionCallNode extends ASTNode
 	
 
 }
+
