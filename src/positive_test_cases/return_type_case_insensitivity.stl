@@ -1,0 +1,14 @@
+%%%
+This program should compile correctly if the return type and return type
+checking is case insensitive as claimed.
+
+%%%
+
+vOId main()
+{
+}
+
+iNT func1()
+{
+        return 5;
+}
