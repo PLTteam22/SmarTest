@@ -7,10 +7,10 @@ public class LiteralNode extends ASTNode {
 		this.setType(type);
 		if(type.equalsIgnoreCase("boolean"))
 		{
-			Boolean value=(Boolean)object;
-			boolean result=value.booleanValue();
-			
-			this.setBvalue(result);
+			if(object.toString().equalsIgnoreCase("true"))
+				this.setBvalue("true");
+			else 
+				this.setBvalue("false");
 		}
 		else if(type.equalsIgnoreCase("int"))
 		{
