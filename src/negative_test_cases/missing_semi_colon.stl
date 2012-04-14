@@ -1,0 +1,18 @@
+%%%
+The second statement in func1 is missing a semicolon. The program should not
+compile for this reason. This program does not have valid syntax according to
+the grammar.
+
+%%%
+
+void main()
+{
+}
+
+void func1()
+{
+        int i = 5;
+        boolean k = 97
+        return;
+}
+

@@ -1,0 +1,13 @@
+%%%
+This program should not compile, as int k is declared multiple times
+in the parameter list of func2
+
+%%%
+void main()
+{
+
+}
+void func2(int k, char c, int k)
+{
+        
+}

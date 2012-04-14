@@ -1,0 +1,19 @@
+%%%
+func1 has return type of int but returns a float. Downcasting is not allowed
+and this program should not compile for this reason. This will be discovered
+in semantic checking.
+
+%%%
+
+int func1()
+{
+       float i = 6.4;
+        return i; 
+}
+
+void main()
+{
+        func1();
+}
+
+

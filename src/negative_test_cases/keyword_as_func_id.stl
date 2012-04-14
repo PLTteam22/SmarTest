@@ -1,0 +1,14 @@
+%%%
+This program defines a function whose identifier is a keyword. This program
+should not compile for this reason. This should be discovered in semantic
+checking.
+
+%%%
+
+void main()
+{
+}
+
+void loop()
+{
+}

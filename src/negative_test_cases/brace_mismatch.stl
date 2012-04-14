@@ -1,0 +1,12 @@
+%%%
+func1 is missing a closing brace. This program should not compile for this
+reason. This program does not have valid syntax according to the grammar.
+
+%%%
+
+void main()
+{
+}
+
+void func1()
+{
