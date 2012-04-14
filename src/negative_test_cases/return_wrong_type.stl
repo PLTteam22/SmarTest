@@ -1,0 +1,15 @@
+%%%
+func1 has a return type of int, but returns a boolean. This program should
+not compile for this reason. This should be discovered in semantic checking.
+
+%%%
+
+void main()
+{
+}
+
+int func1()
+{
+        boolean b = true;
+        return b;
+}

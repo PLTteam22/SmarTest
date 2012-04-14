@@ -1,0 +1,17 @@
+%%%
+This program redefines func1, however they differ in case. As STL is case-
+insensitive, this program should not compile with this function redefinition.
+
+%%%
+
+VOid mAIn()
+{
+}
+
+iNt fUnc1()
+{
+}
+
+boOLean FuNC1()
+{
+}

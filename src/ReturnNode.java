@@ -31,7 +31,8 @@ public class ReturnNode extends ASTNode{
 
 			if (!returnType.equalsIgnoreCase(returnExpressionType))
 			{
-				throw new Exception("Expecting return type " + returnType + " not " + returnExpressionType);
+                                if(!(returnType.equalsIgnoreCase("float") && returnExpressionType.equalsIgnoreCase("int")))
+				        throw new Exception("Expecting return type " + returnType + " not " + returnExpressionType);
 			}
                         this.setType("return");
 	}

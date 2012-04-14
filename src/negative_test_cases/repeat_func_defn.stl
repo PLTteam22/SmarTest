@@ -1,0 +1,21 @@
+%%%
+This program has a repeat definition of func1, and should not compile for
+this reason. This should be discovered in semantic checking.
+
+%%%
+
+void main()
+{
+}
+
+void func1()
+{
+}
+
+void func2()
+{
+}
+
+void func1()
+{
+}

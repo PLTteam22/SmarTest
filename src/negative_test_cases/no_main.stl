@@ -1,0 +1,14 @@
+%%%
+This program has no main function, and therefore should not compile
+
+It does have a variable main, but this exists in the variable symbol table not
+in the function table
+%%%
+void func1()
+{
+        boolean main = false;
+}
+void func2()
+{
+        
+}

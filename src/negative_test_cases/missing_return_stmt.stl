@@ -1,0 +1,14 @@
+%%%
+In this program, func1 has a return type of int, but does not return anything.
+It should not compile for this reason. This should be discoverd in semantic
+checking.
+
+%%%
+
+void main()
+{
+}
+
+int func1()
+{
+}

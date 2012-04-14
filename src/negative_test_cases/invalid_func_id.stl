@@ -1,0 +1,13 @@
+%%%
+invalidFuncID is an invalid identifier. This program should not compile for
+this reason. It does not have valid syntax according to the grammar.
+
+%%%
+
+void main()
+{
+}
+
+void 9invalidFuncID()
+{
+}
