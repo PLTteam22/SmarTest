@@ -12,7 +12,7 @@ public abstract class ASTNode {
 	private int yyline;
 	private int yycolumn;
 	private int ivalue; 
-	private float fvalue;
+	private double dvalue;
 	private boolean bvalue;
 	private String svalue;
 	private char cvalue;
@@ -86,12 +86,7 @@ public abstract class ASTNode {
 	public void setIvalue(int ivalue) {
 		this.ivalue = ivalue;
 	}
-	public float getFvalue() {
-		return fvalue;
-	}
-	public void setFvalue(float fvalue) {
-		this.fvalue = fvalue;
-	}
+	
 	public boolean isBvalue() {
 		return bvalue;
 	}
@@ -110,6 +105,13 @@ public abstract class ASTNode {
 	public void setCvalue(char cvalue) {
 		this.cvalue = cvalue;
 	}
+	public double getDvalue() {
+		return dvalue;
+	}
+	public void setDvalue(double dvalue) {
+		this.dvalue = dvalue;
+	}
 	
 
 }
+
