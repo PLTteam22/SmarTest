@@ -154,7 +154,7 @@ NL    = \n | \r | \r\n
 
 ['][^'][']           		{
 					System.out.println("lex: found char_literal\n");
-					yyparser.yylval = new ParserVal(yycharat(1)); 
+					yyparser.yylval = new ParserVal(Integer.parseInt(yytext())); 
 					return (Parser.CHARLITERAL);
 				}
 
