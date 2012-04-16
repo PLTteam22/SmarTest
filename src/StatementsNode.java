@@ -27,7 +27,7 @@ public class StatementsNode extends ASTNode
                         {
                                 throw new Exception("Line: " + this.getYyline() + ": Unreachable code!");
                         }
-                        if (statement.getType().equalsIgnoreCase("return"))
+                        if ("return".equalsIgnoreCase(statement.getType()))
                         {
                                 hasReturn = true;
                         }
