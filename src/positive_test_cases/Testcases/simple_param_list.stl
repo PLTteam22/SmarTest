@@ -1,0 +1,12 @@
+%%%
+func1 has a simple parameter list. It should compile.
+
+%%%
+
+void main()
+{
+}
+
+void func1(int i, boolean c, string p)
+{
+}

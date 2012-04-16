@@ -1,0 +1,95 @@
+Reading "stl.flex"
+Constructing NFA : 269 states in NFA
+Converting NFA to DFA : 
+............................................................................................................................
+126 states before minimization, 116 states in minimized DFA
+Old file "Yylex.java" saved as "Yylex.java~"
+Writing code to "Yylex.java"
+
+Compiling ...
+
+lex: found void
+
+found return_type
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char
+
+lex: found individual char
+
+found optional_param_list
+lex: found individual char
+
+found statements
+Created Node of Type: StatementsNode
+lex: found individual char
+
+found function
+Created Node of Type: FunctionNode
+found function_list
+lex: found void
+
+found return_type
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char
+
+lex: found individual char
+
+found optional_param_list
+lex: found individual char
+
+found statements
+Created Node of Type: StatementsNode
+lex: found whitespace or newline or tab
+
+lex: found individual char
+
+found function
+Created Node of Type: FunctionNode
+found function_list
+lex: found void
+
+found return_type
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char
+
+lex: found individual char
+
+found optional_param_list
+lex: found individual char
+
+found statements
+Created Node of Type: StatementsNode
+lex: found individual char
+
+found function
+Created Node of Type: FunctionNode
+found function_list
+found optional_function_list
+
+found a program
+Created Node of Type: ProgramNode
+
+Compiled successfully
+
+========================
+
+
+Symbols Table:
+
+
+========================
+
+Functions Table:
+
+Variable: func1
+Variable: func2
+Variable: main
