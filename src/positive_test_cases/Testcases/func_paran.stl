@@ -1,0 +1,10 @@
+float dble(float i, int j)
+{
+        return i * 2;
+}
+void main()
+{
+        int k = 3;
+        int l = 9;
+        float z = dble(3, 9);
+}

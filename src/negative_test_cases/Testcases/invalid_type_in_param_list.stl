@@ -1,0 +1,14 @@
+%%%
+In the parameter list for the definition of func1, char is mispelled. This
+program should not compile for this reason. This program does not have valid
+syntax according to the grammar.
+
+%%%
+
+void main()
+{
+}
+
+void func1(int i, charac n, boolean c)
+{
+}

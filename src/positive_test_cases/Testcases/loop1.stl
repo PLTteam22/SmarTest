@@ -1,0 +1,11 @@
+int main()
+{
+	int i;
+	float j;
+	float k = i*2.0;
+	loop while(k>0.0)
+	{
+	}
+	return 2;
+		
+}

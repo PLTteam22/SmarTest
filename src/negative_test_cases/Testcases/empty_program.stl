@@ -1,0 +1,5 @@
+%%%
+The empty program should not compile becasue there is no function main. This
+should be discovered in semantic checking.
+
+%%%

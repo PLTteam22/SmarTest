@@ -30,7 +30,7 @@ program : optional_function_list
         {
         	System.out.println(e.getMessage());
         	e.printStackTrace();
-        	
+        	System.exit(1);
         }
 }
 
