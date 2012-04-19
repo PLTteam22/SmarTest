@@ -6,7 +6,7 @@
  * Example :
  * 			loop while(i<=4){i=i+1;}
  */
-public class LoopNode extends ASTNode{
+public class LoopNode extends ASTNode implements NoSemiColonStatement{
 	
 	/*
 	 * Instantiates LoopNode invoked by this grammar:

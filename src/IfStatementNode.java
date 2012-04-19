@@ -9,7 +9,7 @@
  * 			if(i<=4){i=i+1;}
  * 				else{i=i-1;}
  */
-public class IfStatementNode extends ASTNode{
+public class IfStatementNode extends ASTNode implements NoSemiColonStatement{
 	
 	private int ifType;
 
