@@ -63,11 +63,15 @@ public class LiteralNode extends ASTNode {
 		}
 		else if(type.equalsIgnoreCase("string"))
 		{
+			output.append("\"");
 			output.append(this.getSvalue());
+			output.append("\"");
 		}
 		else //char
 		{
+			output.append("'");
 			output.append(this.getCvalue());
+			output.append("'");
 		}
 		return output;
 	}
