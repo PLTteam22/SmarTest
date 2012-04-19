@@ -23,8 +23,7 @@ public class DeclarationNode extends ASTNode {
 		this.addChild(idNode);
 		this.declaredType = idType;
 		this.idNode = (IDNode)idNode;
-		
-		
+		this.setType(idType);
 	}
 
 	/**
