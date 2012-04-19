@@ -55,19 +55,19 @@ class RelationalOperatorNode extends ASTNode {
 		output.append(this.getChildAt(0).generateCode());
 		if ("LT".equalsIgnoreCase(operator))
 		{
-			output.append(" < ")
+			output.append(" < ");
 		}
 		else if ("LE".equalsIgnoreCase(operator))
 		{
-			output.append(" <= ")
+			output.append(" <= ");
 		}
 		else if ("GT".equalsIgnoreCase(operator))
 		{
-			output.append(" > ")
+			output.append(" > ");
 		}
 		else if ("GE".equalsIgnoreCase(operator))
 		{
-			output.append(" <= ")
+			output.append(" <= ");
 
 		}
 		output.append(this.getChildAt(1).generateCode());
