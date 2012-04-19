@@ -115,7 +115,30 @@ public class ArithmeticOperatorNode extends ASTNode{
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		// Should use arithType
-		return null;
+		StringBuffer output = new StringBuffer();
+		output.append(this.getChildAt(0).generateCode());
+		if ("multiplication".equalsIgnoreCase(getType()))
+		{
+			output.append(" * ");
+		}
+		else if ("division".equalsIgnoreCase(getType()))
+		{
+			output.append(" / ");
+		}
+		else if ("addition".equalsIgnoreCase(getType()))
+		{
+			output.append(" + ");
+		}
+		else if ("subtraction".equalsIgnoreCase(getType()))
+		{
+			output.append(" - ");
+		}
+		else if ("modulus".equalsIgnoreCase(getType()))
+		{
+			output.append(" % ");
+		}
+		output.append(this.getChildAt(1).generateCode());
+		return output;
 	}
 
 }

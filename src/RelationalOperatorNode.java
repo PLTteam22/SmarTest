@@ -6,6 +6,8 @@
  * 			 b  LT 5
  */
 class RelationalOperatorNode extends ASTNode {
+	
+	private String operator;
 	/*
 	 * Instantiates EqualityOperator invoked by this grammar:
 	 *  equality_operand  LT relational_operand 
@@ -21,6 +23,7 @@ class RelationalOperatorNode extends ASTNode {
 		super(yyline, yycolumn);
 		this.addChild(lcNode);
 		this.addChild(rcNode);
+		this.operator = op;
 	}
 
 	/*
@@ -48,7 +51,27 @@ class RelationalOperatorNode extends ASTNode {
 	@Override
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
-		return null;
+		StringBuffer output = new StringBuffer();
+		output.append(this.getChildAt(0).generateCode());
+		if ("LT".equalsIgnoreCase(operator))
+		{
+			output.append(" < ")
+		}
+		else if ("LE".equalsIgnoreCase(operator))
+		{
+			output.append(" <= ")
+		}
+		else if ("GT".equalsIgnoreCase(operator))
+		{
+			output.append(" > ")
+		}
+		else if ("GE".equalsIgnoreCase(operator))
+		{
+			output.append(" <= ")
+
+		}
+		output.append(this.getChildAt(1).generateCode());
+		return output;
 	}
 
 }
