@@ -42,7 +42,17 @@ class FactorListNode extends ASTNode {
 	@Override
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
-		return null;
+		StringBuffer output = new StringBuffer();
+		boolean firstFactor = true;
+		for (ASTNode factor : this.getChildren())
+		{
+			if (!firstFactor)
+				output.append(", ");
+			else
+				firstFactor = false;
+			output.append(factor.generateCode());
+		}
+		return output;
 	}
 
 }

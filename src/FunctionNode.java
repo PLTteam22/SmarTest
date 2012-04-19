@@ -85,8 +85,11 @@ public class FunctionNode extends ASTNode
                 		boolean firstParam = true;
                         for (ASTNode param : paramList)
                         {
-                        		if (!firstParam)
-                        			output.append(", ");
+                        	if (!firstParam)
+                        	        output.append(", ");
+                                else
+                                        firstParam = false;
+                        
                                 output.append(param.generateCode());
                                 firstParam = false;
                                 
