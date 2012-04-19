@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FunctionNode extends ASTNode
 {
@@ -7,13 +8,35 @@ public class FunctionNode extends ASTNode
         private String rtrnType;
         private String identifier;
 
-        public FunctionNode(String returnType, String id, ArrayList<ASTNode> parameterList, ASTNode statementList, int yyline, int yycol)
+        public FunctionNode(String returnType, String id, ArrayList<ASTNode> parameterList, ASTNode statementList, int yyline, int yycol) throws Exception
         {
                 super(yyline, yycol);
                 rtrnType = returnType;
                 paramList = parameterList;
                 stmtList = statementList;
                 identifier = id;
+                
+                if (Parser.functionSymbolsTable.containsKey(identifier.toLowerCase()))
+                {
+                        throw new Exception("Line " + this.getYyline() +
+                                ": Function " + identifier.toLowerCase() +
+                                " is already defined");
+                }
+                else
+                {
+                        String javaID = "_smartestFunction_" + identifier;
+                        ArrayList<String> myParameterList = new ArrayList<String>();
+                        if (paramList != null)
+                        {
+	                        for (ASTNode param : paramList)
+	                        {
+	                        	myParameterList.add(param.getType());
+	                        }
+                        }
+                        Parser.functionSymbolsTable.put(identifier.toLowerCase(), new FunctionSymbolTableEntry(identifier, javaID, rtrnType, myParameterList));
+                        HashMap<String, FunctionSymbolTableEntry> hashMap = Parser.functionSymbolsTable;
+                }
+                
         }
 	public void checkSemantics() throws Exception
         {
@@ -29,35 +52,12 @@ public class FunctionNode extends ASTNode
                 {
                         stmtList.checkSemantics();
                 }
-                if (Parser.functionSymbolsTable.containsKey(identifier.toLowerCase()))
-                {
-                        throw new Exception("Line " + this.getYyline() +
-                                ": Function " + identifier.toLowerCase() +
-                                " is already defined");
-                }
-                else
-                {
-                        String javaID = "_smartestFunction_" + identifier;
-                        ArrayList<String> parameterList = new ArrayList<String>();
-                        if (paramList != null)
-                        {
-	                        for (ASTNode param : paramList)
-	                        {
-	                                parameterList.add(param.getType());
-	                        }
-                        }
-                        Parser.functionSymbolsTable.put(identifier.toLowerCase(), new FunctionSymbolTableEntry(identifier, javaID, rtrnType, parameterList));
-                }
 
                 if (!"void".equalsIgnoreCase(rtrnType) && !"return".equalsIgnoreCase(stmtList.getType()))
                 {
                         throw new Exception("Line " + this.getYyline() + 
                                 ": Missing return statement");
                 }
-
-
-
-
                 setType(rtrnType);
         }
 	
@@ -105,3 +105,4 @@ public class FunctionNode extends ASTNode
         }
         
 }
+
