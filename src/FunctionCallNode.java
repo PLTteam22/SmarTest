@@ -78,7 +78,15 @@ public class FunctionCallNode extends ASTNode
 	
 	public StringBuffer generateCode() 
 	{
-			return null;
+			StringBuffer output = new StringBuffer();
+			output.append(functionSymbolTableEntry.getJavaID());
+			output.append("( ");
+			if (getLength() > 0)
+			{
+				output.append(this.getChildAt(0).generateCode());
+			}
+			output.append(" );\n");
+			return output;
 	}
 
 	public int getLength() {

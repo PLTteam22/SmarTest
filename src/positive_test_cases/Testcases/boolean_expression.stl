@@ -1,0 +1,12 @@
+void main()
+{
+
+boolean a=true;
+
+boolean b=false;
+
+boolean c;
+
+c= a and b or not a and a;
+
+}
