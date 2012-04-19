@@ -73,9 +73,9 @@ public class DeclarationNode extends ASTNode {
 	{
 		StringBuffer output =  new StringBuffer();
 		String[] data = Parser.symbolsTable.get(this.getIdNode().getName());
-		output.append(data[0]+" "+data[1]+";");
-		output.append("\n");
-		return null;
+		output.append(data[0]+" "+data[1]);
+		//output.append("\n");
+		return output;
 	}
 
 	public IDNode getIdNode() {

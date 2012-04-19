@@ -88,7 +88,11 @@ public class AssignmentOperatorNode extends ASTNode {
 	@Override
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
-		return null;
+		StringBuffer output = new StringBuffer();
+		output.append(this.getChildAt(0).generateCode());
+		output.append(" = ");
+		output.append(this.getChildAt(1).generateCode());
+		return output;
 	}
 
 	
