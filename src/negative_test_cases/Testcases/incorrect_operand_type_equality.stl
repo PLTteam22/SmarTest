@@ -1,0 +1,8 @@
+void main(){
+string str;
+string str1;
+if(str == str1){}
+char c;
+if(str==c){}
+
+}
