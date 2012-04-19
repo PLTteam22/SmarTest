@@ -62,10 +62,21 @@ public class QuestionLiteralNode extends ASTNode {
 	 */
 	@Override
 	public StringBuffer generateCode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+		StringBuffer output = new StringBuffer();
+		output.append("new QuestionObject(");
+		output.append(this.questionCategory.generateCode());
+		output.append(", ");
+		output.append(this.questionText.generateCode());
+		output.append(", ");
+		output.append(this.answerChoices.generateCode());
+		output.append(")");
+		
+		return output;
+
+		
+	}
+	
 	/**
 	 * @return the questionCategory
 	 */
