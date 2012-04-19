@@ -108,7 +108,7 @@ public class IfStatementNode extends ASTNode{
 		}
 		output.append("\n");
 		output.append("}");
-		return null;
+		return output;
 	}
 	
 	public int getIfType() {
