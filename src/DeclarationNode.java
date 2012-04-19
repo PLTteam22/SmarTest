@@ -63,14 +63,18 @@ public class DeclarationNode extends ASTNode {
 
                 this.setType(this.getChildAt(0).getType());
 		
-		
+	
 
 
 	}
 
 	@Override
-	public StringBuffer generateCode() {
-		// TODO Auto-generated method stub
+	public StringBuffer generateCode() 
+	{
+		StringBuffer output =  new StringBuffer();
+		String[] data = Parser.symbolsTable.get(this.getIdNode().getName());
+		output.append(data[0]+" "+data[1]+";");
+		output.append("\n");
 		return null;
 	}
 
