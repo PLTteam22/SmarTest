@@ -32,6 +32,7 @@ program : optional_function_list
         	e.printStackTrace();
         	System.exit(1);
         }
+        ((ASTNode)$$.obj).generateCode();
 }
 
 optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = $1; }

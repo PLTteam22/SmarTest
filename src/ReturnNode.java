@@ -36,9 +36,14 @@ public class ReturnNode extends ASTNode{
 			}
                         this.setType("return");
 	}
-	public String generateCode() 
+	public StringBuffer generateCode() 
 	{
-		return null;
+		StringBuffer output = new StringBuffer();
+		output.append("return ");
+		if (this.getChildAt(0) != null)
+			output.append(this.getChildAt(0).generateCode());
+		output.append(";\n");
+		return output;
 	}
 	public String getReturnType()
 	{

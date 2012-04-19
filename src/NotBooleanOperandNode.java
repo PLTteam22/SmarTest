@@ -74,7 +74,7 @@ public class NotBooleanOperandNode extends ASTNode{
 	}
 
 	@Override
-	public String generateCode() {
+	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		if(boolWithNot==1)
 		{

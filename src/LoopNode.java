@@ -45,7 +45,7 @@ public class LoopNode extends ASTNode{
 	}
 	
 	@Override
-	public String generateCode()
+	public StringBuffer generateCode()
 	{
 		return null;
 		

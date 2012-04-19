@@ -76,7 +76,7 @@ public class FunctionCallNode extends ASTNode
 	}
 
 	
-	public String generateCode() 
+	public StringBuffer generateCode() 
 	{
 			return null;
 	}

@@ -21,9 +21,24 @@ public class ProgramNode extends ASTNode
                 }
 
         }
-        public String generateCode()
+        public StringBuffer generateCode()
         {
-                return "";
+        	StringBuffer output = new StringBuffer();
+        	output.append("import java.util.ArrayList;\n");
+        	
+        	output.append("public class STL {\n");
+        	output.append("public static void main(String[] args) {\n");
+        	output.append("_smarTestFunction_main();\n}\n");
+            for (ASTNode function : this.getChildren())
+            {
+                    output.append(function.generateCode());
+            }
+        	
+        	output.append("}");
+        	
+        	System.out.println("CODE OUTPUT --------------------------\n" + output);
+        	
+                return null;
         }
         
 }

@@ -70,7 +70,7 @@ public class InsertOperatorNode extends ASTNode {
 	 * @see ASTNode#generateCode()
 	 */
 	@Override
-	public String generateCode() {
+	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		return null;
 	}

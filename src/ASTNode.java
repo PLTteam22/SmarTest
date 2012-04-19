@@ -17,7 +17,7 @@ public abstract class ASTNode {
 	private String svalue;
 	private char cvalue;
 	public abstract void checkSemantics() throws Exception;
-	public abstract String generateCode();
+	public abstract StringBuffer generateCode();
 	
 	
 	public ASTNode(int yyline, int yycolumn)

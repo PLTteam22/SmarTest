@@ -38,9 +38,14 @@ public class StatementsNode extends ASTNode
                 }
         }
 	
-        public String generateCode()
+        public StringBuffer generateCode()
         {
-                return "";
+        		StringBuffer output = new StringBuffer();
+        		for (ASTNode statement : this.getChildren())
+        		{
+        			output.append(statement.generateCode());
+        		}
+                return output;
         }
         
 }

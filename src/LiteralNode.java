@@ -45,7 +45,7 @@ public class LiteralNode extends ASTNode {
 	}
 
 	@Override
-	public String generateCode() {
+	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		return null;
 	}
