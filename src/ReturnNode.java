@@ -42,7 +42,6 @@ public class ReturnNode extends ASTNode{
 		output.append("return ");
 		if (this.getChildAt(0) != null)
 			output.append(this.getChildAt(0).generateCode());
-		output.append(";\n");
 		return output;
 	}
 	public String getReturnType()

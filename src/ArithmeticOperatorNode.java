@@ -12,7 +12,7 @@
 public class ArithmeticOperatorNode extends ASTNode{
 
 	String arithType="";
-
+	private String operationType;
 
 	/*
 	 * Instantiates ArithmeticOperator invoked by this grammar:
@@ -39,6 +39,7 @@ public class ArithmeticOperatorNode extends ASTNode{
 		addChild(relOp);
 		addChild(terms);
 		this.setType(str);
+		operationType = str;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -117,26 +118,27 @@ public class ArithmeticOperatorNode extends ASTNode{
 		// Should use arithType
 		StringBuffer output = new StringBuffer();
 		output.append(this.getChildAt(0).generateCode());
-		if ("multiplication".equalsIgnoreCase(getType()))
+		if ("multiplication".equalsIgnoreCase(operationType))
 		{
 			output.append(" * ");
 		}
-		else if ("division".equalsIgnoreCase(getType()))
+		else if ("division".equalsIgnoreCase(operationType))
 		{
 			output.append(" / ");
 		}
-		else if ("addition".equalsIgnoreCase(getType()))
+		else if ("addition".equalsIgnoreCase(operationType))
 		{
 			output.append(" + ");
 		}
-		else if ("subtraction".equalsIgnoreCase(getType()))
+		else if ("subtraction".equalsIgnoreCase(operationType))
 		{
 			output.append(" - ");
 		}
-		else if ("modulus".equalsIgnoreCase(getType()))
+		else if ("modulus".equalsIgnoreCase(operationType))
 		{
 			output.append(" % ");
 		}
+
 		output.append(this.getChildAt(1).generateCode());
 		return output;
 	}
