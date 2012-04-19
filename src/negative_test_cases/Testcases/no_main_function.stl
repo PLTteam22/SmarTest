@@ -1,0 +1,10 @@
+void sum()
+{
+
+int i;
+int j;
+int result;
+
+result=i+j;
+
+}
