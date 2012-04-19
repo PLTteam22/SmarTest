@@ -47,7 +47,29 @@ public class LiteralNode extends ASTNode {
 	@Override
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
-		return null;
+		String type = getType();
+		StringBuffer output = new StringBuffer();
+		if(type.equalsIgnoreCase("boolean"))
+		{
+			output.append(this.getBvalue());
+		}
+		else if(type.equalsIgnoreCase("int"))
+		{
+			output.append(this.getIvalue());
+		}
+		else if(type.equalsIgnoreCase("float"))
+		{
+			output.append(this.getDvalue());
+		}
+		else if(type.equalsIgnoreCase("string"))
+		{
+			output.append(this.getSvalue());
+		}
+		else //char
+		{
+			output.append(this.getCvalue());
+		}
+		return output;
 	}
 
 }
