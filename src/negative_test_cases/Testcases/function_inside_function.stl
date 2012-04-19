@@ -1,0 +1,15 @@
+void main()
+{
+
+	int a;
+	int b;
+	int result;
+	int sum()
+	{
+
+		result = a+b;
+		return result;
+
+	}
+
+}

@@ -1,0 +1,12 @@
+void main()
+{
+
+
+int i=5;
+int j=6;
+
+int result;
+
+result=4*5/6 and true or false;
+
+}
