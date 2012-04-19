@@ -76,10 +76,15 @@ public class NotBooleanOperandNode extends ASTNode{
 	@Override
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
+		StringBuffer output = new StringBuffer();
+		output.append("!");
+		output.append(this.getChildAt(0).generateCode());
+		output.append(" ");
 		if(boolWithNot==1)
 		{
+			
 			// Take appropriate action.
 		}
-		return null;
+		return output;
 	}
 }
