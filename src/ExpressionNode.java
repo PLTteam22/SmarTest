@@ -47,7 +47,7 @@ public class ExpressionNode extends ASTNode
 	}
 
 	
-	public String generateCode() {
+	public StringBuffer generateCode() {
 	
 		return null;
 	}

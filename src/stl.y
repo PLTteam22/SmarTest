@@ -30,8 +30,9 @@ program : optional_function_list
         {
         	System.out.println(e.getMessage());
         	e.printStackTrace();
-        	System.exit(1);
+		System.exit(1);
         }
+        ((ASTNode)$$.obj).generateCode();
 }
 
 optional_function_list : function_list { System.out.println("found optional_function_list\n"); $$ = $1; }
@@ -294,7 +295,7 @@ public static String currentReturnType = "";
 public void yyerror(String error)
 {
     try{      
-      if(stateptr > 0) {
+      if(stateptr >= 0) {
         System.out.print("Syntax Error");
         System.out.println(": Illegal token '" + lexer.yytext() + "'");
       }

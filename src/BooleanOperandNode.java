@@ -77,7 +77,7 @@ public class BooleanOperandNode extends ASTNode{
 	}
 
 	@Override
-	public String generateCode() {
+	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		// Make use of equality integer.
 		return null;
