@@ -78,9 +78,23 @@ public class BooleanOperandNode extends ASTNode{
 
 	@Override
 	public StringBuffer generateCode() {
-		// TODO Auto-generated method stub
-		// Make use of equality integer.
-		return null;
+		
+		StringBuffer output =  new StringBuffer();
+		if(this.equality==1)
+		{
+			output.append(this.getChildAt(0).generateCode());
+			output.append(" == ");
+			output.append(this.getChildAt(1).generateCode());
+		}
+		
+		else if(this.equality==0)
+		{
+			output.append(this.getChildAt(0).generateCode());
+			output.append(" != ");
+			output.append(this.getChildAt(1).generateCode());
+		}
+			
+		return output;
 	}
 
 	
