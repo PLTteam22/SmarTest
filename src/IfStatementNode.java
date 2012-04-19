@@ -87,8 +87,27 @@ public class IfStatementNode extends ASTNode{
 	}
 
 	@Override
-	public StringBuffer generateCode() {
-		// TODO Auto-generated method stub
+	public StringBuffer generateCode() 
+	{
+		StringBuffer output = new StringBuffer();
+		output.append("if("+this.getChildAt(0).generateCode()+")");
+		output.append("\n");
+		output.append("{");
+		if(this.ifType==1)
+		{
+			output.append(this.getChildAt(1).generateCode());
+		}
+		else if(this.ifType==2)
+		{
+			output.append(this.getChildAt(1).generateCode());
+			output.append("\n");
+			output.append("}");
+			output.append("else");
+			output.append("{");
+			output.append(this.getChildAt(2).generateCode());
+		}
+		output.append("\n");
+		output.append("}");
 		return null;
 	}
 	
