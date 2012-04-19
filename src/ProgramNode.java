@@ -28,7 +28,7 @@ public class ProgramNode extends ASTNode
         	
         	output.append("public class STL {\n");
         	output.append("public static void main(String[] args) {\n");
-        	output.append("_smarTestFunction_main();\n}\n");
+        	output.append("_smartestFunction_main();\n}\n");
             for (ASTNode function : this.getChildren())
             {
                     output.append(function.generateCode());

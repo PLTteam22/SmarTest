@@ -41,11 +41,21 @@ public class StatementsNode extends ASTNode
         public StringBuffer generateCode()
         {
         		StringBuffer output = new StringBuffer();
+        		boolean needsSemi = true;
         		for (ASTNode statement : this.getChildren())
         		{
         			output.append(statement.generateCode());
+        			Class[] interfaces = statement.getClass().getInterfaces();
+        			for (int i = 0; i < interfaces.length; i++)
+        			{
+        				if (interfaces[i].getSimpleName().equalsIgnoreCase("NoSemiColonStatement"))
+        					needsSemi = false;
+        			}
+        			if (needsSemi)
+        				output.append(";");
+        			output.append("\n");
+        			needsSemi = true;
         		}
                 return output;
-        }
-        
+        }       
 }

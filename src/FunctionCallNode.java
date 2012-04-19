@@ -85,7 +85,7 @@ public class FunctionCallNode extends ASTNode
 			{
 				output.append(this.getChildAt(0).generateCode());
 			}
-			output.append(" );\n");
+			output.append(" )");
 			return output;
 	}
 
