@@ -63,7 +63,13 @@ public class IDNode extends ASTNode {
 	@Override
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
-		return null;
+		StringBuffer output = new StringBuffer();
+		String[] symbolTableEntry = Parser.symbolsTable.get(name);
+		if (symbolTableEntry != null)
+		{
+			output.append(symbolTableEntry[1]);
+		}
+		return output;
 	}
 
 	/**
