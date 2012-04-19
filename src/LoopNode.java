@@ -47,8 +47,16 @@ public class LoopNode extends ASTNode{
 	@Override
 	public StringBuffer generateCode()
 	{
-		return null;
-		
+		StringBuffer output = new StringBuffer();
+		output.append("while (");
+		output.append(this.getChildAt(0).generateCode());
+		output.append(")");
+		output.append("\n");
+		output.append("{");
+		output.append(this.getChildAt(1).generateCode());
+		output.append("}");
+		output.append("\n");
+		return output;
 	}
 
 }
