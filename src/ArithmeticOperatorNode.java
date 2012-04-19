@@ -112,7 +112,7 @@ public class ArithmeticOperatorNode extends ASTNode{
 
 
 	@Override
-	public String generateCode() {
+	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		// Should use arithType
 		return null;

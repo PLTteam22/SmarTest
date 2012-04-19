@@ -66,9 +66,39 @@ public class FunctionNode extends ASTNode
 			return identifier;
 		}
 	
-        public String generateCode()
+        public StringBuffer generateCode()
         {
-                return "";
+        		StringBuffer output = new StringBuffer();
+        		StringBuffer statementsOutput;
+        		FunctionSymbolTableEntry entry = Parser.functionSymbolsTable.get(identifier);
+        		if (entry == null)
+        			return null;
+        		
+        		
+        		output.append("public static ");
+        		output.append(rtrnType);
+        		output.append(" ");
+        		output.append(entry.getJavaID());
+        		output.append("( ");
+                if (paramList != null)
+                {
+                		boolean firstParam = true;
+                        for (ASTNode param : paramList)
+                        {
+                        		if (!firstParam)
+                        			output.append(", ");
+                                output.append(param.generateCode());
+                                firstParam = false;
+                                
+                        }
+                }
+                output.append(" )\n");
+                output.append("{\n");
+                statementsOutput = stmtList.generateCode();
+                if (statementsOutput != null)
+                output.append(statementsOutput);
+                output.append("}\n");
+                return output;
         }
         
 }

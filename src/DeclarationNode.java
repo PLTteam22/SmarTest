@@ -69,7 +69,7 @@ public class DeclarationNode extends ASTNode {
 	}
 
 	@Override
-	public String generateCode() {
+	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		return null;
 	}
