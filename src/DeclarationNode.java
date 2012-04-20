@@ -23,8 +23,7 @@ public class DeclarationNode extends ASTNode {
 		this.addChild(idNode);
 		this.declaredType = idType;
 		this.idNode = (IDNode)idNode;
-		
-		
+		this.setType(idType);
 	}
 
 	/**
@@ -70,7 +69,12 @@ public class DeclarationNode extends ASTNode {
 	{
 		StringBuffer output =  new StringBuffer();
 		String[] data = Parser.symbolsTable.get(this.getIdNode().getName());
-		output.append(data[0]+" ");
+		
+		String javaType = data[0];
+		if (javaType == "question")
+			javaType = "QuestionObject";
+		
+		output.append(javaType+" ");
 		output.append(this.getChildAt(0).generateCode());
 		//output.append("\n");
 		return output;

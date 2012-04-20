@@ -63,8 +63,18 @@ public class AnswerChoiceNode extends ASTNode {
 	 */
 	@Override
 	public StringBuffer generateCode() {
-		// TODO Auto-generated method stub
-		return null;
+
+		StringBuffer output = new StringBuffer();
+		output.append("new AnswerChoice(");
+		output.append(this.answerCaption.generateCode());
+		output.append(", ");
+		output.append(this.answerPoints.generateCode());
+		output.append(")");
+		
+		
+		return output;
+
+		
 	}
 
 	/**

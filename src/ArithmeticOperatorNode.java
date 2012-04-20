@@ -12,7 +12,7 @@
 public class ArithmeticOperatorNode extends ASTNode{
 
 	String arithType="";
-	private String operationType;
+
 
 	/*
 	 * Instantiates ArithmeticOperator invoked by this grammar:
@@ -39,7 +39,6 @@ public class ArithmeticOperatorNode extends ASTNode{
 		addChild(relOp);
 		addChild(terms);
 		this.setType(str);
-		operationType = str;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -86,29 +85,27 @@ public class ArithmeticOperatorNode extends ASTNode{
 			{
 				throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
 						this.getYycolumn()+"should be of the same type. Unary");
-			}					
+			}	
+			if(this.getChildAt(0).getType().equals("float"))
+				this.setType("float");
+			else
+				this.setType("int");
 		}
+		else
+		{
 
-		if((this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))
-			&& (this.getChildAt(1).getType().equals("float") || this.getChildAt(1).getType().equals("int")))
-		{
-			/*if (! (this.getChildAt(0).getType().equals(this.getChildAt(1).getType())))
+			if(!((this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))
+					&& (this.getChildAt(1).getType().equals("float") || this.getChildAt(1).getType().equals("int"))))
 			{
-				throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
-						this.getYycolumn()+"should be of the same type. Types are - "+this.getChildAt(0).getType()+" and "+
-						this.getChildAt(1).getType());
-			}*/
+				throw new Exception("Cannot do Arithmetic operation on "+this.getChildAt(0).getType()+ " & " + 
+						this.getChildAt(1).getType()+" on line "+ this.getYyline() + ":" + 
+						this.getYycolumn());
+			}
+			if(this.getChildAt(0).getType().equals("float") || this.getChildAt(1).getType().equals("float"))
+				this.setType("float");
+			else
+				this.setType("int");
 		}
-		else
-		{
-			throw new Exception("Cannot do Arithmetic operation on "+this.getChildAt(0).getType()+ " & " + 
-					this.getChildAt(1).getType()+" on line "+ this.getYyline() + ":" + 
-					this.getYycolumn());
-		}
-		if(this.getChildAt(0).getType().equals("float") || this.getChildAt(1).getType().equals("float"))
-			this.setType("float");
-		else
-			this.setType("int");
 	}
 
 
@@ -117,30 +114,38 @@ public class ArithmeticOperatorNode extends ASTNode{
 		// TODO Auto-generated method stub
 		// Should use arithType
 		StringBuffer output = new StringBuffer();
-		output.append(this.getChildAt(0).generateCode());
-		if ("multiplication".equalsIgnoreCase(operationType))
+		if(this.getChildCount() > 1)
 		{
-			output.append(" * ");
+			output.append(this.getChildAt(0).generateCode());
+			if ("multiplication".equalsIgnoreCase(getType()))
+			{
+				output.append(" * ");
+			}
+			else if ("division".equalsIgnoreCase(getType()))
+			{
+				output.append(" / ");
+			}
+			else if ("addition".equalsIgnoreCase(getType()))
+			{
+				output.append(" + ");
+			}
+			else if ("subtraction".equalsIgnoreCase(getType()))
+			{
+				output.append(" - ");
+			}
+			else if ("modulus".equalsIgnoreCase(getType()))
+			{
+				output.append(" % ");
+			}
+			output.append(this.getChildAt(1).generateCode());
 		}
-		else if ("division".equalsIgnoreCase(operationType))
-		{
-			output.append(" / ");
-		}
-		else if ("addition".equalsIgnoreCase(operationType))
-		{
-			output.append(" + ");
-		}
-		else if ("subtraction".equalsIgnoreCase(operationType))
+		else
 		{
 			output.append(" - ");
+			output.append(this.getChildAt(0).generateCode());
 		}
-		else if ("modulus".equalsIgnoreCase(operationType))
-		{
-			output.append(" % ");
-		}
-
-		output.append(this.getChildAt(1).generateCode());
 		return output;
 	}
 
 }
+

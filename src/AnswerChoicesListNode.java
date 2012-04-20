@@ -49,8 +49,21 @@ public class AnswerChoicesListNode extends ASTNode {
 	 */
 	@Override
 	public StringBuffer generateCode() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		StringBuffer output = new StringBuffer();
+		output.append("new AnswerChoicesListNode(");
+			
+		for (int i = 0; i < this.getChildCount(); i++)
+		{
+			output.append(this.getChildAt(i).generateCode());
+			if (i < this.getChildCount() - 1)
+				output.append(", ");
+		}
+		
+		output.append(")");
+		
+		
+		return output;
 	}
 
 }

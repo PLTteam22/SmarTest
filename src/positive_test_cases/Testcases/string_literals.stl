@@ -1,0 +1,9 @@
+void main()
+{   
+          
+        String k = "simple_literal";
+        String j = "with some escapes\t yeah\n";
+        String l = "with some \"quotes\" ";
+        String p = "woah \\ here is a comment within a string: %%% hey %%% yup.";
+        String jj = "here is some \\\n crazy stuff. \"";
+}
