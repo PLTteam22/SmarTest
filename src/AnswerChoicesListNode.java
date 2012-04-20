@@ -51,7 +51,7 @@ public class AnswerChoicesListNode extends ASTNode {
 	public StringBuffer generateCode() {
 		
 		StringBuffer output = new StringBuffer();
-		output.append("new AnswerChoicesListNode(");
+		output.append("new AnswerChoicesList(");
 			
 		for (int i = 0; i < this.getChildCount(); i++)
 		{
