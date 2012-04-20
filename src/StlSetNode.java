@@ -1,22 +1,23 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
+
 
 
 public class StlSetNode {
 	
-	Set setNode = null;
+	ArrayList QuestionArrayList = null;
 	//hashmap to store info about a question is asked or not
 	HashMap<QuestionLiteralNode, Boolean> QuestionIsAskedHM = new HashMap<QuestionLiteralNode, Boolean>();
 
-	public Set getSetNode() {
-		return setNode;
-	}
-
-	public void setSetNode(Set setNode) {
-		this.setNode = setNode;
-	}
-
 	
+	public ArrayList getQuestionArrayList() {
+		return QuestionArrayList;
+	}
+
+	public void setQuestionArrayList(ArrayList questionArrayList) {
+		QuestionArrayList = questionArrayList;
+	}
+
 	public HashMap<QuestionLiteralNode, Boolean> getQuestionIsAskedHM() {
 		return QuestionIsAskedHM;
 	}
@@ -26,10 +27,10 @@ public class StlSetNode {
 		QuestionIsAskedHM = questionIsAskedHM;
 	}
 
-		//add question literal node to set
-		void addQuestion(QuestionLiteralNode q){
-			this.getSetNode().add(q);
-		}
+	//add question literal node to set
+	void addQuestion(QuestionLiteralNode q){
+		this.getQuestionArrayList().add(q);
+	}
 		
 	//mark if the question is asked from the set or not
 	void markIsCheckedTrue(StlSetNode s, QuestionLiteralNode q){
