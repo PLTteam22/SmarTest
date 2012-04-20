@@ -294,6 +294,8 @@ public static HashMap<String, String[]> symbolsTable = new HashMap<String, Strin
 
 
 public static HashMap<String, FunctionSymbolTableEntry> functionSymbolsTable = new HashMap<String, FunctionSymbolTableEntry>();
+
+
 public static String currentReturnType = "";
 
 
@@ -361,6 +363,22 @@ public static void main(String args[]) throws IOException
   yyparser = new Parser(new FileReader(args[0]));
 
   System.out.println("\nCompiling ...\n");
+
+  ArrayList<String> paraList1 = new ArrayList<String>();
+  paraList1.add("int");
+  functionSymbolsTable.put("print", new FunctionSymbolTableEntry("print", "_smartestfunction_print" , "void", paraList1));
+
+  ArrayList<String> paraList2 = new ArrayList<String>(); 
+  paraList2.add("string");
+  functionSymbolsTable.put("printvar", new FunctionSymbolTableEntry("printVar", "_smartestfunction_printVar" , "void", paraList2));
+
+  ArrayList<String> paraList3 = new ArrayList<String>();
+  paraList3.add("");
+  functionSymbolsTable.put("readline", new FunctionSymbolTableEntry("readLine", "_smartestfunction_readLine" , "string", paraList3));
+
+  // Add 2 more pre-defined functions. 
+
+
   yyparser.yyparse();
   
   
@@ -379,7 +397,5 @@ public static void main(String args[]) throws IOException
   {
   	System.out.println("Variable: " + itr.next());
   }
-
-
 }
 
