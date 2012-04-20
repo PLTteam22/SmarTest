@@ -158,8 +158,7 @@ NL    = \n | \r | \r\n
 					return (Parser.CHARLITERAL);
 				}
 
-
-[\"][^\"]*[\"]         		{
+[\"]([^\"\\]|([\\][btnfr'\"])|([\\][\\]))*[\"]        		{
 					System.out.println("lex: found string_literal\n"); 
 					yyparser.yylval = new ParserVal(yytext().substring(1,yytext().length()-1));
 					return (Parser.STRINGLITERAL);
