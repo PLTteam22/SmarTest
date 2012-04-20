@@ -35,16 +35,17 @@ class RelationalOperatorNode extends ASTNode {
 			//symantic check for children
 		   this.getChildAt(0).checkSemantics();
 		   this.getChildAt(1).checkSemantics();
-            		if (!(this.getChildAt(0).getType().equals("int") || this.getChildAt(0).getType().equals("float"))) {
-				throw new Exception("Relational Operators can be applied only to integer and float values: statement at Line. Error at " + this.getYyline() + ":" +	this.getYycolumn());
-			}		  
-		   //type check
-			if (!this.getChildAt(0).getType().equals(this.getChildAt(1).getType())) {
-				throw new Exception("Type Mismatch : Cannot Compare " + this.getChildAt(0).getType()
-						+ " and " + this.getChildAt(1).getType()+ "-- at "
-						+ this.getChildAt(0).getYyline() + ":" + this.getChildAt(0).getYycolumn());
+
+	
+			if(!((this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))
+					&& (this.getChildAt(1).getType().equals("float") || this.getChildAt(1).getType().equals("int"))))
+			{
+				throw new Exception("Cannot do Relational operation on "+this.getChildAt(0).getType()+ " & " + 
+						this.getChildAt(1).getType()+" on line "+ this.getYyline() + ":" + 
+						this.getYycolumn());
 			}
-			this.setType("boolean");
+
+            		this.setType("boolean");
 		return;	
 	}
 
