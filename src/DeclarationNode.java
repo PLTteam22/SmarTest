@@ -8,7 +8,7 @@ public class DeclarationNode extends ASTNode {
 	
 	private String declaredType;
 	private IDNode idNode;
-	
+        private boolean isStatement;	
 	/**
 	 * Instantiates a DeclarationNode that has been invoked by this grammar:
 	 * type ID
@@ -24,6 +24,7 @@ public class DeclarationNode extends ASTNode {
 		this.declaredType = idType;
 		this.idNode = (IDNode)idNode;
 		this.setType(idType);
+                isStatement = false;
 	}
 
 	/**
@@ -76,7 +77,33 @@ public class DeclarationNode extends ASTNode {
 		
 		output.append(javaType+" ");
 		output.append(this.getChildAt(0).generateCode());
-		//output.append("\n");
+                if (isStatement)
+                {
+                        if ("string".equalsIgnoreCase(getType()))
+                        {
+                               output.append(" = \"\"");
+                        }
+                        else if ("boolean".equalsIgnoreCase(getType()))
+                        {
+                                output.append(" = false");
+                        }
+                        else if ("float".equalsIgnoreCase(getType()))
+                        {
+                                output.append(" = 0.0");
+                        }
+                        else if ("int".equalsIgnoreCase(getType()))
+                        {
+                                output.append(" = 0");
+                        }
+                        else if ("char".equalsIgnoreCase(getType()))
+                        {
+                                output.append(" = '\0'");
+                        }
+                        else
+                        {
+                                output.append(" = null");
+                        }
+                }
 		return output;
 	}
 
@@ -94,7 +121,10 @@ public class DeclarationNode extends ASTNode {
 	public String getDeclaredType() {
 		return declaredType;
 	}
-
+        public void setIsStatement(boolean newValue)
+        {
+                isStatement = newValue;
+        }
 	/**
 	 * @param declaredType the declaredType to set
 	 */

@@ -69,7 +69,7 @@ statements : statements statement { System.out.print("found statements\n"); ((St
 
 declaration : type ID { $$ = new ParserVal(new DeclarationNode($1.sval, new IDNode($2.sval, true, line, column), line, column)); }
 
-statement : declaration ';' { System.out.print("found statement (int i;)\n"); $$ = new ParserVal((ASTNode)$1.obj); }
+statement : declaration ';' { System.out.print("found statement (int i;)\n"); ((DeclarationNode)$1.obj).setIsStatement(true); $$ = $1; }
 | declaration '=' expression ';' { System.out.print("found statement (int i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$3.obj, line, column)); }
 | ID '=' expression ';' { System.out.print("found statement (i=5;)\n"); $$ = new ParserVal(new AssignmentOperatorNode(new IDNode($1.sval, false, line, column), (ASTNode)$3.obj, line, column)); }
 | function_call ';' { System.out.print("found statement (func call)\n"); }
