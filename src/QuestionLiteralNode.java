@@ -64,7 +64,7 @@ public class QuestionLiteralNode extends ASTNode {
 	public StringBuffer generateCode() {
 
 		StringBuffer output = new StringBuffer();
-		output.append("new QuestionObject(");
+		output.append("new Question(");
 		output.append(this.questionCategory.generateCode());
 		output.append(", ");
 		output.append(this.questionText.generateCode());

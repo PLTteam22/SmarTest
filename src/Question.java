@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 
-public class QuestionObject {
+public class Question {
 
 	private String questionText;
 	private String questionCategory;
 	private ArrayList<Object> answers;
 	
 	
-	public QuestionObject(String questionText, String questionCategory, ArrayList<Object> answers)
+	public Question(String questionText, String questionCategory, ArrayList<Object> answers)
 	{		
 		this.questionText = questionText;
 		this.questionCategory = questionCategory;
