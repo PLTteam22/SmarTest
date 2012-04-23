@@ -5,14 +5,14 @@ public class Question {
 
 	private String questionText;
 	private String questionCategory;
-	private ArrayList<Object> answers;
+	private ArrayList<AnswerChoice> answers;
 	
 	
-	public Question(String questionText, String questionCategory, ArrayList<Object> answers)
+	public Question(String questionText, String questionCategory, ArrayList<AnswerChoice> answers)
 	{		
 		this.questionText = questionText;
 		this.questionCategory = questionCategory;
-		this.answers = answers;	
+		this.setAnswers(answers);	
 	}
 
 
@@ -47,6 +47,22 @@ public class Question {
 	 */
 	public void setQuestionCategory(String questionCategory) {
 		this.questionCategory = questionCategory;
+	}
+
+
+	/**
+	 * @return the answers
+	 */
+	public ArrayList<AnswerChoice> getAnswers() {
+		return answers;
+	}
+
+
+	/**
+	 * @param answers the answers to set
+	 */
+	public void setAnswers(ArrayList<AnswerChoice> answers) {
+		this.answers = answers;
 	}
 	
 }
