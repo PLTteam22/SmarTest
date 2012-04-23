@@ -158,8 +158,7 @@ NL    = \n | \r | \r\n
 					return (Parser.CHARLITERAL);
 				}
 
-
-[\"][^\"]*[\"]         		{
+[\"]([^\"\\]|([\\][btnfr'\"])|([\\][\\]))*[\"]        		{
 					System.out.println("lex: found string_literal\n"); 
 					yyparser.yylval = new ParserVal(yytext().substring(1,yytext().length()-1));
 					return (Parser.STRINGLITERAL);
@@ -198,14 +197,14 @@ NL    = \n | \r | \r\n
 
 [^\n\t ]                        {
 					yyparser.column = 0;
-					System.out.println("lex: found individual char\n");
+					System.out.println("lex: found individual char: " + yytext() + "\n");
 					yyparser.yylval = new ParserVal(yytext()); 
 					return yycharat(0);		
 					//return new ParserVal(yytext()); 
 				}
 
 
-(%%).*$				{/*Ignore*/}
+(%%)([^%].*)?$				{/*Ignore*/}
 
 
 (%%%)(.|{NL})*(%%%)		{/*Ignore*/}

@@ -39,6 +39,7 @@ public class ArithmeticOperatorNode extends ASTNode{
 		addChild(relOp);
 		addChild(terms);
 		this.setType(str);
+                this.arithType = str;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -57,6 +58,7 @@ public class ArithmeticOperatorNode extends ASTNode{
 		super(yyline, yycolumn);
 		this.addChild(lcNode);
 		this.setType(str);
+                this.arithType = str;
 	}
 
 	/*
@@ -117,23 +119,23 @@ public class ArithmeticOperatorNode extends ASTNode{
 		if(this.getChildCount() > 1)
 		{
 			output.append(this.getChildAt(0).generateCode());
-			if ("multiplication".equalsIgnoreCase(getType()))
+			if ("multiplication".equalsIgnoreCase(arithType))
 			{
 				output.append(" * ");
 			}
-			else if ("division".equalsIgnoreCase(getType()))
+			else if ("division".equalsIgnoreCase(arithType))
 			{
 				output.append(" / ");
 			}
-			else if ("addition".equalsIgnoreCase(getType()))
+			else if ("addition".equalsIgnoreCase(arithType))
 			{
 				output.append(" + ");
 			}
-			else if ("subtraction".equalsIgnoreCase(getType()))
+			else if ("subtraction".equalsIgnoreCase(arithType))
 			{
 				output.append(" - ");
 			}
-			else if ("modulus".equalsIgnoreCase(getType()))
+			else if ("modulus".equalsIgnoreCase(arithType))
 			{
 				output.append(" % ");
 			}
