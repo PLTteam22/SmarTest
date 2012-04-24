@@ -103,7 +103,12 @@ public class BuiltInFunction {
 									true);
 
 							// print question
+							System.out.println(s.getQuestionArrayList().get(i).getQuestionText()+"\n");
 							
+							for(int k=0;k<answerChoiceArrayList.size();k++){
+								System.out.println(answerChoiceArrayList.get(k).getText()+
+										":"+answerChoiceArrayList.get(k).getPoints()+"\n");
+							}
 							
 							// wait to read the input from user
 							BufferedReader reader = new BufferedReader(
