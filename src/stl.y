@@ -79,7 +79,7 @@ statement : declaration ';' { System.out.print("found statement (int i;)\n"); ((
 | RETURN optional_expression ';' { System.out.print("found statement (return)\n"); $$ = new ParserVal(new ReturnNode(currentReturnType, (ASTNode)$2.obj, line, column)); }
 
 type : INT { System.out.print("found type (int)\n"); $$ = new ParserVal("int"); }
-| FLOAT { System.out.print("found type (float)\n"); $$ = new ParserVal("float"); }
+| FLOAT { System.out.print("found type (float)\n"); $$ = new ParserVal("double"); }
 | CHAR { System.out.print("found type (char)\n"); $$ = new ParserVal("char"); }
 | BOOLEAN { System.out.print("found type (boolean)\n"); $$ = new ParserVal("boolean"); }
 | STRING { System.out.print("found type (string)\n"); $$ = new ParserVal("string"); } 
@@ -249,7 +249,7 @@ term : term '*' factor
 
 
 factor : INTLITERAL { System.out.print("found a factor (int)\n"); $$ = new ParserVal(new LiteralNode("int",(Object) $1.ival, line, column)); }
-| FLOATLITERAL { System.out.print("found a factor (float)\n"); $$ = new ParserVal(new LiteralNode("float", (Object) $1.dval, line, column)); }
+| FLOATLITERAL { System.out.print("found a factor (float)\n"); $$ = new ParserVal(new LiteralNode("double", (Object) $1.dval, line, column)); }
 | CHARLITERAL { System.out.print("found a factor (char)\n"); $$ = new ParserVal(new LiteralNode("char", (Object) $1.ival,line, column)); }
 | STRINGLITERAL { System.out.print("found a factor (string)\n"); $$ = new ParserVal(new LiteralNode("string", (Object) $1.sval, line, column));}
 | BOOLLITERAL { System.out.print("found a factor (bool)\n"); $$ = new ParserVal(new LiteralNode("boolean", (Object) $1.sval,line, column)); }		// Do checking for true and false ignoreCase
@@ -365,7 +365,7 @@ public static void main(String args[]) throws IOException
   System.out.println("\nCompiling ...\n");
 
   ArrayList<String> paraList1 = new ArrayList<String>();
-  paraList1.add("int");
+  paraList1.add("string");
   functionSymbolsTable.put("print", new FunctionSymbolTableEntry("print", "_smartestfunction_print" , "void", paraList1));
 
   ArrayList<String> paraList2 = new ArrayList<String>(); 
