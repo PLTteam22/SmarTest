@@ -1,0 +1,34 @@
+void main()
+{
+
+	print("Enter your name: ");
+	string name = readLine();
+
+	set s = load("jdbc:mysql://localhost:8889/smartest", "root", "root", "math");
+
+	question new_question = $"Physics":"What's mass *  acceleration ?" ["FORCE":5, "GRAVITY":0]$;
+
+	s << new_question;
+
+	save("jdbc:mysql://localhost:8889/smartest", "root", "root", s);
+	
+	print("Loaded ");
+	printInteger(len(s));
+	print(" questions!\n");
+
+	int i = 0;
+	int total = 0;
+	loop while (i < len(s))
+	{
+		int points = askQuestion(s);
+		total = total + points;
+		i = i + 1;
+	}
+
+	print(name);
+	print("'s grade: ");
+	printInteger(total);
+	print("\n");
+
+
+}
