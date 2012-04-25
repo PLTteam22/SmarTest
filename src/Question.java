@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 public class Question {
 
+	
+	private int questionDBID;
 	private String questionText;
 	private String questionCategory;
 	private AnswerChoicesList answersList;
@@ -82,6 +84,22 @@ public class Question {
 	 */
 	public void setAnswersList(AnswerChoicesList answersList) {
 		this.answersList = answersList;
+	}
+
+
+	/**
+	 * @return the questionDBID
+	 */
+	public int getQuestionDBID() {
+		return questionDBID;
+	}
+
+
+	/**
+	 * @param questionDBID the questionDBID to set
+	 */
+	public void setQuestionDBID(int questionDBID) {
+		this.questionDBID = questionDBID;
 	}
 	
 }
