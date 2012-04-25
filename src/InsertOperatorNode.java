@@ -73,10 +73,16 @@ public class InsertOperatorNode extends ASTNode {
 	public StringBuffer generateCode() {
 		
 		StringBuffer output = new StringBuffer();
-		output.append(getSet().generateCode());
-		output.append(".addQuestion(");
-		output.append(getQuestion().generateCode());
-		output.append(")");
+                ASTNode setID = this.getChildAt(0);
+                output.append(setID.generateCode());
+                for (ASTNode questionE : this.getChildren())
+                {
+                        if (questionE == setID)
+                                continue;
+                        output.append(".addQuestion(");
+                        output.append(questionE.generateCode());
+                        output.append(")");
+                }
 		
 		
 		
