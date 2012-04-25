@@ -369,8 +369,8 @@ public static void main(String args[]) throws IOException
   functionSymbolsTable.put("print", new FunctionSymbolTableEntry("print", "_smartestfunction_print" , "void", paraList1));
 
   ArrayList<String> paraList2 = new ArrayList<String>(); 
-  paraList2.add("string");
-  functionSymbolsTable.put("printvar", new FunctionSymbolTableEntry("printVar", "_smartestfunction_printVar" , "void", paraList2));
+  paraList2.add("int");
+  functionSymbolsTable.put("printinteger", new FunctionSymbolTableEntry("printInteger", "_smartestfunction_printInteger" , "void", paraList2));
 
   ArrayList<String> paraList3 = new ArrayList<String>();
   paraList3.add("");
@@ -383,7 +383,14 @@ public static void main(String args[]) throws IOException
   paraList4.add("string");
   functionSymbolsTable.put("load", new FunctionSymbolTableEntry("load", "_smartestfunction_load" , "set", paraList4));
 
+  ArrayList<String> paraList5 = new ArrayList<String>();
+  paraList5.add("char");
+  functionSymbolsTable.put("printchar", new FunctionSymbolTableEntry("printChar", "_smartestfunction_printChar" , "void", paraList5));
 
+  ArrayList<String> paraList6 = new ArrayList<String>();
+  paraList6.add("double");
+  functionSymbolsTable.put("printfloat", new FunctionSymbolTableEntry("printFloat", "_smartestfunction_printFloat" , "void", paraList6));
+ 
   // Add 2 more pre-defined functions. 
 
 
