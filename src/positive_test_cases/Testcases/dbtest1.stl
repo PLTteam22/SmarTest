@@ -1,0 +1,7 @@
+int main()
+{
+
+	set s = load("jdbc:mysql://localhost:8889/smartest", "root", "", "math");
+	return 0;
+
+}
