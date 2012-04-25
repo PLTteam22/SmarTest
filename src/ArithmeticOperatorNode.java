@@ -16,7 +16,7 @@
 public class ArithmeticOperatorNode extends ASTNode{
 
 	/** The arith type. */
-	String arithType="";
+	private String arithType="";
 
 
 	/*
@@ -52,7 +52,7 @@ public class ArithmeticOperatorNode extends ASTNode{
 		super(yyline, yycolumn);
 		addChild(relOp);
 		addChild(terms);
-		this.setType(str);
+		this.setArithType(str);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -78,7 +78,7 @@ public class ArithmeticOperatorNode extends ASTNode{
 	public ArithmeticOperatorNode(String str, ASTNode lcNode, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
 		this.addChild(lcNode);
-		this.setType(str);
+		this.setArithType(str);
 	}
 
 	/*
@@ -142,23 +142,23 @@ public class ArithmeticOperatorNode extends ASTNode{
 		if(this.getChildCount() > 1)
 		{
 			output.append(this.getChildAt(0).generateCode());
-			if ("multiplication".equalsIgnoreCase(getType()))
+			if ("multiplication".equalsIgnoreCase(getArithType()))
 			{
 				output.append(" * ");
 			}
-			else if ("division".equalsIgnoreCase(getType()))
+			else if ("division".equalsIgnoreCase(getArithType()))
 			{
 				output.append(" / ");
 			}
-			else if ("addition".equalsIgnoreCase(getType()))
+			else if ("addition".equalsIgnoreCase(getArithType()))
 			{
 				output.append(" + ");
 			}
-			else if ("subtraction".equalsIgnoreCase(getType()))
+			else if ("subtraction".equalsIgnoreCase(getArithType()))
 			{
 				output.append(" - ");
 			}
-			else if ("modulus".equalsIgnoreCase(getType()))
+			else if ("modulus".equalsIgnoreCase(getArithType()))
 			{
 				output.append(" % ");
 			}
@@ -170,6 +170,20 @@ public class ArithmeticOperatorNode extends ASTNode{
 			output.append(this.getChildAt(0).generateCode());
 		}
 		return output;
+	}
+
+	/**
+	 * @return the arithType
+	 */
+	public String getArithType() {
+		return arithType;
+	}
+
+	/**
+	 * @param arithType the arithType to set
+	 */
+	public void setArithType(String arithType) {
+		this.arithType = arithType;
 	}
 
 }

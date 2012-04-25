@@ -283,7 +283,7 @@ public class BuiltInFunction {
 	 * @param s the string
 	 */
 	public static void print(String s) {
-		System.out.println(s);
+		System.out.print(s);
 	}
 
 	// printVar for int
@@ -293,7 +293,7 @@ public class BuiltInFunction {
 	 * @param x the int
 	 */
 	public static void printInteger(int x) {
-		System.out.println(x);
+		System.out.print(x);
 	}
 
 	// printVar for char
@@ -303,7 +303,7 @@ public class BuiltInFunction {
 	 * @param x the char
 	 */
 	public static void printChar(char x) {
-		System.out.println(x);
+		System.out.print(x);
 	}
 
 	// printVar for float
@@ -313,7 +313,7 @@ public class BuiltInFunction {
 	 * @param x the 
 	 */
 	public static void printFloat(double x) {
-		System.out.println(x);
+		System.out.print(x);
 	}
 
 
