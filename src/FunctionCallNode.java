@@ -80,7 +80,7 @@ public class FunctionCallNode extends ASTNode {
 	public StringBuffer generateCode() 
 	{
 		StringBuffer output = new StringBuffer();
-		System.out.println("&&&&&&&&&&&&&&&&&&&& "+functionSymbolTableEntry.getID());
+		if (Parser.DEBUG) System.out.println("Generating FunctionCall: "+functionSymbolTableEntry.getID());
 
 		/*	switch(functionSymbolTableEntry.getID())
 			{
