@@ -78,6 +78,13 @@ statement : declaration ';' {  ((DeclarationNode)$1.obj).setIsStatement(true); $
 //| ID INSERT expression ';' {  $$ = new ParserVal(new InsertOperatorNode(new IDNode($1.sval, false, line, column), (ASTNode)$3.obj, line, column)); }
 | set_insert ';' { $$ = $1; }
 | RETURN optional_expression ';' {  $$ = new ParserVal(new ReturnNode(currentReturnType, (ASTNode)$2.obj, line, column)); }
+| declaration '=' '[' question_list ']' ';' {$$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$4.obj, line, column)); } 
+
+
+question_list : question_list ',' question_literal {  ((QuestionListNode)$1.obj).addChild((ASTNode)$3.obj); 
+					$$ = $1;} 
+| question_literal { $$ = new ParserVal(new QuestionListNode((ASTNode)$1.obj, line, column)); }
+
 
 
 set_insert : set_insert INSERT expression { ((ASTNode)$1.obj).addChild((ASTNode)$3.obj); $$ = $1; }
