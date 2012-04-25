@@ -1,0 +1,7 @@
+int main()
+{
+char ch='a';
+%%printChar(ch);
+%%printChar('b');
+return 0;
+}
