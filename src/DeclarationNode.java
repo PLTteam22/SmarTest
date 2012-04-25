@@ -73,7 +73,9 @@ public class DeclarationNode extends ASTNode {
 		
 		String javaType = data[0];
 		if (javaType == "question")
-			javaType = "QuestionObject";
+			javaType = "Question";
+		else if (javaType == "set")
+			javaType = "StlSetNode";
 		
 		output.append(javaType+" ");
 		output.append(this.getChildAt(0).generateCode());
