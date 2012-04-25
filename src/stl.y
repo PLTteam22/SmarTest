@@ -77,6 +77,13 @@ statement : declaration ';' {  ((DeclarationNode)$1.obj).setIsStatement(true); $
 | if_statement {  }
 | ID INSERT expression ';' {  $$ = new ParserVal(new InsertOperatorNode(new IDNode($1.sval, false, line, column), (ASTNode)$3.obj, line, column)); }
 | RETURN optional_expression ';' {  $$ = new ParserVal(new ReturnNode(currentReturnType, (ASTNode)$2.obj, line, column)); }
+| declaration '=' '[' question_list ']' ';' {$$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$4.obj, line, column)); } 
+
+
+question_list : question_list ',' question_literal {  ((QuestionListNode)$1.obj).addChild((ASTNode)$3.obj); 
+					$$ = $1;} 
+| question_literal { $$ = new ParserVal(new QuestionListNode((ASTNode)$1.obj, line, column)); }
+
 
 type : INT {  $$ = new ParserVal("int"); }
 | FLOAT {  $$ = new ParserVal("double"); }
