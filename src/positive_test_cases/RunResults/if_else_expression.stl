@@ -1,0 +1,200 @@
+Reading "stl.flex"
+Constructing NFA : 283 states in NFA
+Converting NFA to DFA : 
+..........................................................................................................................
+124 states before minimization, 109 states in minimized DFA
+Old file "Yylex.java" saved as "Yylex.java~"
+Writing code to "Yylex.java"
+
+Compiling ...
+
+lex: found void
+
+found return_type
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char: (
+
+lex: found individual char: )
+
+found optional_param_list
+lex: found individual char: {
+
+found statements
+Created Node of Type: StatementsNode
+lex: found int
+
+found type (int)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found individual char: =
+
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: ;
+
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found if
+
+lex: found individual char: (
+
+lex: found id
+
+lex: found >
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+found a equality_operand
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: )
+
+found a relational_operand
+found a equality_operand (GT)
+Created Node of Type: RelationalOperatorNode
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+lex: found individual char: {
+
+found statements
+Created Node of Type: StatementsNode
+lex: found id
+
+lex: found individual char: =
+
+lex: found id
+
+lex: found individual char: +
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: ;
+
+Created Node of Type: ArithmeticOperatorNode
+found a relational_operand (+)
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (i=5;)
+Created Node of Type: IDNode
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found individual char: }
+
+lex: found else
+
+lex: found individual char: {
+
+found statements
+Created Node of Type: StatementsNode
+lex: found id
+
+lex: found individual char: =
+
+lex: found id
+
+lex: found individual char: -
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: ;
+
+Created Node of Type: ArithmeticOperatorNode
+found a relational_operand (-)
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (i=5;)
+Created Node of Type: IDNode
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found individual char: }
+
+Created Node of Type: IfStatementNode
+found if_statement
+found statement (if statement)
+found statements
+lex: found individual char: }
+
+found function
+Created Node of Type: FunctionNode
+found function_list
+found optional_function_list
+
+found a program
+Created Node of Type: ProgramNode
+** Inserting new variable into symbols table:
+Type:int
+Var Name: _smartestVar_i
+Line Number: 3
+
+Compiled successfully
+CODE OUTPUT --------------------------
+import java.util.ArrayList;
+public class STL {
+public static void main(String[] args) {
+_smartestFunction_main();
+}
+public static void _smartestFunction_main(  )
+{
+int _smartestVar_i = 6;
+if(_smartestVar_i > 6)
+{_smartestVar_i = _smartestVar_i + 1;
+
+}else{_smartestVar_i = _smartestVar_i - 1;
+
+}
+}
+}
+
+========================
+
+
+Symbols Table:
+
+Variable: i
+
+========================
+
+Functions Table:
+
+Variable: readline
+Variable: printvar
+Variable: load
+Variable: print
+Variable: main

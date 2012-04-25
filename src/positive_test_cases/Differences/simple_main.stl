@@ -1,0 +1,81 @@
+2c2
+< Constructing NFA : 269 states in NFA
+---
+> Constructing NFA : 283 states in NFA
+4,5c4,5
+< ............................................................................................................................
+< 126 states before minimization, 116 states in minimized DFA
+---
+> ..........................................................................................................................
+> 124 states before minimization, 109 states in minimized DFA
+18c18
+< lex: found individual char
+---
+> lex: found individual char: (
+20c20
+< lex: found individual char
+---
+> lex: found individual char: )
+23c23
+< lex: found individual char
+---
+> lex: found individual char: {
+27c27
+< lex: found individual char
+---
+> lex: found individual char: }
+39c39
+< lex: found individual char
+---
+> lex: found individual char: (
+41c41
+< lex: found individual char
+---
+> lex: found individual char: )
+44c44
+< lex: found individual char
+---
+> lex: found individual char: {
+50c50
+< lex: found individual char
+---
+> lex: found individual char: }
+62c62
+< lex: found individual char
+---
+> lex: found individual char: (
+64c64
+< lex: found individual char
+---
+> lex: found individual char: )
+67c67
+< lex: found individual char
+---
+> lex: found individual char: {
+71c71
+< lex: found individual char
+---
+> lex: found individual char: }
+81a82,97
+> CODE OUTPUT --------------------------
+> import java.util.ArrayList;
+> public class STL {
+> public static void main(String[] args) {
+> _smartestFunction_main();
+> }
+> public static void _smartestFunction_func1(  )
+> {
+> }
+> public static void _smartestFunction_main(  )
+> {
+> }
+> public static void _smartestFunction_func2(  )
+> {
+> }
+> }
+92a109,111
+> Variable: readline
+> Variable: printvar
+> Variable: load
+94a114
+> Variable: print

@@ -295,7 +295,7 @@ public class BuiltInFunction {
 	 *
 	 * @param x the 
 	 */
-	public static void printFloat(float x) {
+	public static void printFloat(double x) {
 		System.out.println(x);
 	}
 

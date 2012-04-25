@@ -82,7 +82,7 @@ type : INT { System.out.print("found type (int)\n"); $$ = new ParserVal("int"); 
 | FLOAT { System.out.print("found type (float)\n"); $$ = new ParserVal("double"); }
 | CHAR { System.out.print("found type (char)\n"); $$ = new ParserVal("char"); }
 | BOOLEAN { System.out.print("found type (boolean)\n"); $$ = new ParserVal("boolean"); }
-| STRING { System.out.print("found type (string)\n"); $$ = new ParserVal("string"); } 
+| STRING { System.out.print("found type (string)\n"); $$ = new ParserVal("String"); } 
 | QUESTION { System.out.print("found type (question)\n"); $$ = new ParserVal("question"); }
 | SET { System.out.print("found type (set)\n"); $$ = new ParserVal("set"); }
 
@@ -251,7 +251,7 @@ term : term '*' factor
 factor : INTLITERAL { System.out.print("found a factor (int)\n"); $$ = new ParserVal(new LiteralNode("int",(Object) $1.ival, line, column)); }
 | FLOATLITERAL { System.out.print("found a factor (float)\n"); $$ = new ParserVal(new LiteralNode("double", (Object) $1.dval, line, column)); }
 | CHARLITERAL { System.out.print("found a factor (char)\n"); $$ = new ParserVal(new LiteralNode("char", (Object) $1.ival,line, column)); }
-| STRINGLITERAL { System.out.print("found a factor (string)\n"); $$ = new ParserVal(new LiteralNode("string", (Object) $1.sval, line, column));}
+| STRINGLITERAL { System.out.print("found a factor (string)\n"); $$ = new ParserVal(new LiteralNode("String", (Object) $1.sval, line, column));}
 | BOOLLITERAL { System.out.print("found a factor (bool)\n"); $$ = new ParserVal(new LiteralNode("boolean", (Object) $1.sval,line, column)); }		// Do checking for true and false ignoreCase
 | ID 					{ $$ = new ParserVal(new IDNode($1.sval, false, line, column)); }
 | question_literal 		{ $$ = $1; }

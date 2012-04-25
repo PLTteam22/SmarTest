@@ -57,7 +57,7 @@ public class FunctionCallNode extends ASTNode {
 				for (int i = 0; i < arrayList.size(); i++) {
 					if (arrayList.get(i).equalsIgnoreCase("double")
 							& this.getChildAt(0).getChildAt(i).getType()
-									.equalsIgnoreCase("int"))
+							.equalsIgnoreCase("int"))
 						continue;
 
 					else if (!arrayList.get(i).equalsIgnoreCase(
@@ -76,42 +76,56 @@ public class FunctionCallNode extends ASTNode {
 		this.setType(functionSymbolTableEntry.getReturnType());
 	}
 
-	public StringBuffer generateCode() {
+
+	public StringBuffer generateCode() 
+	{
 		StringBuffer output = new StringBuffer();
-		System.out.println("&&&&&&&&&&&&&&&&&&&& "
-				+ functionSymbolTableEntry.getID());
+		System.out.println("&&&&&&&&&&&&&&&&&&&& "+functionSymbolTableEntry.getID());
 
-		/*
-		 * switch(functionSymbolTableEntry.getID()) { case "print":
-		 * output.append
-		 * ("BuiltInFunction.print("+this.getChildAt(0).generateCode
-		 * ()+");");break; case "load":break; case "save":break; case
-		 * "printVar":break; case "askQuestion":break; case "len":break;
-		 * default: output.append(functionSymbolTableEntry.getJavaID());
-		 * output.append("( "); if (getLength() > 0) {
-		 * output.append(this.getChildAt(0).generateCode()); }
-		 * output.append(" )"); break; return output; }
-		 */
-		if ((functionSymbolTableEntry.getID()).equalsIgnoreCase("print")) {
-			output.append("BuiltInFunction.print("
-					+ this.getChildAt(0).generateCode() + ")");
-		} else if ((functionSymbolTableEntry.getID()).equalsIgnoreCase("load")) {
-
+		/*	switch(functionSymbolTableEntry.getID())
+			{
+				case "print": output.append("BuiltInFunction.print("+this.getChildAt(0).generateCode()+");");break;
+				case "load":break;
+				case "save":break;
+				case "printVar":break;
+				case "askQuestion":break;
+				case "len":break;
+				default: output.append(functionSymbolTableEntry.getJavaID());
+					 output.append("( ");
+					 if (getLength() > 0)
+					 {
+					 	output.append(this.getChildAt(0).generateCode());
+					 }
+					 output.append(" )");
+					 break;
+				return output;
+			}*/
+		if((functionSymbolTableEntry.getID()).equalsIgnoreCase("print"))
+		{
+			output.append("BuiltInFunction.print("+this.getChildAt(0).generateCode()+")");
+		}
+		else if((functionSymbolTableEntry.getID()).equalsIgnoreCase("load"))
+		{
 			FactorListNode list = (FactorListNode) this.getChildAt(0);
 			output.append("BuiltInFunction.load("
 					+ list.getChildAt(0).getSvalue() + ", "
 					+ list.getChildAt(1).getSvalue() + ", "
 					+ list.getChildAt(2).getSvalue() + ", "
 					+ list.getChildAt(3).getSvalue() + ")");
-		} else {
+
+		}
+		else
+		{
 			output.append(functionSymbolTableEntry.getJavaID());
 			output.append("( ");
-			if (getLength() > 0) {
+			if (getLength() > 0)
+			{
 				output.append(this.getChildAt(0).generateCode());
 			}
 			output.append(" )");
 		}
 		return output;
+
 	}
 
 	public int getLength() {

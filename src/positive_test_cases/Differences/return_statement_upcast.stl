@@ -1,0 +1,90 @@
+2c2
+< Constructing NFA : 269 states in NFA
+---
+> Constructing NFA : 283 states in NFA
+4,5c4,5
+< ............................................................................................................................
+< 126 states before minimization, 116 states in minimized DFA
+---
+> ..........................................................................................................................
+> 124 states before minimization, 109 states in minimized DFA
+18c18
+< lex: found individual char
+---
+> lex: found individual char: (
+20c20
+< lex: found individual char
+---
+> lex: found individual char: )
+23c23
+< lex: found individual char
+---
+> lex: found individual char: {
+40c40
+< lex: found individual char
+---
+> lex: found individual char: =
+49c49
+< lex: found individual char
+---
+> lex: found individual char: ;
+67c67
+< lex: found individual char
+---
+> lex: found individual char: ;
+82c82
+< lex: found individual char
+---
+> lex: found individual char: }
+94c94
+< lex: found individual char
+---
+> lex: found individual char: (
+96c96
+< lex: found individual char
+---
+> lex: found individual char: )
+99c99
+< lex: found individual char
+---
+> lex: found individual char: {
+107c107
+< lex: found individual char
+---
+> lex: found individual char: (
+109c109
+< lex: found individual char
+---
+> lex: found individual char: )
+113c113
+< lex: found individual char
+---
+> lex: found individual char: ;
+117c117
+< lex: found individual char
+---
+> lex: found individual char: }
+131a132,148
+> &&&&&&&&&&&&&&&&&&&& func1
+> CODE OUTPUT --------------------------
+> import java.util.ArrayList;
+> public class STL {
+> public static void main(String[] args) {
+> _smartestFunction_main();
+> }
+> public static double _smartestFunction_func1(  )
+> {
+> int _smartestVar_i = 6;
+> return _smartestVar_i;
+> }
+> public static void _smartestFunction_main(  )
+> {
+> _smartestFunction_func1(  );
+> }
+> }
+143a161,163
+> Variable: readline
+> Variable: printvar
+> Variable: load
+144a165
+> Variable: print
