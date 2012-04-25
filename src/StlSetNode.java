@@ -4,16 +4,20 @@ import java.util.HashMap;
 
 /**
  * The Class StlSetNode.
+ * StlSetNode  : '[' OptionalQuestionList ']'
+ * Example: set s = [q1, q2, q3]
+ * Semantics: OptionalQuestionList must be of type question
+ * @author Parth
  */
 public class StlSetNode {
 	
 	/** The Question array list. */
-	ArrayList<QuestionLiteralNode> QuestionArrayList = new ArrayList<QuestionLiteralNode>();
+	ArrayList<Question> QuestionArrayList = new ArrayList<Question>();
 	
 	
 	//hashmap to store info about a question is asked or not
 	/** The Question is asked hm. */
-	HashMap<QuestionLiteralNode, Boolean> QuestionIsAskedHM = new HashMap<QuestionLiteralNode, Boolean>();
+	HashMap<Question, Boolean> QuestionIsAskedHM = new HashMap<Question, Boolean>();
 
 	
 	/**
@@ -21,7 +25,7 @@ public class StlSetNode {
 	 *
 	 * @return the question array list
 	 */
-	public ArrayList<QuestionLiteralNode> getQuestionArrayList() {
+	public ArrayList<Question> getQuestionArrayList() {
 		return QuestionArrayList;
 	}
 
@@ -39,7 +43,7 @@ public class StlSetNode {
 	 *
 	 * @return the question is asked hash map
 	 */
-	public HashMap<QuestionLiteralNode, Boolean> getQuestionIsAskedHM() {
+	public HashMap<Question, Boolean> getQuestionIsAskedHM() {
 		return QuestionIsAskedHM;
 	}
 
@@ -49,7 +53,7 @@ public class StlSetNode {
 	 * @param questionIsAskedHM the question is asked hash map
 	 */
 	public void setQuestionIsAskedHM(
-			HashMap<QuestionLiteralNode, Boolean> questionIsAskedHM) {
+			HashMap<Question, Boolean> questionIsAskedHM) {
 		QuestionIsAskedHM = questionIsAskedHM;
 	}
 
@@ -58,7 +62,7 @@ public class StlSetNode {
 	 * Add question literal node to set
 	 * @param q the question literal node
 	 */
-	void addQuestion(QuestionLiteralNode q){
+	void addQuestion(Question q){
 		this.getQuestionArrayList().add(q);
 	}
 		
@@ -69,7 +73,7 @@ public class StlSetNode {
 	 * @param s the stlset node
 	 * @param q the question literal node
 	 */
-	void markIsCheckedTrue(StlSetNode s, QuestionLiteralNode q){
+	void markIsCheckedTrue(StlSetNode s, Question q){
 		s.getQuestionIsAskedHM().put(q, true);
 		
 	}

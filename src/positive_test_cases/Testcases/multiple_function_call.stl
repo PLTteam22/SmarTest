@@ -1,0 +1,30 @@
+int func1( int a , int b)
+{
+int i = a;
+int j = b;
+
+int result2;
+
+result2 = func2(i,j);
+
+return result2;
+}
+
+int func2(int l, int k)
+{
+
+int result = l + k;
+
+return result;
+}
+
+void main()
+{
+
+int m = 0;
+int n = 6;
+int result3;
+
+result3 = func1(m,n);
+
+}
