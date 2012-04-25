@@ -128,7 +128,7 @@ public class BuiltInFunction {
 	        	}
 	        	
 	        	pst.setString(3, answersTexts);
-	        	pst.setString(4, answersTexts);
+	        	pst.setString(4, answersPoints);
 	        	
 	        	pst.execute();
 	        	
