@@ -72,7 +72,7 @@ public class AssignmentOperatorNode extends ASTNode {
 			else
 				varName = ((IDNode)this.getChildAt(0)).getName();
 			
-			if(!(this.getChildAt(0).getType().equals("float") && this.getChildAt(1).getType().equals("int")))
+			if(!(this.getChildAt(0).getType().equals("double") && this.getChildAt(1).getType().equals("int")))
 			throw new Exception("Type mismatch: variable " + varName + " was declared "
 								+ this.getChildAt(0).getType() + ", but right-hand side value is "
 								+ this.getChildAt(1).getType() + ". Line " + this.getYyline() + ":" + this.getYycolumn());
