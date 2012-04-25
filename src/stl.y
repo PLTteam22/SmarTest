@@ -410,6 +410,7 @@ public static void main(String args[]) throws IOException
   {
   	System.out.println("Variable: " + itr.next());
   }
+
   
   System.out.println("\n========================\n");
   System.out.println("Functions Table:\n");
