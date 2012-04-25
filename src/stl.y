@@ -368,8 +368,7 @@ public static void main(String args[]) throws IOException
   functionSymbolsTable.put("printinteger", new FunctionSymbolTableEntry("printInteger", "BuiltInFunction.printInteger" , "void", paraList2));
 
   ArrayList<String> paraList3 = new ArrayList<String>();
-  paraList3.add("");
-  functionSymbolsTable.put("readline", new FunctionSymbolTableEntry("readLine", "BuiltInFunction.readLine" , "string", paraList3));
+  functionSymbolsTable.put("readline", new FunctionSymbolTableEntry("readLine", "BuiltInFunction.readLine" , "String", paraList3));
 
   ArrayList<String> paraList4 = new ArrayList<String>();
   paraList4.add("string");
@@ -395,6 +394,14 @@ public static void main(String args[]) throws IOException
   ArrayList<String> paraList8 = new ArrayList<String>();
   paraList8.add("set");
   functionSymbolsTable.put("len", new FunctionSymbolTableEntry("len", "BuiltInFunction.len" , "int", paraList8));
+
+
+  ArrayList<String> paraList9 = new ArrayList<String>();
+  paraList9.add("string");
+  paraList9.add("string");
+  paraList9.add("string");
+  paraList9.add("set");
+  functionSymbolsTable.put("save", new FunctionSymbolTableEntry("save", "BuiltInFunction.save" , "void", paraList9));
 
 
   // Add 2 more pre-defined functions. 
