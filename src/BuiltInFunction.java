@@ -150,7 +150,7 @@ public class BuiltInFunction {
 	 * @param s the StlSetNode
 	 * @return the int
 	 */
-	int askQuestion(StlSetNode s) {
+	public static int askQuestion(StlSetNode s) {
 		boolean isFull = false;
 		int points = 0;
 		boolean isDone = false;
@@ -255,7 +255,7 @@ public class BuiltInFunction {
 	 *
 	 * @return the string
 	 */
-	String readline() {
+	public static String readline() {
 		return null;
 	}
 
@@ -265,7 +265,7 @@ public class BuiltInFunction {
 	 *
 	 * @param s the string
 	 */
-	void print(String s) {
+	public static void print(String s) {
 		System.out.println(s);
 	}
 
@@ -275,7 +275,7 @@ public class BuiltInFunction {
 	 *
 	 * @param x the int
 	 */
-	void printVar(int x) {
+	public static void printInteger(int x) {
 		System.out.println(x);
 	}
 
@@ -285,7 +285,7 @@ public class BuiltInFunction {
 	 *
 	 * @param x the char
 	 */
-	void printVar(char x) {
+	public static void printChar(char x) {
 		System.out.println(x);
 	}
 
@@ -295,19 +295,10 @@ public class BuiltInFunction {
 	 *
 	 * @param x the 
 	 */
-	void printVar(float x) {
+	public static void printFloat(float x) {
 		System.out.println(x);
 	}
 
-	// printVar for set and questions
-	/**
-	 * Prints the set and question variable
-	 *
-	 * @param x the object of type set/question
-	 */
-	void printVar(Object x) {
-		System.out.println(x);
-	}
 
 	// length of a set
 	/**
@@ -316,7 +307,7 @@ public class BuiltInFunction {
 	 * @param s the StlSetNode
 	 * @return the length of the set as int
 	 */
-	int len(StlSetNode s) {
+	public static int len(StlSetNode s) {
 		return s.getQuestionArrayList().size();
 	}
 
