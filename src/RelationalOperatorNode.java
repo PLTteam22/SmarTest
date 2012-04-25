@@ -5,8 +5,13 @@
  * Example - a  LT 3
  * 			 b  LT 5
  */
+/**
+ * The Class RelationalOperatorNode.
+ *@author Parth
+ */
 class RelationalOperatorNode extends ASTNode {
 	
+	/** The operator. */
 	private String operator;
 	/*
 	 * Instantiates EqualityOperator invoked by this grammar:
@@ -17,6 +22,15 @@ class RelationalOperatorNode extends ASTNode {
 	 *  @param op specifies the type of operator
 	 *  @param lcNode,rcNode represents nodes of operand
 	 *  @param yyline,yycolumn represents nodes line number and column number 
+	 */
+	/**
+	 * Instantiates a new relational operator node.
+	 *
+	 * @param op the op
+	 * @param lcNode the lc node
+	 * @param rcNode the rc node
+	 * @param yyline the yyline
+	 * @param yycolumn the yycolumn
 	 */
 	public RelationalOperatorNode(String op, ASTNode lcNode, ASTNode rcNode,
 			int yyline, int yycolumn) {
@@ -29,6 +43,9 @@ class RelationalOperatorNode extends ASTNode {
 	/*
 	 * symnatic check
 	 * 
+	 */
+	/* (non-Javadoc)
+	 * @see ASTNode#checkSemantics()
 	 */
 	@Override
 	public void checkSemantics() throws Exception{
@@ -49,6 +66,9 @@ class RelationalOperatorNode extends ASTNode {
 		return;	
 	}
 
+	/* (non-Javadoc)
+	 * @see ASTNode#generateCode()
+	 */
 	@Override
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
