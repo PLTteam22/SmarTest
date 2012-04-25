@@ -36,7 +36,7 @@ public class ProgramNode extends ASTNode
         	
         	output.append("}");
         	
-     //   	System.out.println("CODE OUTPUT --------------------------\n" + output);
+        	System.out.println(output);
         	
                 return null;
         }
