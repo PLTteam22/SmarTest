@@ -23,7 +23,7 @@ import java.util.StringTokenizer;
 public class BuiltInFunction {
 
 	// load method
-	StlSetNode load(String connection_string, String userName, String password, String category)
+	public static StlSetNode load(String connection_string, String userName, String password, String category)
 	{
 		
 		Connection conn = null;
@@ -82,7 +82,7 @@ public class BuiltInFunction {
 	}
 	
 	
-	void save(String connection_string, String userName, String password, String category, StlSetNode set)
+	public static void save(String connection_string, String userName, String password, String category, StlSetNode set)
 	{
 		
 		Connection conn = null;
