@@ -9,8 +9,13 @@
  * 			 a / 3
  */
 
+/**
+ * The Class ArithmeticOperatorNode.
+ * @author Parth and Kshitij
+ */
 public class ArithmeticOperatorNode extends ASTNode{
 
+	/** The arith type. */
 	String arithType="";
 
 
@@ -34,12 +39,20 @@ public class ArithmeticOperatorNode extends ASTNode{
 	 *  @param stmt represents terms 
 	 */
 
+	/**
+	 * Instantiates a new arithmetic operator node.
+	 *
+	 * @param str the str
+	 * @param relOp the rel op
+	 * @param terms the terms
+	 * @param yyline the yyline
+	 * @param yycolumn the yycolumn
+	 */
 	public ArithmeticOperatorNode(String str, ASTNode relOp, ASTNode terms, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
 		addChild(relOp);
 		addChild(terms);
 		this.setType(str);
-                this.arithType = str;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -54,11 +67,18 @@ public class ArithmeticOperatorNode extends ASTNode{
 	 *  @param expr represents a relational operand
 	 *  @param stmt represents terms
 	 */
+	/**
+	 * Instantiates a new arithmetic operator node.
+	 *
+	 * @param str the str
+	 * @param lcNode the lc node
+	 * @param yyline the yyline
+	 * @param yycolumn the yycolumn
+	 */
 	public ArithmeticOperatorNode(String str, ASTNode lcNode, int yyline, int yycolumn) {
 		super(yyline, yycolumn);
 		this.addChild(lcNode);
 		this.setType(str);
-                this.arithType = str;
 	}
 
 	/*
@@ -111,6 +131,9 @@ public class ArithmeticOperatorNode extends ASTNode{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see ASTNode#generateCode()
+	 */
 	@Override
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
@@ -119,23 +142,23 @@ public class ArithmeticOperatorNode extends ASTNode{
 		if(this.getChildCount() > 1)
 		{
 			output.append(this.getChildAt(0).generateCode());
-			if ("multiplication".equalsIgnoreCase(arithType))
+			if ("multiplication".equalsIgnoreCase(getType()))
 			{
 				output.append(" * ");
 			}
-			else if ("division".equalsIgnoreCase(arithType))
+			else if ("division".equalsIgnoreCase(getType()))
 			{
 				output.append(" / ");
 			}
-			else if ("addition".equalsIgnoreCase(arithType))
+			else if ("addition".equalsIgnoreCase(getType()))
 			{
 				output.append(" + ");
 			}
-			else if ("subtraction".equalsIgnoreCase(arithType))
+			else if ("subtraction".equalsIgnoreCase(getType()))
 			{
 				output.append(" - ");
 			}
-			else if ("modulus".equalsIgnoreCase(arithType))
+			else if ("modulus".equalsIgnoreCase(getType()))
 			{
 				output.append(" % ");
 			}
