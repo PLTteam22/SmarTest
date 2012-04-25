@@ -4,11 +4,18 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 
 /**
@@ -20,18 +27,126 @@ import java.util.Random;
 public class BuiltInFunction {
 
 	// load method
-	/**
-	 * Load.
-	 *
-	 * @param connection_string the connection_string
-	 * @param category the category
-	 * @return the stl set node
-	 */
-	StlSetNode load(String connection_string, String category) {
+	StlSetNode load(String connection_string, String userName, String password, String category)
+	{
+		
+		Connection conn = null;
+		String driver = "com.mysql.jdbc.Driver";
+		try {
+			Class.forName(driver).newInstance();
+			conn = DriverManager.getConnection(connection_string,userName,password);
+			System.out.println("Connected to the database");
+			conn.close();
+			System.out.println("Disconnected from database");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		return null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        StlSetNode set = new StlSetNode();
+        
+        try {
+	       	pst = conn.prepareStatement("SELECT * FROM questions WHERE category = 1");
+			pst.setString(1, category);
+			rs = pst.executeQuery();
+			
+			while (rs.next())
+			{
+				String text = rs.getString("text");
+				String answers = rs.getString("answersTexts");
+				String points = rs.getString("answersPoints");
+				
+				StringTokenizer textsSt = new StringTokenizer(answers, "|||");
+				StringTokenizer pointsSt = new StringTokenizer(points, ",");
+				AnswerChoicesList answersList = new AnswerChoicesList();
+				
+				while (textsSt.hasMoreTokens())
+				{
+					String answerText = textsSt.nextToken();
+					int point = Integer.parseInt(pointsSt.nextToken());
+					AnswerChoice answerChoice = new AnswerChoice(answerText, point);
+					answersList.getChoices().add(answerChoice);
+				}
+				
+				Question q = new Question(text, category, answersList);
+				set.addQuestion(q);
+			}
+			
+			
+
+	        
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return set;
 	}
+	
+	
+	void save(String connection_string, String userName, String password, String category, StlSetNode set)
+	{
+		
+		Connection conn = null;
+		String driver = "com.mysql.jdbc.Driver";
+		try {
+			Class.forName(driver).newInstance();
+			conn = DriverManager.getConnection(connection_string,userName,password);
+			System.out.println("Connected to the database");
+			conn.close();
+			System.out.println("Disconnected from database");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		String query = "INSERT INTO questions VALUES (NULL, ?, ?, ?, ?)";
+        PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(query);
+
+	    	
+	        for (int i = 0; i < set.getQuestionArrayList().size(); i++)
+	        {
+	        	
+	        	Question q  = set.getQuestionArrayList().get(i);
+	        	pst.setString(1, q.getQuestionCategory());
+	        	pst.setString(2, q.getQuestionText());
+	        	
+	        	String answersTexts = "";
+	        	String answersPoints = "";
+	        	for (int j = 0; j < q.getAnswers().size(); j++)
+	        	{
+	        		AnswerChoice answer = q.getAnswers().get(j);
+	        		answersTexts += answer.getText();
+	        		answersPoints += answer.getPoints();
+	        		
+	        		if (j < q.getAnswers().size() - 1)
+	        		{
+	        			answersTexts += "|||";
+	        			answersPoints += ",";
+	        		}
+	        		
+	        		
+	        	}
+	        	
+	        	pst.setString(3, answersTexts);
+	        	pst.setString(4, answersTexts);
+	        	
+	        	pst.execute();
+	        	
+	        }
+	        
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+	
+	
 	// askQuestion method
 	/**
 	 * Ask question.
