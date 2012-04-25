@@ -1,0 +1,273 @@
+Reading "stl.flex"
+Constructing NFA : 283 states in NFA
+Converting NFA to DFA : 
+..........................................................................................................................
+124 states before minimization, 109 states in minimized DFA
+Old file "Yylex.java" saved as "Yylex.java~"
+Writing code to "Yylex.java"
+
+Compiling ...
+
+lex: found float
+
+found type (float)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char: (
+
+lex: found float
+
+found type (float)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+found param_list
+lex: found whitespace or newline or tab
+
+lex: found individual char: ,
+
+lex: found whitespace or newline or tab
+
+lex: found int
+
+found type (int)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+found param_list
+lex: found individual char: )
+
+found optional_param_list
+lex: found individual char: {
+
+found statements
+Created Node of Type: StatementsNode
+lex: found float
+
+found type (float)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found individual char: =
+
+lex: found id
+
+lex: found individual char: +
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+lex: found id
+
+lex: found individual char: ;
+
+Created Node of Type: IDNode
+found a term
+Created Node of Type: ArithmeticOperatorNode
+found a relational_operand (+)
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found return
+
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char: ;
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found optional_expression
+found statement (return)
+Created Node of Type: ReturnNode
+found statements
+lex: found individual char: }
+
+found function
+Created Node of Type: FunctionNode
+found function_list
+lex: found void
+
+found return_type
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char: (
+
+lex: found individual char: )
+
+found optional_param_list
+lex: found individual char: {
+
+found statements
+Created Node of Type: StatementsNode
+lex: found int
+
+found type (int)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found individual char: =
+
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: ;
+
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found int
+
+found type (int)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found individual char: =
+
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: ;
+
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found id
+
+lex: found individual char: (
+
+lex: found id
+
+lex: found individual char: ,
+
+Created Node of Type: IDNode
+found a factor_list
+Created Node of Type: FactorListNode
+lex: found id
+
+lex: found individual char: )
+
+Created Node of Type: IDNode
+found a factor_list
+found an optional_factor_list
+found a function_call
+Created Node of Type: FunctionCallNode
+lex: found individual char: ;
+
+found statement (func call)
+found statements
+lex: found individual char: }
+
+found function
+Created Node of Type: FunctionNode
+found function_list
+found optional_function_list
+
+found a program
+Created Node of Type: ProgramNode
+** Inserting new variable into symbols table:
+Type:double
+Var Name: _smartestVar_a
+Line Number: 1
+** Inserting new variable into symbols table:
+Type:int
+Var Name: _smartestVar_b
+Line Number: 1
+** Inserting new variable into symbols table:
+Type:double
+Var Name: _smartestVar_c
+Line Number: 4
+** Inserting new variable into symbols table:
+Type:int
+Var Name: _smartestVar_i
+Line Number: 10
+** Inserting new variable into symbols table:
+Type:int
+Var Name: _smartestVar_j
+Line Number: 11
+
+Compiled successfully
+&&&&&&&&&&&&&&&&&&&& sum
+CODE OUTPUT --------------------------
+import java.util.ArrayList;
+public class STL {
+public static void main(String[] args) {
+_smartestFunction_main();
+}
+public static double _smartestFunction_sum( double _smartestVar_a, int _smartestVar_b )
+{
+double _smartestVar_c = _smartestVar_a + _smartestVar_b;
+return _smartestVar_c;
+}
+public static void _smartestFunction_main(  )
+{
+int _smartestVar_i = 5;
+int _smartestVar_j = 4;
+_smartestFunction_sum( _smartestVar_i, _smartestVar_j );
+}
+}
+
+========================
+
+
+Symbols Table:
+
+Variable: b
+Variable: c
+Variable: a
+Variable: j
+Variable: i
+
+========================
+
+Functions Table:
+
+Variable: readline
+Variable: printvar
+Variable: sum
+Variable: load
+Variable: print
+Variable: main

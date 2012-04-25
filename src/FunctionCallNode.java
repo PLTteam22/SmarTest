@@ -58,7 +58,7 @@ public class FunctionCallNode extends ASTNode
 					arrayList  = functionSymbolTableEntry.getParamTypes();
 					for(int i = 0; i < arrayList.size(); i++)
 					{
-						if(arrayList.get(i).equalsIgnoreCase("float") & this.getChildAt(0).getChildAt(i).getType().equalsIgnoreCase("int"))
+						if(arrayList.get(i).equalsIgnoreCase("double") & this.getChildAt(0).getChildAt(i).getType().equalsIgnoreCase("int"))
 							continue;
 						
 						else if(!arrayList.get(i).equalsIgnoreCase(this.getChildAt(0).getChildAt(i).getType()))
@@ -79,13 +79,44 @@ public class FunctionCallNode extends ASTNode
 	public StringBuffer generateCode() 
 	{
 			StringBuffer output = new StringBuffer();
-			output.append(functionSymbolTableEntry.getJavaID());
-			output.append("( ");
-			if (getLength() > 0)
+			System.out.println("&&&&&&&&&&&&&&&&&&&& "+functionSymbolTableEntry.getID());
+			
+		/*	switch(functionSymbolTableEntry.getID())
 			{
-				output.append(this.getChildAt(0).generateCode());
+				case "print": output.append("BuiltInFunction.print("+this.getChildAt(0).generateCode()+");");break;
+				case "load":break;
+				case "save":break;
+				case "printVar":break;
+				case "askQuestion":break;
+				case "len":break;
+				default: output.append(functionSymbolTableEntry.getJavaID());
+					 output.append("( ");
+					 if (getLength() > 0)
+					 {
+					 	output.append(this.getChildAt(0).generateCode());
+					 }
+					 output.append(" )");
+					 break;
+				return output;
+			}*/
+			if((functionSymbolTableEntry.getID()).equalsIgnoreCase("print"))
+			{
+				output.append("BuiltInFunction.print("+this.getChildAt(0).generateCode()+")");
 			}
-			output.append(" )");
+			else if((functionSymbolTableEntry.getID()).equalsIgnoreCase("load"))
+			{
+				output.append("BuiltInFunction.load("+this.getChildAt(0)+", "+this.getChildAt(1)+", "+this.getChildAt(2)+", "+this.getChildAt(3));
+			}
+			else
+			{
+				output.append(functionSymbolTableEntry.getJavaID());
+                                output.append("( ");
+                                if (getLength() > 0)
+                                {
+                                      output.append(this.getChildAt(0).generateCode());
+                                }
+                                output.append(" )");
+			}
 			return output;
 	}
 

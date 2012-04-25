@@ -87,7 +87,7 @@ public class DeclarationNode extends ASTNode {
                         {
                                 output.append(" = false");
                         }
-                        else if ("float".equalsIgnoreCase(getType()))
+                        else if ("double".equalsIgnoreCase(getType()))
                         {
                                 output.append(" = 0");
                         }
