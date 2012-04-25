@@ -93,7 +93,7 @@ return_type : type
 	}
 | VOID 
 	{ 
-		System.out.print("found return_type\n"); 
+		 
 		$$ = new ParserVal("void");
 		Parser.currentReturnType = "void";
 	}
@@ -269,7 +269,7 @@ factor_list: factor_list ',' factor {
 ***************************************/
 private Yylex lexer;
 public int line = 1, column;
-public static boolean DEBUG = true;
+public static boolean DEBUG = false;
 
 /* 
  * symbolsTable: Keys are the identifier names as found in the source code
