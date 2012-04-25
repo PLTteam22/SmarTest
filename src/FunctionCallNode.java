@@ -103,6 +103,10 @@ public class FunctionCallNode extends ASTNode
 			{
 				output.append("BuiltInFunction.print("+this.getChildAt(0).generateCode()+")");
 			}
+			else if((functionSymbolTableEntry.getID()).equalsIgnoreCase("load"))
+			{
+				outpit.append("BuiltInFunction.load("+this.getChildAt(0)+", "+this.getChildAt(1)+", "this.getChildAt(2)+", "+this.getChildAt(3));
+			}
 			else
 			{
 				output.append(functionSymbolTableEntry.getJavaID());

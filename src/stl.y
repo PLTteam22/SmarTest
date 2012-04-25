@@ -376,6 +376,14 @@ public static void main(String args[]) throws IOException
   paraList3.add("");
   functionSymbolsTable.put("readline", new FunctionSymbolTableEntry("readLine", "_smartestfunction_readLine" , "string", paraList3));
 
+  ArrayList<String> paraList4 = new ArrayList<String>();
+  paraList4.add("string");
+  paraList4.add("string");
+  paraList4.add("string");
+  paraList4.add("string");
+  functionSymbolsTable.put("load", new FunctionSymbolTableEntry("load", "_smartestfunction_load" , "set", paraList4));
+
+
   // Add 2 more pre-defined functions. 
 
 
