@@ -47,18 +47,18 @@ public class DeclarationNode extends ASTNode {
 		if (Parser.DEBUG)
 		{
 			System.out.println("** Inserting new variable into symbols table:");
-			System.out.println("Type:" + declaredType.toLowerCase());
+			System.out.println("Type:" + declaredType);
 			System.out.println("Var Name: " + varName);
 			System.out.println("Line Number: " + ""+this.getYyline());		
 		}
 		
 		
-		String[] data = { this.getDeclaredType().toLowerCase(),varName, ""+this.getYyline() }; 
+		String[] data = { this.getDeclaredType(),varName, ""+this.getYyline() }; 
 		
 		
 		
 		Parser.symbolsTable.put(this.getIdNode().getName(), data);
-                this.getChildAt(0).setType(getDeclaredType().toLowerCase());
+                this.getChildAt(0).setType(getDeclaredType());
 
 
                 this.setType(this.getChildAt(0).getType());
@@ -73,7 +73,9 @@ public class DeclarationNode extends ASTNode {
 		
 		String javaType = data[0];
 		if (javaType == "question")
-			javaType = "QuestionObject";
+			javaType = "Question";
+		else if (javaType == "set")
+			javaType = "StlSetNode";
 		
 		output.append(javaType+" ");
 		output.append(this.getChildAt(0).generateCode());

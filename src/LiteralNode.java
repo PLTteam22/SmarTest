@@ -27,7 +27,7 @@ public class LiteralNode extends ASTNode {
 		else if(type.equalsIgnoreCase("string"))
 		{
 			String value=(String)object;
-			this.setSvalue(value);
+			this.setSvalue("\"" + value + "\"");
 		}
 		else
 		{
