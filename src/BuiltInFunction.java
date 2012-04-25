@@ -186,8 +186,7 @@ public class BuiltInFunction {
 							System.out.println(s.getQuestionArrayList().get(i).getQuestionText()+"\n");
 							
 							for(int k=0;k<answerChoiceArrayList.size();k++){
-								System.out.println(answerChoiceArrayList.get(k).getText()+
-										":"+answerChoiceArrayList.get(k).getPoints()+"\n");
+								System.out.println(answerChoiceArrayList.get(k).getText()+"\n");
 							}
 							
 							// wait to read the input from user
@@ -223,8 +222,7 @@ public class BuiltInFunction {
 							System.out.println(s.getQuestionArrayList().get(i).getQuestionText()+"\n");
 							
 							for(int k=0;k<answerChoiceArrayList.size();k++){
-								System.out.println(answerChoiceArrayList.get(k).getText()+
-										":"+answerChoiceArrayList.get(k).getPoints()+"\n");
+								System.out.println(answerChoiceArrayList.get(k).getText()+"\n");
 							}
 							
 							// wait to read the input from user
