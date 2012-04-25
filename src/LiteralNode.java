@@ -63,9 +63,9 @@ public class LiteralNode extends ASTNode {
 		}
 		else if(type.equalsIgnoreCase("string"))
 		{
-			output.append("\"");
+//			output.append("\"");
 			output.append(this.getSvalue());
-			output.append("\"");
+//			output.append("\"");
 		}
 		else //char
 		{
