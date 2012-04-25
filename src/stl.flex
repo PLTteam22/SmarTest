@@ -154,7 +154,7 @@ NL    = \n | \r | \r\n
 
 ['][^'][']           		{
 					
-					yyparser.yylval = new ParserVal(Integer.parseInt(yytext())); 
+					yyparser.yylval = new ParserVal((int)yytext().charAt(1)); 
 					return (Parser.CHARLITERAL);
 				}
 
