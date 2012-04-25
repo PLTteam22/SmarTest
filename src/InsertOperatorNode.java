@@ -71,8 +71,16 @@ public class InsertOperatorNode extends ASTNode {
 	 */
 	@Override
 	public StringBuffer generateCode() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		StringBuffer output = new StringBuffer();
+		output.append(getSet().generateCode());
+		output.append(".addQuestion(");
+		output.append(getQuestion().generateCode());
+		output.append(")");
+		
+		
+		
+		return output;
 	}
 
 	/**

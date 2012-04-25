@@ -12,7 +12,7 @@ public class Question {
 	
 	
 	
-	public Question(String questionText, String questionCategory, AnswerChoicesList answersList)
+	public Question(String questionCategory, String questionText, AnswerChoicesList answersList)
 	{		
 		this.questionText = questionText;
 		this.questionCategory = questionCategory;

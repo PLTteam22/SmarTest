@@ -41,13 +41,13 @@ public class QuestionLiteralNode extends ASTNode {
 		questionText.checkSemantics();
 		answerChoices.checkSemantics();
 		
-		if (! questionCategory.getType().equals("string"))
+		if (! questionCategory.getType().equalsIgnoreCase("string"))
 		{
 			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
 					+ " question category must be a string, found: " + questionCategory.getType());
 		}
 		
-		if (! questionText.getType().equals("string"))
+		if (! questionText.getType().equalsIgnoreCase("string"))
 		{
 			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
 					+ " question text must be a string, found: " + questionText.getType());

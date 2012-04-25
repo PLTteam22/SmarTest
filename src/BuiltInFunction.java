@@ -63,7 +63,7 @@ public class BuiltInFunction {
 					answersList.getChoices().add(answerChoice);
 				}
 				
-				Question q = new Question(text, category, answersList);
+				Question q = new Question(category, text, answersList);
 				q.setQuestionDBID(rs.getInt("ID"));
 				set.addQuestion(q);
 			}

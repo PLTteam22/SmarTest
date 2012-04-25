@@ -42,13 +42,13 @@ public class AnswerChoiceNode extends ASTNode {
 		answerCaption.checkSemantics();
 		answerPoints.checkSemantics();
 		
-		if (! answerCaption.getType().equals("string"))
+		if (! answerCaption.getType().equalsIgnoreCase("string"))
 		{
 			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
 					+ " answer caption must be a string, found: " + answerCaption.getType());
 		}
 		
-		if (! answerPoints.getType().equals("int"))
+		if (! answerPoints.getType().equalsIgnoreCase("int"))
 		{
 			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
 					+ " answer points must be an int, found: " + answerPoints.getType());
