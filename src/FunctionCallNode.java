@@ -38,7 +38,7 @@ public class FunctionCallNode extends ASTNode {
 			this.getChildAt(0).checkSemantics();
 
 		if (!hashMap.containsKey(functionName.toLowerCase()))
-			throw new Exception("Function does not Exist: " + this.getYyline()
+			throw new Exception("Function " + functionName + "  does not Exist: " + this.getYyline()
 					+ ":" + this.getYycolumn()
 					+ ". Please declare the function first.");
 
@@ -80,7 +80,7 @@ public class FunctionCallNode extends ASTNode {
 	public StringBuffer generateCode() 
 	{
 		StringBuffer output = new StringBuffer();
-		System.out.println("&&&&&&&&&&&&&&&&&&&& "+functionSymbolTableEntry.getID());
+		if (Parser.DEBUG) System.out.println("Generating FunctionCall: "+functionSymbolTableEntry.getID());
 
 		/*	switch(functionSymbolTableEntry.getID())
 			{
@@ -100,22 +100,7 @@ public class FunctionCallNode extends ASTNode {
 					 break;
 				return output;
 			}*/
-		if((functionSymbolTableEntry.getID()).equalsIgnoreCase("print"))
-		{
-			output.append("BuiltInFunction.print("+this.getChildAt(0).generateCode()+")");
-		}
-		else if((functionSymbolTableEntry.getID()).equalsIgnoreCase("load"))
-		{
-			FactorListNode list = (FactorListNode) this.getChildAt(0);
-			output.append("BuiltInFunction.load("
-					+ list.getChildAt(0).getSvalue() + ", "
-					+ list.getChildAt(1).getSvalue() + ", "
-					+ list.getChildAt(2).getSvalue() + ", "
-					+ list.getChildAt(3).getSvalue() + ")");
 
-		}
-		else
-		{
 			output.append(functionSymbolTableEntry.getJavaID());
 			output.append("( ");
 			if (getLength() > 0)
@@ -123,7 +108,6 @@ public class FunctionCallNode extends ASTNode {
 				output.append(this.getChildAt(0).generateCode());
 			}
 			output.append(" )");
-		}
 		return output;
 
 	}

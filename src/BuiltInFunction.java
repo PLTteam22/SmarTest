@@ -31,9 +31,7 @@ public class BuiltInFunction {
 		try {
 			Class.forName(driver).newInstance();
 			conn = DriverManager.getConnection(connection_string,userName,password);
-			System.out.println("Connected to the database");
-			conn.close();
-			System.out.println("Disconnected from database");
+			if (Parser.DEBUG)  System.out.println("Connected to the database");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,7 +41,7 @@ public class BuiltInFunction {
         StlSetNode set = new StlSetNode();
         
         try {
-	       	pst = conn.prepareStatement("SELECT * FROM questions WHERE category = 1");
+	       	pst = conn.prepareStatement("SELECT * FROM questions WHERE category = ?");
 			pst.setString(1, category);
 			rs = pst.executeQuery();
 			
@@ -66,10 +64,13 @@ public class BuiltInFunction {
 				}
 				
 				Question q = new Question(text, category, answersList);
+				q.setQuestionDBID(rs.getInt("ID"));
 				set.addQuestion(q);
 			}
 			
 			
+			conn.close();
+			if (Parser.DEBUG) System.out.println("Disconnected from database");
 
 	        
 		} catch (SQLException e) {
@@ -82,7 +83,7 @@ public class BuiltInFunction {
 	}
 	
 	
-	public static void save(String connection_string, String userName, String password, String category, StlSetNode set)
+	public static void save(String connection_string, String userName, String password, StlSetNode set)
 	{
 		
 		Connection conn = null;
@@ -90,23 +91,29 @@ public class BuiltInFunction {
 		try {
 			Class.forName(driver).newInstance();
 			conn = DriverManager.getConnection(connection_string,userName,password);
-			System.out.println("Connected to the database");
-			conn.close();
-			System.out.println("Disconnected from database");
+			if (Parser.DEBUG)  System.out.println("Connected to the database");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		String query = "INSERT INTO questions VALUES (NULL, ?, ?, ?, ?)";
+		String selectQuery = "SELECT COUNT(*) FROM questions WHERE ID = ?";
         PreparedStatement pst;
+        PreparedStatement pstSelect;
 		try {
 			pst = conn.prepareStatement(query);
-
+	    	pstSelect = conn.prepareStatement(selectQuery);
 	    	
 	        for (int i = 0; i < set.getQuestionArrayList().size(); i++)
 	        {
-	        	
 	        	Question q  = set.getQuestionArrayList().get(i);
+
+	        	// Verify the question does not already exist in database
+	        	pstSelect.setInt(1, q.getQuestionDBID());
+	        	ResultSet rs = pstSelect.executeQuery();
+	        	rs.next();
+	        	if (rs.getInt(1) > 0) continue; // pass if question already exists
+	        	
 	        	pst.setString(1, q.getQuestionCategory());
 	        	pst.setString(2, q.getQuestionText());
 	        	
@@ -135,7 +142,6 @@ public class BuiltInFunction {
 	        }
 	        
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -185,12 +191,12 @@ public class BuiltInFunction {
 							}
 							
 							// wait to read the input from user
+							System.out.print("Select Answer > ");
 							BufferedReader reader = new BufferedReader(
 									new InputStreamReader(System.in));
 							try {
 								inputAnswer = reader.readLine();
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 								System.out.println("Invalid Input");
 							}
@@ -222,6 +228,7 @@ public class BuiltInFunction {
 							}
 							
 							// wait to read the input from user
+							System.out.print("Select Answer > ");
 							BufferedReader reader = new BufferedReader(
 									new InputStreamReader(System.in));
 							try {
@@ -255,8 +262,18 @@ public class BuiltInFunction {
 	 *
 	 * @return the string
 	 */
-	public static String readline() {
-		return null;
+	public static String readLine() {
+		String input = null;
+		BufferedReader reader = new BufferedReader(
+				new InputStreamReader(System.in));
+		try {
+			input = reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Invalid Input");
+		}
+		
+		return input;
 	}
 
 	// print
@@ -266,7 +283,7 @@ public class BuiltInFunction {
 	 * @param s the string
 	 */
 	public static void print(String s) {
-		System.out.println(s);
+		System.out.print(s);
 	}
 
 	// printVar for int
@@ -276,7 +293,7 @@ public class BuiltInFunction {
 	 * @param x the int
 	 */
 	public static void printInteger(int x) {
-		System.out.println(x);
+		System.out.print(x);
 	}
 
 	// printVar for char
@@ -286,7 +303,7 @@ public class BuiltInFunction {
 	 * @param x the char
 	 */
 	public static void printChar(char x) {
-		System.out.println(x);
+		System.out.print(x);
 	}
 
 	// printVar for float
@@ -296,7 +313,7 @@ public class BuiltInFunction {
 	 * @param x the 
 	 */
 	public static void printFloat(double x) {
-		System.out.println(x);
+		System.out.print(x);
 	}
 
 
