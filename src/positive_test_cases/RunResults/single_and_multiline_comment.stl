@@ -29,27 +29,6 @@ lex: found individual char: }
 found function
 Created Node of Type: FunctionNode
 found function_list
-lex: found void
-
-found return_type
-lex: found whitespace or newline or tab
-
-lex: found id
-
-lex: found individual char: (
-
-lex: found individual char: )
-
-found optional_param_list
-lex: found individual char: {
-
-found statements
-Created Node of Type: StatementsNode
-lex: found individual char: }
-
-found function
-Created Node of Type: FunctionNode
-found function_list
 found optional_function_list
 
 found a program
@@ -63,9 +42,6 @@ public static void main(String[] args) {
 _smartestFunction_main();
 }
 public static void _smartestFunction_main(  )
-{
-}
-public static void _smartestFunction_switch(  )
 {
 }
 }
@@ -82,7 +58,6 @@ Functions Table:
 
 Variable: readline
 Variable: printvar
-Variable: switch
 Variable: load
 Variable: print
 Variable: main

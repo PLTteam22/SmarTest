@@ -1,8 +1,8 @@
 Reading "stl.flex"
-Constructing NFA : 269 states in NFA
+Constructing NFA : 283 states in NFA
 Converting NFA to DFA : 
-............................................................................................................................
-126 states before minimization, 116 states in minimized DFA
+..........................................................................................................................
+124 states before minimization, 109 states in minimized DFA
 Old file "Yylex.java" saved as "Yylex.java~"
 Writing code to "Yylex.java"
 
@@ -15,16 +15,16 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: (
 
-lex: found individual char
+lex: found individual char: )
 
 found optional_param_list
-lex: found individual char
+lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
-lex: found individual char
+lex: found individual char: }
 
 found function
 Created Node of Type: FunctionNode
@@ -36,7 +36,7 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: (
 
 lex: found int
 
@@ -48,7 +48,7 @@ lex: found id
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 found param_list
-lex: found individual char
+lex: found individual char: ,
 
 lex: found whitespace or newline or tab
 
@@ -62,7 +62,7 @@ lex: found id
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 found param_list
-lex: found individual char
+lex: found individual char: ,
 
 lex: found whitespace or newline or tab
 
@@ -76,14 +76,14 @@ lex: found id
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 found param_list
-lex: found individual char
+lex: found individual char: )
 
 found optional_param_list
-lex: found individual char
+lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
-lex: found individual char
+lex: found individual char: }
 
 found function
 Created Node of Type: FunctionNode
@@ -106,6 +106,19 @@ Var Name: _smartestVar_p
 Line Number: 7
 
 Compiled successfully
+CODE OUTPUT --------------------------
+import java.util.ArrayList;
+public class STL {
+public static void main(String[] args) {
+_smartestFunction_main();
+}
+public static void _smartestFunction_main(  )
+{
+}
+public static void _smartestFunction_func1( int _smartestVar_i, boolean _smartestVar_c, string _smartestVar_p )
+{
+}
+}
 
 ========================
 
@@ -120,5 +133,9 @@ Variable: i
 
 Functions Table:
 
+Variable: readline
+Variable: printvar
+Variable: load
 Variable: func1
+Variable: print
 Variable: main

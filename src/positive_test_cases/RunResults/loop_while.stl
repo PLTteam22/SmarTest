@@ -8,9 +8,9 @@ Writing code to "Yylex.java"
 
 Compiling ...
 
-lex: found int
+lex: found void
 
-found type (int)
+found return_type
 lex: found whitespace or newline or tab
 
 lex: found id
@@ -24,8 +24,6 @@ lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
-lex: found whitespace or newline or tab
-
 lex: found int
 
 found type (int)
@@ -35,69 +33,7 @@ lex: found id
 
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
-lex: found individual char: ;
-
-found statement (int i;)
-found statements
-lex: found whitespace or newline or tab
-
-lex: found float
-
-found type (float)
-lex: found whitespace or newline or tab
-
-lex: found id
-
-Created Node of Type: IDNode
-Created Node of Type: DeclarationNode
-lex: found individual char: ;
-
-found statement (int i;)
-found statements
-lex: found whitespace or newline or tab
-
-lex: found float
-
-found type (float)
-lex: found whitespace or newline or tab
-
-lex: found id
-
-Created Node of Type: IDNode
-Created Node of Type: DeclarationNode
-lex: found whitespace or newline or tab
-
 lex: found individual char: =
-
-lex: found whitespace or newline or tab
-
-lex: found id
-
-lex: found individual char: +
-
-Created Node of Type: IDNode
-found a term
-found a relational_operand
-lex: found id
-
-lex: found individual char: ;
-
-Created Node of Type: IDNode
-found a term
-Created Node of Type: ArithmeticOperatorNode
-found a relational_operand (+)
-found a equality_operand
-found a boolean_operand
-found a not_boolean_operand
-found an expression (not boolean)
-found statement (int i=5;)
-Created Node of Type: AssignmentOperatorNode
-found statements
-lex: found whitespace or newline or tab
-
-lex: found return
-
-lex: found whitespace or newline or tab
 
 lex: found int_literal
 
@@ -111,9 +47,131 @@ found a equality_operand
 found a boolean_operand
 found a not_boolean_operand
 found an expression (not boolean)
-found optional_expression
-found statement (return)
-Created Node of Type: ReturnNode
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found int
+
+found type (int)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found individual char: =
+
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: ;
+
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found loop
+
+lex: found whitespace or newline or tab
+
+lex: found while
+
+lex: found whitespace or newline or tab
+
+lex: found individual char: (
+
+lex: found id
+
+lex: found >
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+found a equality_operand
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: )
+
+found a relational_operand
+found a equality_operand (GT)
+Created Node of Type: RelationalOperatorNode
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+lex: found individual char: {
+
+found statements
+Created Node of Type: StatementsNode
+lex: found id
+
+lex: found individual char: =
+
+lex: found id
+
+lex: found individual char: +
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: ;
+
+Created Node of Type: ArithmeticOperatorNode
+found a relational_operand (+)
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (i=5;)
+Created Node of Type: IDNode
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found id
+
+lex: found individual char: =
+
+lex: found id
+
+lex: found individual char: -
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+lex: found int_literal
+
+found a factor (int)
+Created Node of Type: LiteralNode
+found a term
+lex: found individual char: ;
+
+Created Node of Type: ArithmeticOperatorNode
+found a relational_operand (-)
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (i=5;)
+Created Node of Type: IDNode
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found individual char: }
+
+Created Node of Type: LoopNode
+found loop
+found statement (loop)
 found statements
 lex: found individual char: }
 
@@ -129,13 +187,9 @@ Type:int
 Var Name: _smartestVar_i
 Line Number: 3
 ** Inserting new variable into symbols table:
-Type:double
+Type:int
 Var Name: _smartestVar_j
 Line Number: 4
-** Inserting new variable into symbols table:
-Type:double
-Var Name: _smartestVar_k
-Line Number: 5
 
 Compiled successfully
 CODE OUTPUT --------------------------
@@ -144,12 +198,15 @@ public class STL {
 public static void main(String[] args) {
 _smartestFunction_main();
 }
-public static int _smartestFunction_main(  )
+public static void _smartestFunction_main(  )
 {
-int _smartestVar_i = 0;
-double _smartestVar_j = 0;
-double _smartestVar_k = _smartestVar_i + _smartestVar_j;
-return 99;
+int _smartestVar_i = 10;
+int _smartestVar_j = 1;
+while (_smartestVar_i > 0)
+{_smartestVar_j = _smartestVar_j + 1;
+_smartestVar_i = _smartestVar_i - 1;
+}
+
 }
 }
 
@@ -159,7 +216,6 @@ return 99;
 Symbols Table:
 
 Variable: j
-Variable: k
 Variable: i
 
 ========================

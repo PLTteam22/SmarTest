@@ -1,0 +1,118 @@
+2c2
+< Constructing NFA : 269 states in NFA
+---
+> Constructing NFA : 283 states in NFA
+4,5c4,5
+< ............................................................................................................................
+< 126 states before minimization, 116 states in minimized DFA
+---
+> ..........................................................................................................................
+> 124 states before minimization, 109 states in minimized DFA
+18c18
+< lex: found individual char
+---
+> lex: found individual char: (
+30c30
+< lex: found individual char
+---
+> lex: found individual char: ,
+44c44
+< lex: found individual char
+---
+> lex: found individual char: )
+47c47
+< lex: found individual char
+---
+> lex: found individual char: {
+61c61
+< lex: found individual char
+---
+> lex: found individual char: *
+73c73
+< lex: found individual char
+---
+> lex: found individual char: ;
+84c84
+< lex: found individual char
+---
+> lex: found individual char: }
+96c96
+< lex: found individual char
+---
+> lex: found individual char: (
+98c98
+< lex: found individual char
+---
+> lex: found individual char: )
+101c101
+< lex: found individual char
+---
+> lex: found individual char: {
+118c118
+< lex: found individual char
+---
+> lex: found individual char: =
+127c127
+< lex: found individual char
+---
+> lex: found individual char: ;
+150c150
+< lex: found individual char
+---
+> lex: found individual char: =
+159c159
+< lex: found individual char
+---
+> lex: found individual char: ;
+182c182
+< lex: found individual char
+---
+> lex: found individual char: =
+188c188
+< lex: found individual char
+---
+> lex: found individual char: (
+196c196
+< lex: found individual char
+---
+> lex: found individual char: ,
+205c205
+< lex: found individual char
+---
+> lex: found individual char: )
+211c211
+< lex: found individual char
+---
+> lex: found individual char: ;
+221c221
+< lex: found individual char
+---
+> lex: found individual char: }
+247c247
+< Type:float
+---
+> Type:double
+251a252,269
+> &&&&&&&&&&&&&&&&&&&& dble
+> CODE OUTPUT --------------------------
+> import java.util.ArrayList;
+> public class STL {
+> public static void main(String[] args) {
+> _smartestFunction_main();
+> }
+> public static double _smartestFunction_dble( int _smartestVar_i, int _smartestVar_j )
+> {
+> return _smartestVar_i * 2;
+> }
+> public static void _smartestFunction_main(  )
+> {
+> int _smartestVar_k = 3;
+> int _smartestVar_l = 9;
+> double _smartestVar_m = _smartestFunction_dble( 3, 9 );
+> }
+> }
+268a287,290
+> Variable: readline
+> Variable: printvar
+> Variable: load
+> Variable: print

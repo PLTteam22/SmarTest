@@ -8,9 +8,9 @@ Writing code to "Yylex.java"
 
 Compiling ...
 
-lex: found int
+lex: found void
 
-found type (int)
+found return_type
 lex: found whitespace or newline or tab
 
 lex: found id
@@ -24,8 +24,21 @@ lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
+lex: found boolean
+
+found type (boolean)
 lex: found whitespace or newline or tab
 
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found whitespace or newline or tab
+
+lex: found individual char: ;
+
+found statement (int i;)
+found statements
 lex: found int
 
 found type (int)
@@ -35,30 +48,15 @@ lex: found id
 
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
+lex: found whitespace or newline or tab
+
 lex: found individual char: ;
 
 found statement (int i;)
 found statements
-lex: found whitespace or newline or tab
+lex: found boolean
 
-lex: found float
-
-found type (float)
-lex: found whitespace or newline or tab
-
-lex: found id
-
-Created Node of Type: IDNode
-Created Node of Type: DeclarationNode
-lex: found individual char: ;
-
-found statement (int i;)
-found statements
-lex: found whitespace or newline or tab
-
-lex: found float
-
-found type (float)
+found type (boolean)
 lex: found whitespace or newline or tab
 
 lex: found id
@@ -71,49 +69,25 @@ lex: found individual char: =
 
 lex: found whitespace or newline or tab
 
-lex: found id
+lex: found not
 
-lex: found individual char: +
+lex: found whitespace or newline or tab
 
-Created Node of Type: IDNode
-found a term
-found a relational_operand
 lex: found id
 
 lex: found individual char: ;
 
 Created Node of Type: IDNode
 found a term
-Created Node of Type: ArithmeticOperatorNode
-found a relational_operand (+)
+found a relational_operand
 found a equality_operand
 found a boolean_operand
+found a not_boolean_operand
+Created Node of Type: NotBooleanOperandNode
 found a not_boolean_operand
 found an expression (not boolean)
 found statement (int i=5;)
 Created Node of Type: AssignmentOperatorNode
-found statements
-lex: found whitespace or newline or tab
-
-lex: found return
-
-lex: found whitespace or newline or tab
-
-lex: found int_literal
-
-found a factor (int)
-Created Node of Type: LiteralNode
-found a term
-lex: found individual char: ;
-
-found a relational_operand
-found a equality_operand
-found a boolean_operand
-found a not_boolean_operand
-found an expression (not boolean)
-found optional_expression
-found statement (return)
-Created Node of Type: ReturnNode
 found statements
 lex: found individual char: }
 
@@ -125,17 +99,17 @@ found optional_function_list
 found a program
 Created Node of Type: ProgramNode
 ** Inserting new variable into symbols table:
-Type:int
-Var Name: _smartestVar_i
+Type:boolean
+Var Name: _smartestVar_a
 Line Number: 3
 ** Inserting new variable into symbols table:
-Type:double
-Var Name: _smartestVar_j
+Type:int
+Var Name: _smartestVar_b
 Line Number: 4
 ** Inserting new variable into symbols table:
-Type:double
-Var Name: _smartestVar_k
-Line Number: 5
+Type:boolean
+Var Name: _smartestVar_c
+Line Number: 6
 
 Compiled successfully
 CODE OUTPUT --------------------------
@@ -144,12 +118,11 @@ public class STL {
 public static void main(String[] args) {
 _smartestFunction_main();
 }
-public static int _smartestFunction_main(  )
+public static void _smartestFunction_main(  )
 {
-int _smartestVar_i = 0;
-double _smartestVar_j = 0;
-double _smartestVar_k = _smartestVar_i + _smartestVar_j;
-return 99;
+boolean _smartestVar_a = false;
+int _smartestVar_b = 0;
+boolean _smartestVar_c = !_smartestVar_a ;
 }
 }
 
@@ -158,9 +131,9 @@ return 99;
 
 Symbols Table:
 
-Variable: j
-Variable: k
-Variable: i
+Variable: b
+Variable: c
+Variable: a
 
 ========================
 

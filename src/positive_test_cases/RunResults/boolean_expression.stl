@@ -8,9 +8,9 @@ Writing code to "Yylex.java"
 
 Compiling ...
 
-lex: found int
+lex: found void
 
-found type (int)
+found return_type
 lex: found whitespace or newline or tab
 
 lex: found id
@@ -24,65 +24,22 @@ lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
-lex: found whitespace or newline or tab
+lex: found boolean
 
-lex: found int
-
-found type (int)
-lex: found whitespace or newline or tab
-
-lex: found id
-
-Created Node of Type: IDNode
-Created Node of Type: DeclarationNode
-lex: found individual char: ;
-
-found statement (int i;)
-found statements
-lex: found whitespace or newline or tab
-
-lex: found float
-
-found type (float)
+found type (boolean)
 lex: found whitespace or newline or tab
 
 lex: found id
 
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
-lex: found individual char: ;
-
-found statement (int i;)
-found statements
-lex: found whitespace or newline or tab
-
-lex: found float
-
-found type (float)
-lex: found whitespace or newline or tab
-
-lex: found id
-
-Created Node of Type: IDNode
-Created Node of Type: DeclarationNode
-lex: found whitespace or newline or tab
-
 lex: found individual char: =
 
-lex: found whitespace or newline or tab
+lex: found bool_literal
 
-lex: found id
-
-lex: found individual char: *
-
-Created Node of Type: IDNode
-found a term
-lex: found float_literal
-
-found a factor (float)
+found a factor (bool)
 Created Node of Type: LiteralNode
-Created Node of Type: ArithmeticOperatorNode
-found a term (*)
+found a term
 lex: found individual char: ;
 
 found a relational_operand
@@ -93,60 +50,20 @@ found an expression (not boolean)
 found statement (int i=5;)
 Created Node of Type: AssignmentOperatorNode
 found statements
+lex: found boolean
+
+found type (boolean)
 lex: found whitespace or newline or tab
-
-lex: found loop
-
-lex: found whitespace or newline or tab
-
-lex: found while
-
-lex: found individual char: (
 
 lex: found id
 
-lex: found >
-
 Created Node of Type: IDNode
-found a term
-found a relational_operand
-found a equality_operand
-lex: found float_literal
+Created Node of Type: DeclarationNode
+lex: found individual char: =
 
-found a factor (float)
-Created Node of Type: LiteralNode
-found a term
-lex: found individual char: )
+lex: found bool_literal
 
-found a relational_operand
-found a equality_operand (GT)
-Created Node of Type: RelationalOperatorNode
-found a boolean_operand
-found a not_boolean_operand
-found an expression (not boolean)
-lex: found whitespace or newline or tab
-
-lex: found individual char: {
-
-found statements
-Created Node of Type: StatementsNode
-lex: found whitespace or newline or tab
-
-lex: found individual char: }
-
-Created Node of Type: LoopNode
-found loop
-found statement (loop)
-found statements
-lex: found whitespace or newline or tab
-
-lex: found return
-
-lex: found whitespace or newline or tab
-
-lex: found int_literal
-
-found a factor (int)
+found a factor (bool)
 Created Node of Type: LiteralNode
 found a term
 lex: found individual char: ;
@@ -156,12 +73,97 @@ found a equality_operand
 found a boolean_operand
 found a not_boolean_operand
 found an expression (not boolean)
-found optional_expression
-found statement (return)
-Created Node of Type: ReturnNode
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
 found statements
+lex: found boolean
+
+found type (boolean)
 lex: found whitespace or newline or tab
 
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found individual char: ;
+
+found statement (int i;)
+found statements
+lex: found id
+
+lex: found individual char: =
+
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found whitespace or newline or tab
+
+lex: found and
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found whitespace or newline or tab
+
+lex: found or
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (and)
+Created Node of Type: ExpressionNode
+lex: found whitespace or newline or tab
+
+lex: found not
+
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found whitespace or newline or tab
+
+lex: found and
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+Created Node of Type: NotBooleanOperandNode
+found a not_boolean_operand
+found an expression (or)
+Created Node of Type: ExpressionNode
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char: ;
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (and)
+Created Node of Type: ExpressionNode
+found statement (i=5;)
+Created Node of Type: IDNode
+Created Node of Type: AssignmentOperatorNode
+found statements
 lex: found individual char: }
 
 found function
@@ -172,17 +174,17 @@ found optional_function_list
 found a program
 Created Node of Type: ProgramNode
 ** Inserting new variable into symbols table:
-Type:int
-Var Name: _smartestVar_i
-Line Number: 3
-** Inserting new variable into symbols table:
-Type:double
-Var Name: _smartestVar_j
+Type:boolean
+Var Name: _smartestVar_a
 Line Number: 4
 ** Inserting new variable into symbols table:
-Type:double
-Var Name: _smartestVar_k
-Line Number: 5
+Type:boolean
+Var Name: _smartestVar_b
+Line Number: 6
+** Inserting new variable into symbols table:
+Type:boolean
+Var Name: _smartestVar_c
+Line Number: 8
 
 Compiled successfully
 CODE OUTPUT --------------------------
@@ -191,15 +193,12 @@ public class STL {
 public static void main(String[] args) {
 _smartestFunction_main();
 }
-public static int _smartestFunction_main(  )
+public static void _smartestFunction_main(  )
 {
-int _smartestVar_i = 0;
-double _smartestVar_j = 0;
-double _smartestVar_k = _smartestVar_i * 2.0;
-while (_smartestVar_k > 0.0)
-{}
-
-return 2;
+boolean _smartestVar_a = true;
+boolean _smartestVar_b = false;
+boolean _smartestVar_c = false;
+_smartestVar_c = _smartestVar_a && _smartestVar_b || !_smartestVar_a  && _smartestVar_a;
 }
 }
 
@@ -208,9 +207,9 @@ return 2;
 
 Symbols Table:
 
-Variable: j
-Variable: k
-Variable: i
+Variable: b
+Variable: c
+Variable: a
 
 ========================
 

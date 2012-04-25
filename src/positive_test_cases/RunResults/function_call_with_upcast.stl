@@ -27,6 +27,8 @@ lex: found id
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 found param_list
+lex: found whitespace or newline or tab
+
 lex: found individual char: ,
 
 lex: found whitespace or newline or tab
@@ -48,30 +50,49 @@ lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
+lex: found float
+
+found type (float)
 lex: found whitespace or newline or tab
 
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found individual char: =
+
+lex: found id
+
+lex: found individual char: +
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+lex: found id
+
+lex: found individual char: ;
+
+Created Node of Type: IDNode
+found a term
+Created Node of Type: ArithmeticOperatorNode
+found a relational_operand (+)
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
+found statements
 lex: found return
 
 lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found whitespace or newline or tab
-
-lex: found individual char: *
+lex: found individual char: ;
 
 Created Node of Type: IDNode
 found a term
-lex: found whitespace or newline or tab
-
-lex: found int_literal
-
-found a factor (int)
-Created Node of Type: LiteralNode
-Created Node of Type: ArithmeticOperatorNode
-found a term (*)
-lex: found individual char: ;
-
 found a relational_operand
 found a equality_operand
 found a boolean_operand
@@ -102,8 +123,6 @@ lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
-lex: found whitespace or newline or tab
-
 lex: found int
 
 found type (int)
@@ -113,11 +132,7 @@ lex: found id
 
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
-lex: found whitespace or newline or tab
-
 lex: found individual char: =
-
-lex: found whitespace or newline or tab
 
 lex: found int_literal
 
@@ -134,8 +149,6 @@ found an expression (not boolean)
 found statement (int i=5;)
 Created Node of Type: AssignmentOperatorNode
 found statements
-lex: found whitespace or newline or tab
-
 lex: found int
 
 found type (int)
@@ -145,11 +158,7 @@ lex: found id
 
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
-lex: found whitespace or newline or tab
-
 lex: found individual char: =
-
-lex: found whitespace or newline or tab
 
 lex: found int_literal
 
@@ -166,57 +175,29 @@ found an expression (not boolean)
 found statement (int i=5;)
 Created Node of Type: AssignmentOperatorNode
 found statements
-lex: found whitespace or newline or tab
-
-lex: found float
-
-found type (float)
-lex: found whitespace or newline or tab
-
-lex: found id
-
-Created Node of Type: IDNode
-Created Node of Type: DeclarationNode
-lex: found whitespace or newline or tab
-
-lex: found individual char: =
-
-lex: found whitespace or newline or tab
-
 lex: found id
 
 lex: found individual char: (
 
-lex: found int_literal
+lex: found id
 
-found a factor (int)
-Created Node of Type: LiteralNode
-found a factor_list
-Created Node of Type: FactorListNode
 lex: found individual char: ,
 
-lex: found whitespace or newline or tab
-
-lex: found int_literal
-
-found a factor (int)
-Created Node of Type: LiteralNode
+Created Node of Type: IDNode
 found a factor_list
+Created Node of Type: FactorListNode
+lex: found id
+
 lex: found individual char: )
 
+Created Node of Type: IDNode
+found a factor_list
 found an optional_factor_list
 found a function_call
 Created Node of Type: FunctionCallNode
-found a term
 lex: found individual char: ;
 
-found a relational_operand
-found a equality_operand
-found a boolean_operand
-found a not_boolean_operand
-found an expression (not boolean)
-found statement (int i=5;)
-Created Node of Type: AssignmentOperatorNode
+found statement (func call)
 found statements
 lex: found individual char: }
 
@@ -229,42 +210,43 @@ found a program
 Created Node of Type: ProgramNode
 ** Inserting new variable into symbols table:
 Type:double
-Var Name: _smartestVar_i
+Var Name: _smartestVar_a
 Line Number: 1
+** Inserting new variable into symbols table:
+Type:int
+Var Name: _smartestVar_b
+Line Number: 1
+** Inserting new variable into symbols table:
+Type:double
+Var Name: _smartestVar_c
+Line Number: 4
+** Inserting new variable into symbols table:
+Type:int
+Var Name: _smartestVar_i
+Line Number: 10
 ** Inserting new variable into symbols table:
 Type:int
 Var Name: _smartestVar_j
-Line Number: 1
-** Inserting new variable into symbols table:
-Type:int
-Var Name: _smartestVar_k
-Line Number: 7
-** Inserting new variable into symbols table:
-Type:int
-Var Name: _smartestVar_l
-Line Number: 8
-** Inserting new variable into symbols table:
-Type:double
-Var Name: _smartestVar_z
-Line Number: 9
+Line Number: 11
 
 Compiled successfully
-&&&&&&&&&&&&&&&&&&&& dble
+&&&&&&&&&&&&&&&&&&&& sum
 CODE OUTPUT --------------------------
 import java.util.ArrayList;
 public class STL {
 public static void main(String[] args) {
 _smartestFunction_main();
 }
-public static double _smartestFunction_dble( double _smartestVar_i, int _smartestVar_j )
+public static double _smartestFunction_sum( double _smartestVar_a, int _smartestVar_b )
 {
-return _smartestVar_i * 2;
+double _smartestVar_c = _smartestVar_a + _smartestVar_b;
+return _smartestVar_c;
 }
 public static void _smartestFunction_main(  )
 {
-int _smartestVar_k = 3;
-int _smartestVar_l = 9;
-double _smartestVar_z = _smartestFunction_dble( 3, 9 );
+int _smartestVar_i = 5;
+int _smartestVar_j = 4;
+_smartestFunction_sum( _smartestVar_i, _smartestVar_j );
 }
 }
 
@@ -273,19 +255,19 @@ double _smartestVar_z = _smartestFunction_dble( 3, 9 );
 
 Symbols Table:
 
-Variable: l
+Variable: b
+Variable: c
+Variable: a
 Variable: j
-Variable: z
-Variable: k
 Variable: i
 
 ========================
 
 Functions Table:
 
-Variable: dble
 Variable: readline
 Variable: printvar
+Variable: sum
 Variable: load
 Variable: print
 Variable: main
