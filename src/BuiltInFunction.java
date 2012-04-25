@@ -164,7 +164,7 @@ public class BuiltInFunction {
 	 *
 	 * @param x the int
 	 */
-	public static void printVar(int x) {
+	public static void printInteger(int x) {
 		System.out.println(x);
 	}
 
@@ -174,7 +174,7 @@ public class BuiltInFunction {
 	 *
 	 * @param x the char
 	 */
-	public static void printVar(char x) {
+	public static void printChar(char x) {
 		System.out.println(x);
 	}
 
@@ -184,19 +184,10 @@ public class BuiltInFunction {
 	 *
 	 * @param x the 
 	 */
-	public static void printVar(float x) {
+	public static void printFloat(float x) {
 		System.out.println(x);
 	}
 
-	// printVar for set and questions
-	/**
-	 * Prints the set and question variable
-	 *
-	 * @param x the object of type set/question
-	 */
-	public static void printVar(Object x) {
-		System.out.println(x);
-	}
 
 	// length of a set
 	/**
