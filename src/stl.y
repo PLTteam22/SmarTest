@@ -385,7 +385,7 @@ public static void main(String args[]) throws IOException
 
   yyparser.yyparse();
   
-  
+/*  
   System.out.println("\n========================\n");
   System.out.println("\nSymbols Table:\n");
   Iterator itr = Parser.symbolsTable.keySet().iterator();
@@ -401,5 +401,6 @@ public static void main(String args[]) throws IOException
   {
   	System.out.println("Variable: " + itr.next());
   }
+*/
 }
 
