@@ -186,27 +186,45 @@ public class BuiltInFunction {
 							System.out.println(s.getQuestionArrayList().get(i).getQuestionText()+"\n");
 							
 							for(int k=0;k<answerChoiceArrayList.size();k++){
-								System.out.println(answerChoiceArrayList.get(k).getText()+"\n");
+								System.out.println((k+1) + ") " + answerChoiceArrayList.get(k).getText()+"\n");
 							}
 							
-							// wait to read the input from user
-							System.out.print("Select Answer > ");
-							BufferedReader reader = new BufferedReader(
-									new InputStreamReader(System.in));
-							try {
-								inputAnswer = reader.readLine();
-							} catch (IOException e) {
-								e.printStackTrace();
-								System.out.println("Invalid Input");
-							}
-
-							// set the points obtained to points variable
-							for(int j=0 ; j<answerChoiceArrayList.size() ; j++){
-								if(inputAnswer.equals(answerChoiceArrayList.get(j).getText())){
-									points = answerChoiceArrayList.get(j).getPoints();
-								}
+							boolean validInput = false;
+							int intInputAnswer = 0;
+							while (! validInput)
+							{
+								// wait to read the input from user
+								System.out.print("Select Answer > ");
+								BufferedReader reader = new BufferedReader(
+										new InputStreamReader(System.in));
 								
+								
+								
+								try {
+									inputAnswer = reader.readLine();
+									try
+									{
+										intInputAnswer = Integer.parseInt(inputAnswer);
+									} catch (NumberFormatException ne) 
+									{
+										System.out.println("Enter a number between 1 and " + answerChoiceArrayList.size());
+										continue;
+									}
+									if (intInputAnswer < 1 || intInputAnswer > answerChoiceArrayList.size())
+										System.out.println("Enter a number between 1 and " + answerChoiceArrayList.size());
+									else
+										validInput = true;
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									System.out.println("Invalid Input");
+								}
+	
 							}
+							
+							
+							points = answerChoiceArrayList.get(intInputAnswer-1).getPoints();
+							
 							isDone = true;// break;
 						}
 						// check if the question is in the hashmap or not and
@@ -222,28 +240,44 @@ public class BuiltInFunction {
 							System.out.println(s.getQuestionArrayList().get(i).getQuestionText()+"\n");
 							
 							for(int k=0;k<answerChoiceArrayList.size();k++){
-								System.out.println(answerChoiceArrayList.get(k).getText()+"\n");
+								System.out.println((k+1) + ") " + answerChoiceArrayList.get(k).getText()+"\n");
 							}
 							
-							// wait to read the input from user
-							System.out.print("Select Answer > ");
-							BufferedReader reader = new BufferedReader(
-									new InputStreamReader(System.in));
-							try {
-								inputAnswer = reader.readLine();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-								System.out.println("Invalid Input");
-							}
-
-							// set the points obtained to points variable
-							for(int j=0 ; j<answerChoiceArrayList.size() ; j++){
-								if(inputAnswer.equals(answerChoiceArrayList.get(j).getText())){
-									points = answerChoiceArrayList.get(j).getPoints();
-								}
+							boolean validInput = false;
+							int intInputAnswer = 0;
+							while (! validInput)
+							{
+								// wait to read the input from user
+								System.out.print("Select Answer > ");
+								BufferedReader reader = new BufferedReader(
+										new InputStreamReader(System.in));
 								
+								
+								
+								try {
+									inputAnswer = reader.readLine();
+									try
+									{
+										intInputAnswer = Integer.parseInt(inputAnswer);
+									} catch (NumberFormatException ne) 
+									{
+										System.out.println("Enter a number between 1 and " + answerChoiceArrayList.size());
+										continue;
+									}
+									if (intInputAnswer < 1 || intInputAnswer > answerChoiceArrayList.size())
+										System.out.println("Enter a number between 1 and " + answerChoiceArrayList.size());
+									else
+										validInput = true;
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									System.out.println("Invalid Input");
+								}
+	
 							}
+							
+							
+							points = answerChoiceArrayList.get(intInputAnswer-1).getPoints();
 							
 							isDone = true;// break;
 						}
