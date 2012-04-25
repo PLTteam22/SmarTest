@@ -262,7 +262,7 @@ public class BuiltInFunction {
 	 *
 	 * @return the string
 	 */
-	public static String readline() {
+	public static String readLine() {
 		String input = null;
 		BufferedReader reader = new BufferedReader(
 				new InputStreamReader(System.in));
