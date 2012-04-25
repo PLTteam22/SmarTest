@@ -24,7 +24,7 @@ program : optional_function_list
         try
         {
         	((ASTNode)$$.obj).checkSemantics();
-        	System.out.println("\nCompiled successfully");
+//        	System.out.println("\nCompiled successfully");
         }
         catch (Exception e)
         {
@@ -350,7 +350,7 @@ public static void main(String args[]) throws IOException
   // parse a file
   yyparser = new Parser(new FileReader(args[0]));
 
-  System.out.println("\nCompiling ...\n");
+  //System.out.println("\nCompiling ...\n");
 
   ArrayList<String> paraList1 = new ArrayList<String>();
   paraList1.add("string");
