@@ -263,7 +263,17 @@ public class BuiltInFunction {
 	 * @return the string
 	 */
 	public static String readline() {
-		return null;
+		String input = null;
+		BufferedReader reader = new BufferedReader(
+				new InputStreamReader(System.in));
+		try {
+			input = reader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Invalid Input");
+		}
+		
+		return input;
 	}
 
 	// print
