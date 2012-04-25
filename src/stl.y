@@ -354,31 +354,41 @@ public static void main(String args[]) throws IOException
 
   ArrayList<String> paraList1 = new ArrayList<String>();
   paraList1.add("string");
-  functionSymbolsTable.put("print", new FunctionSymbolTableEntry("print", "_smartestfunction_print" , "void", paraList1));
+  functionSymbolsTable.put("print", new FunctionSymbolTableEntry("print", "BuiltInFunction.print" , "void", paraList1));
 
   ArrayList<String> paraList2 = new ArrayList<String>(); 
   paraList2.add("int");
-  functionSymbolsTable.put("printinteger", new FunctionSymbolTableEntry("printInteger", "_smartestfunction_printInteger" , "void", paraList2));
+  functionSymbolsTable.put("printinteger", new FunctionSymbolTableEntry("printInteger", "BuiltInFunction.printInteger" , "void", paraList2));
 
   ArrayList<String> paraList3 = new ArrayList<String>();
   paraList3.add("");
-  functionSymbolsTable.put("readline", new FunctionSymbolTableEntry("readLine", "_smartestfunction_readLine" , "string", paraList3));
+  functionSymbolsTable.put("readline", new FunctionSymbolTableEntry("readLine", "BuiltInFunction.readLine" , "string", paraList3));
 
   ArrayList<String> paraList4 = new ArrayList<String>();
   paraList4.add("string");
   paraList4.add("string");
   paraList4.add("string");
   paraList4.add("string");
-  functionSymbolsTable.put("load", new FunctionSymbolTableEntry("load", "_smartestfunction_load" , "set", paraList4));
+  functionSymbolsTable.put("load", new FunctionSymbolTableEntry("load", "BuiltInFunction.load" , "set", paraList4));
 
   ArrayList<String> paraList5 = new ArrayList<String>();
   paraList5.add("char");
-  functionSymbolsTable.put("printchar", new FunctionSymbolTableEntry("printChar", "_smartestfunction_printChar" , "void", paraList5));
+  functionSymbolsTable.put("printchar", new FunctionSymbolTableEntry("printChar", "BuiltInFunction.printChar" , "void", paraList5));
 
   ArrayList<String> paraList6 = new ArrayList<String>();
   paraList6.add("double");
-  functionSymbolsTable.put("printfloat", new FunctionSymbolTableEntry("printFloat", "_smartestfunction_printFloat" , "void", paraList6));
+  functionSymbolsTable.put("printfloat", new FunctionSymbolTableEntry("printFloat", "BuiltInFunction.printFloat" , "void", paraList6));
  
+
+  ArrayList<String> paraList7 = new ArrayList<String>();
+  paraList7.add("set");
+  functionSymbolsTable.put("askquestion", new FunctionSymbolTableEntry("askQuestion", "BuiltInFunction.askQuestion" , "int", paraList7));
+
+
+  ArrayList<String> paraList8 = new ArrayList<String>();
+  paraList8.add("set");
+  functionSymbolsTable.put("len", new FunctionSymbolTableEntry("len", "BuiltInFunction.len" , "int", paraList8));
+
 
   // Add 2 more pre-defined functions. 
 
