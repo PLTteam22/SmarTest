@@ -1,6 +1,9 @@
 void main()
 {
 
+	print("Enter your name: ");
+	string name = readLine();
+
 	set s = load("jdbc:mysql://localhost:8889/smartest", "root", "root", "math");
 	
 	print("Loaded ");
@@ -16,7 +19,8 @@ void main()
 		i = i + 1;
 	}
 
-	print("Exam Result: ");
+	print(name);
+	print("'s grade: ");
 	printInteger(total);
 	print("\n");
 
