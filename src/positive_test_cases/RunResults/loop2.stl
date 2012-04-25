@@ -1,8 +1,8 @@
 Reading "stl.flex"
-Constructing NFA : 269 states in NFA
+Constructing NFA : 283 states in NFA
 Converting NFA to DFA : 
-............................................................................................................................
-126 states before minimization, 116 states in minimized DFA
+..........................................................................................................................
+124 states before minimization, 109 states in minimized DFA
 Old file "Yylex.java" saved as "Yylex.java~"
 Writing code to "Yylex.java"
 
@@ -15,12 +15,12 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: (
 
-lex: found individual char
+lex: found individual char: )
 
 found optional_param_list
-lex: found individual char
+lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
@@ -35,7 +35,7 @@ lex: found id
 
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
-lex: found individual char
+lex: found individual char: ;
 
 found statement (int i;)
 found statements
@@ -50,7 +50,7 @@ lex: found id
 
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
-lex: found individual char
+lex: found individual char: ;
 
 found statement (int i;)
 found statements
@@ -67,13 +67,13 @@ Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 lex: found whitespace or newline or tab
 
-lex: found individual char
+lex: found individual char: =
 
 lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: *
 
 Created Node of Type: IDNode
 found a term
@@ -83,7 +83,7 @@ found a factor (float)
 Created Node of Type: LiteralNode
 Created Node of Type: ArithmeticOperatorNode
 found a term (*)
-lex: found individual char
+lex: found individual char: ;
 
 found a relational_operand
 found a equality_operand
@@ -101,7 +101,7 @@ lex: found whitespace or newline or tab
 
 lex: found while
 
-lex: found individual char
+lex: found individual char: (
 
 lex: found id
 
@@ -116,7 +116,7 @@ lex: found int_literal
 found a factor (int)
 Created Node of Type: LiteralNode
 found a term
-lex: found individual char
+lex: found individual char: )
 
 found a relational_operand
 found a equality_operand (GT)
@@ -126,7 +126,7 @@ found a not_boolean_operand
 found an expression (not boolean)
 lex: found whitespace or newline or tab
 
-lex: found individual char
+lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
@@ -134,11 +134,11 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: =
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: +
 
 Created Node of Type: IDNode
 found a term
@@ -148,7 +148,7 @@ lex: found int_literal
 found a factor (int)
 Created Node of Type: LiteralNode
 found a term
-lex: found individual char
+lex: found individual char: ;
 
 Created Node of Type: ArithmeticOperatorNode
 found a relational_operand (+)
@@ -162,7 +162,7 @@ Created Node of Type: AssignmentOperatorNode
 found statements
 lex: found whitespace or newline or tab
 
-lex: found individual char
+lex: found individual char: }
 
 Created Node of Type: LoopNode
 found loop
@@ -176,7 +176,7 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: ;
 
 Created Node of Type: IDNode
 found a term
@@ -191,7 +191,7 @@ Created Node of Type: ReturnNode
 found statements
 lex: found whitespace or newline or tab
 
-lex: found individual char
+lex: found individual char: }
 
 found function
 Created Node of Type: FunctionNode
@@ -205,15 +205,33 @@ Type:int
 Var Name: _smartestVar_i
 Line Number: 3
 ** Inserting new variable into symbols table:
-Type:float
+Type:double
 Var Name: _smartestVar_j
 Line Number: 4
 ** Inserting new variable into symbols table:
-Type:float
+Type:double
 Var Name: _smartestVar_k
 Line Number: 5
 
 Compiled successfully
+CODE OUTPUT --------------------------
+import java.util.ArrayList;
+public class STL {
+public static void main(String[] args) {
+_smartestFunction_main();
+}
+public static int _smartestFunction_main(  )
+{
+int _smartestVar_i = 0;
+double _smartestVar_j = 0;
+double _smartestVar_k = _smartestVar_i * 2.0;
+while (_smartestVar_i > 0)
+{_smartestVar_k = _smartestVar_k + 1;
+}
+
+return _smartestVar_i;
+}
+}
 
 ========================
 
@@ -228,4 +246,8 @@ Variable: i
 
 Functions Table:
 
+Variable: readline
+Variable: printvar
+Variable: load
+Variable: print
 Variable: main

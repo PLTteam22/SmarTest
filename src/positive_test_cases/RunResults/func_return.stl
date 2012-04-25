@@ -1,8 +1,8 @@
 Reading "stl.flex"
-Constructing NFA : 269 states in NFA
+Constructing NFA : 283 states in NFA
 Converting NFA to DFA : 
-............................................................................................................................
-126 states before minimization, 116 states in minimized DFA
+..........................................................................................................................
+124 states before minimization, 109 states in minimized DFA
 Old file "Yylex.java" saved as "Yylex.java~"
 Writing code to "Yylex.java"
 
@@ -15,7 +15,7 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: (
 
 lex: found int
 
@@ -27,7 +27,7 @@ lex: found id
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 found param_list
-lex: found individual char
+lex: found individual char: ,
 
 lex: found whitespace or newline or tab
 
@@ -41,10 +41,10 @@ lex: found id
 Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 found param_list
-lex: found individual char
+lex: found individual char: )
 
 found optional_param_list
-lex: found individual char
+lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
@@ -58,7 +58,7 @@ lex: found id
 
 lex: found whitespace or newline or tab
 
-lex: found individual char
+lex: found individual char: *
 
 Created Node of Type: IDNode
 found a term
@@ -70,7 +70,7 @@ found a factor (int)
 Created Node of Type: LiteralNode
 Created Node of Type: ArithmeticOperatorNode
 found a term (*)
-lex: found individual char
+lex: found individual char: ;
 
 found a relational_operand
 found a equality_operand
@@ -81,7 +81,7 @@ found optional_expression
 found statement (return)
 Created Node of Type: ReturnNode
 found statements
-lex: found individual char
+lex: found individual char: }
 
 found function
 Created Node of Type: FunctionNode
@@ -93,12 +93,12 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: (
 
-lex: found individual char
+lex: found individual char: )
 
 found optional_param_list
-lex: found individual char
+lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
@@ -115,7 +115,7 @@ Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 lex: found whitespace or newline or tab
 
-lex: found individual char
+lex: found individual char: =
 
 lex: found whitespace or newline or tab
 
@@ -124,7 +124,7 @@ lex: found int_literal
 found a factor (int)
 Created Node of Type: LiteralNode
 found a term
-lex: found individual char
+lex: found individual char: ;
 
 found a relational_operand
 found a equality_operand
@@ -147,7 +147,7 @@ Created Node of Type: IDNode
 Created Node of Type: DeclarationNode
 lex: found whitespace or newline or tab
 
-lex: found individual char
+lex: found individual char: =
 
 lex: found whitespace or newline or tab
 
@@ -156,7 +156,7 @@ lex: found int_literal
 found a factor (int)
 Created Node of Type: LiteralNode
 found a term
-lex: found individual char
+lex: found individual char: ;
 
 found a relational_operand
 found a equality_operand
@@ -170,7 +170,7 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: (
 
 lex: found int_literal
 
@@ -178,7 +178,7 @@ found a factor (int)
 Created Node of Type: LiteralNode
 found a factor_list
 Created Node of Type: FactorListNode
-lex: found individual char
+lex: found individual char: ,
 
 lex: found whitespace or newline or tab
 
@@ -187,16 +187,16 @@ lex: found int_literal
 found a factor (int)
 Created Node of Type: LiteralNode
 found a factor_list
-lex: found individual char
+lex: found individual char: )
 
 found an optional_factor_list
 found a function_call
 Created Node of Type: FunctionCallNode
-lex: found individual char
+lex: found individual char: ;
 
 found statement (func call)
 found statements
-lex: found individual char
+lex: found individual char: }
 
 found function
 Created Node of Type: FunctionNode
@@ -223,6 +223,24 @@ Var Name: _smartestVar_l
 Line Number: 8
 
 Compiled successfully
+&&&&&&&&&&&&&&&&&&&& dble
+CODE OUTPUT --------------------------
+import java.util.ArrayList;
+public class STL {
+public static void main(String[] args) {
+_smartestFunction_main();
+}
+public static double _smartestFunction_dble( int _smartestVar_i, int _smartestVar_j )
+{
+return _smartestVar_i * 2;
+}
+public static void _smartestFunction_main(  )
+{
+int _smartestVar_k = 3;
+int _smartestVar_l = 9;
+_smartestFunction_dble( 3, 9 );
+}
+}
 
 ========================
 
@@ -239,4 +257,8 @@ Variable: i
 Functions Table:
 
 Variable: dble
+Variable: readline
+Variable: printvar
+Variable: load
+Variable: print
 Variable: main

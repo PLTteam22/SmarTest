@@ -14,71 +14,108 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class FunctionCallNode extends ASTNode
-{
+public class FunctionCallNode extends ASTNode {
 
 	private String functionName;
 	private int length;
 	private HashMap<String, FunctionSymbolTableEntry> hashMap = Parser.functionSymbolsTable;
 	private FunctionSymbolTableEntry functionSymbolTableEntry;
 	private ArrayList<String> arrayList;
-	
-	FunctionCallNode(String functionName, ASTNode optionalFactorList, int yyline, int yycolumn)
-	{
+
+	FunctionCallNode(String functionName, ASTNode optionalFactorList,
+			int yyline, int yycolumn) {
 		super(yyline, yycolumn);
-		if(optionalFactorList!=null)
-		{
+		if (optionalFactorList != null) {
 			this.addChild(optionalFactorList);
 			this.setLength(optionalFactorList.getChildCount());
 		}
 		this.setFunctionName(functionName);
-		
-	}
-	
-	public void checkSemantics() throws Exception 
-	{
-			if (this.getChildCount() > 0)
-				this.getChildAt(0).checkSemantics();
 
-			if(!hashMap.containsKey(functionName.toLowerCase()))
-				throw new Exception("Function does not Exist: " + this.getYyline() + ":" + 
-						this.getYycolumn()+". Please declare the function first."); 
-				
-			else 
-			{
-				functionSymbolTableEntry = hashMap.get(functionName.toLowerCase());
-				
-				if(!(functionSymbolTableEntry.getParamTypes().size() == this.getLength()))
-					throw new Exception("Number of Parameters not consistent with function declaration: " + this.getYyline() + ":" + 
-							this.getYycolumn());
-				
-				else 
-				{
-					
-					arrayList  = functionSymbolTableEntry.getParamTypes();
-					for(int i = 0; i < arrayList.size(); i++)
-					{
-						if(arrayList.get(i).equalsIgnoreCase("float") & this.getChildAt(0).getChildAt(i).getType().equalsIgnoreCase("int"))
-							continue;
-						
-						else if(!arrayList.get(i).equalsIgnoreCase(this.getChildAt(0).getChildAt(i).getType()))
-						{
-							throw new Exception ("Parameter is of Incompatible Type: " + this.getYyline() + ":" + 
-									this.getYycolumn()+" See function definition.");
-							
-							
-						}
+	}
+
+	public void checkSemantics() throws Exception {
+		if (this.getChildCount() > 0)
+			this.getChildAt(0).checkSemantics();
+
+		if (!hashMap.containsKey(functionName.toLowerCase()))
+			throw new Exception("Function does not Exist: " + this.getYyline()
+					+ ":" + this.getYycolumn()
+					+ ". Please declare the function first.");
+
+		else {
+			functionSymbolTableEntry = hashMap.get(functionName.toLowerCase());
+
+			if (!(functionSymbolTableEntry.getParamTypes().size() == this
+					.getLength()))
+				throw new Exception(
+						"Number of Parameters not consistent with function declaration: "
+								+ this.getYyline() + ":" + this.getYycolumn());
+
+			else {
+
+				arrayList = functionSymbolTableEntry.getParamTypes();
+				for (int i = 0; i < arrayList.size(); i++) {
+					if (arrayList.get(i).equalsIgnoreCase("double")
+							& this.getChildAt(0).getChildAt(i).getType()
+							.equalsIgnoreCase("int"))
+						continue;
+
+					else if (!arrayList.get(i).equalsIgnoreCase(
+							this.getChildAt(0).getChildAt(i).getType())) {
+						throw new Exception(
+								"Parameter is of Incompatible Type: "
+										+ this.getYyline() + ":"
+										+ this.getYycolumn()
+										+ " See function definition.");
+
 					}
 				}
-				
 			}
-			this.setType(functionSymbolTableEntry.getReturnType());
+
+		}
+		this.setType(functionSymbolTableEntry.getReturnType());
 	}
 
-	
+
 	public StringBuffer generateCode() 
 	{
-			StringBuffer output = new StringBuffer();
+		StringBuffer output = new StringBuffer();
+		System.out.println("&&&&&&&&&&&&&&&&&&&& "+functionSymbolTableEntry.getID());
+
+		/*	switch(functionSymbolTableEntry.getID())
+			{
+				case "print": output.append("BuiltInFunction.print("+this.getChildAt(0).generateCode()+");");break;
+				case "load":break;
+				case "save":break;
+				case "printVar":break;
+				case "askQuestion":break;
+				case "len":break;
+				default: output.append(functionSymbolTableEntry.getJavaID());
+					 output.append("( ");
+					 if (getLength() > 0)
+					 {
+					 	output.append(this.getChildAt(0).generateCode());
+					 }
+					 output.append(" )");
+					 break;
+				return output;
+			}*/
+		if((functionSymbolTableEntry.getID()).equalsIgnoreCase("print"))
+		{
+			output.append("BuiltInFunction.print("+this.getChildAt(0).generateCode()+")");
+		}
+		else if((functionSymbolTableEntry.getID()).equalsIgnoreCase("load"))
+		{
+			FactorListNode list = (FactorListNode) this.getChildAt(0);
+			output.append("BuiltInFunction.load("
+					+ list.getChildAt(0).getSvalue() + ", "
+					+ list.getChildAt(1).getSvalue() + ", "
+					+ list.getChildAt(2).getSvalue() + ", "
+					+ list.getChildAt(3).getSvalue() + ")");
+
+		}
+		else
+		{
 			output.append(functionSymbolTableEntry.getJavaID());
 			output.append("( ");
 			if (getLength() > 0)
@@ -86,7 +123,9 @@ public class FunctionCallNode extends ASTNode
 				output.append(this.getChildAt(0).generateCode());
 			}
 			output.append(" )");
-			return output;
+		}
+		return output;
+
 	}
 
 	public int getLength() {
@@ -104,7 +143,5 @@ public class FunctionCallNode extends ASTNode
 	public void setFunctionName(String functionName) {
 		this.functionName = functionName;
 	}
-	
 
 }
-

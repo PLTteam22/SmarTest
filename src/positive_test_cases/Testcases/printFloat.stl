@@ -1,0 +1,7 @@
+int main()
+{
+float ch=2.3;
+printFloat(ch);
+printFloat(4.0);
+return 0;
+}

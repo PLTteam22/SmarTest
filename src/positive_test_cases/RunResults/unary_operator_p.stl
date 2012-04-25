@@ -1,0 +1,146 @@
+Reading "stl.flex"
+Constructing NFA : 283 states in NFA
+Converting NFA to DFA : 
+..........................................................................................................................
+124 states before minimization, 109 states in minimized DFA
+Old file "Yylex.java" saved as "Yylex.java~"
+Writing code to "Yylex.java"
+
+Compiling ...
+
+lex: found void
+
+found return_type
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char: (
+
+lex: found individual char: )
+
+found optional_param_list
+lex: found individual char: {
+
+found statements
+Created Node of Type: StatementsNode
+lex: found boolean
+
+found type (boolean)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found whitespace or newline or tab
+
+lex: found individual char: ;
+
+found statement (int i;)
+found statements
+lex: found int
+
+found type (int)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found whitespace or newline or tab
+
+lex: found individual char: ;
+
+found statement (int i;)
+found statements
+lex: found boolean
+
+found type (boolean)
+lex: found whitespace or newline or tab
+
+lex: found id
+
+Created Node of Type: IDNode
+Created Node of Type: DeclarationNode
+lex: found whitespace or newline or tab
+
+lex: found individual char: =
+
+lex: found whitespace or newline or tab
+
+lex: found not
+
+lex: found whitespace or newline or tab
+
+lex: found id
+
+lex: found individual char: ;
+
+Created Node of Type: IDNode
+found a term
+found a relational_operand
+found a equality_operand
+found a boolean_operand
+found a not_boolean_operand
+Created Node of Type: NotBooleanOperandNode
+found a not_boolean_operand
+found an expression (not boolean)
+found statement (int i=5;)
+Created Node of Type: AssignmentOperatorNode
+found statements
+lex: found individual char: }
+
+found function
+Created Node of Type: FunctionNode
+found function_list
+found optional_function_list
+
+found a program
+Created Node of Type: ProgramNode
+** Inserting new variable into symbols table:
+Type:boolean
+Var Name: _smartestVar_a
+Line Number: 3
+** Inserting new variable into symbols table:
+Type:int
+Var Name: _smartestVar_b
+Line Number: 4
+** Inserting new variable into symbols table:
+Type:boolean
+Var Name: _smartestVar_c
+Line Number: 6
+
+Compiled successfully
+CODE OUTPUT --------------------------
+import java.util.ArrayList;
+public class STL {
+public static void main(String[] args) {
+_smartestFunction_main();
+}
+public static void _smartestFunction_main(  )
+{
+boolean _smartestVar_a = false;
+int _smartestVar_b = 0;
+boolean _smartestVar_c = !_smartestVar_a ;
+}
+}
+
+========================
+
+
+Symbols Table:
+
+Variable: b
+Variable: c
+Variable: a
+
+========================
+
+Functions Table:
+
+Variable: readline
+Variable: printvar
+Variable: load
+Variable: print
+Variable: main

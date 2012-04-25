@@ -1,8 +1,8 @@
 Reading "stl.flex"
-Constructing NFA : 269 states in NFA
+Constructing NFA : 283 states in NFA
 Converting NFA to DFA : 
-............................................................................................................................
-126 states before minimization, 116 states in minimized DFA
+..........................................................................................................................
+124 states before minimization, 109 states in minimized DFA
 Old file "Yylex.java" saved as "Yylex.java~"
 Writing code to "Yylex.java"
 
@@ -15,16 +15,16 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: (
 
-lex: found individual char
+lex: found individual char: )
 
 found optional_param_list
-lex: found individual char
+lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
-lex: found individual char
+lex: found individual char: }
 
 found function
 Created Node of Type: FunctionNode
@@ -36,12 +36,12 @@ lex: found whitespace or newline or tab
 
 lex: found id
 
-lex: found individual char
+lex: found individual char: (
 
-lex: found individual char
+lex: found individual char: )
 
 found optional_param_list
-lex: found individual char
+lex: found individual char: {
 
 found statements
 Created Node of Type: StatementsNode
@@ -69,7 +69,7 @@ lex: found int_literal
 found a factor (int)
 Created Node of Type: LiteralNode
 found a term
-lex: found individual char
+lex: found individual char: ;
 
 found a relational_operand
 found a equality_operand (LT)
@@ -81,7 +81,7 @@ found optional_expression
 found statement (return)
 Created Node of Type: ReturnNode
 found statements
-lex: found individual char
+lex: found individual char: }
 
 found function
 Created Node of Type: FunctionNode
@@ -92,6 +92,20 @@ found a program
 Created Node of Type: ProgramNode
 
 Compiled successfully
+CODE OUTPUT --------------------------
+import java.util.ArrayList;
+public class STL {
+public static void main(String[] args) {
+_smartestFunction_main();
+}
+public static void _smartestFunction_main(  )
+{
+}
+public static boolean _smartestFunction_func1(  )
+{
+return 3 < 4;
+}
+}
 
 ========================
 
@@ -103,5 +117,9 @@ Symbols Table:
 
 Functions Table:
 
+Variable: readline
+Variable: printvar
+Variable: load
 Variable: func1
+Variable: print
 Variable: main

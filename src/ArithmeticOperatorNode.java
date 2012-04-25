@@ -103,28 +103,28 @@ public class ArithmeticOperatorNode extends ASTNode{
 		if(this.getChildCount() == 1)
 		{
 			if (!(this.getChildAt(0).getType().equalsIgnoreCase("int")
-					|| this.getChildAt(0).getType().equalsIgnoreCase("float"))) 
+					|| this.getChildAt(0).getType().equalsIgnoreCase("double"))) 
 			{
 				throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
 						this.getYycolumn()+"should be of the same type. Unary");
 			}	
-			if(this.getChildAt(0).getType().equals("float"))
-				this.setType("float");
+			if(this.getChildAt(0).getType().equals("double"))
+				this.setType("double");
 			else
 				this.setType("int");
 		}
 		else
 		{
 
-			if(!((this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))
-					&& (this.getChildAt(1).getType().equals("float") || this.getChildAt(1).getType().equals("int"))))
+			if(!((this.getChildAt(0).getType().equals("double") || this.getChildAt(0).getType().equals("int"))
+					&& (this.getChildAt(1).getType().equals("double") || this.getChildAt(1).getType().equals("int"))))
 			{
 				throw new Exception("Cannot do Arithmetic operation on "+this.getChildAt(0).getType()+ " & " + 
 						this.getChildAt(1).getType()+" on line "+ this.getYyline() + ":" + 
 						this.getYycolumn());
 			}
-			if(this.getChildAt(0).getType().equals("float") || this.getChildAt(1).getType().equals("float"))
-				this.setType("float");
+			if(this.getChildAt(0).getType().equals("double") || this.getChildAt(1).getType().equals("double"))
+				this.setType("double");
 			else
 				this.setType("int");
 		}
