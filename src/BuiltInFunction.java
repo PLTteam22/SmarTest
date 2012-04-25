@@ -27,7 +27,8 @@ import java.util.StringTokenizer;
 public class BuiltInFunction {
 
 	// load method
-	StlSetNode load(String connection_string, String userName, String password, String category){
+	StlSetNode load(String connection_string, String userName, String password, String category)
+	{
 		
 		Connection conn = null;
 		String driver = "com.mysql.jdbc.Driver";
@@ -101,20 +102,51 @@ public class BuiltInFunction {
 		}
 
 		String query = "INSERT INTO questions VALUES (NULL, ?, ?, ?, ?)";
-        PreparedStatement pst = conn.prepareStatement(query);
-        ResultSet rs = null;
+        PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(query);
 
-    	
-        for (int i = 0; i < set.getQuestionArrayList().size(); i++)
-        {
-        	
-        	Question q  = set.getQuestionArrayList().get(i);
-        	pst.setString(1, q);
-        	
-        	
-        	
-        }
+	    	
+	        for (int i = 0; i < set.getQuestionArrayList().size(); i++)
+	        {
+	        	
+	        	Question q  = set.getQuestionArrayList().get(i);
+	        	pst.setString(1, q.getQuestionCategory());
+	        	pst.setString(2, q.getQuestionText());
+	        	
+	        	String answersTexts = "";
+	        	String answersPoints = "";
+	        	for (int j = 0; j < q.getAnswers().size(); j++)
+	        	{
+	        		AnswerChoice answer = q.getAnswers().get(j);
+	        		answersTexts += answer.getText();
+	        		answersPoints += answer.getPoints();
+	        		
+	        		if (j < q.getAnswers().size() - 1)
+	        		{
+	        			answersTexts += "|||";
+	        			answersPoints += ",";
+	        		}
+	        		
+	        		
+	        	}
+	        	
+	        	pst.setString(3, answersTexts);
+	        	pst.setString(4, answersTexts);
+	        	
+	        	pst.execute();
+	        	
+	        }
+	        
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+
+	}
+	
+	
 	// askQuestion method
 	/**
 	 * Ask question.
