@@ -1,0 +1,8 @@
+int main()
+{
+int i=5;
+int j;
+int k=i+10;
+printInteger(k);
+return 0;
+}

@@ -1,0 +1,9 @@
+int main()
+{
+int i=10;
+if(i<=100)
+{
+print("i is less than 100\n");
+}
+return 0;
+}
