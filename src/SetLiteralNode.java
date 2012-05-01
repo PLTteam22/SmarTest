@@ -11,7 +11,8 @@ public class SetLiteralNode extends ASTNode
 	public void checkSemantics() throws Exception
         {
 		
-		
+		this.getChildAt(0).checkSemantics();
+                this.setType("set");
 	}
 
 

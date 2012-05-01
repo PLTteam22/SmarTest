@@ -10,7 +10,16 @@ public class QuestionListNode extends ASTNode
 	public void checkSemantics() throws Exception
         {
 		
-		
+		for (ASTNode question : this.getChildren())
+                {
+                        question.checkSemantics();
+                        if (!"question".equalsIgnoreCase(question.getType()))
+                        {
+                                throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
+					+ " expecting question, found: " + question.getType());
+                        }
+                }
+                
 	}
 
 
