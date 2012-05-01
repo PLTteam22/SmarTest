@@ -70,7 +70,10 @@ public class LiteralNode extends ASTNode {
 		else //char
 		{
 			output.append("'");
-			output.append(this.getCvalue());
+                        if (this.getCvalue() == '\\')
+                                output.append("\\\\");
+                        else
+			        output.append(this.getCvalue());
 			output.append("'");
 		}
 		return output;
