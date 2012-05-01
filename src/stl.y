@@ -81,10 +81,13 @@ statement : declaration ';' {  ((DeclarationNode)$1.obj).setIsStatement(true); $
 //| declaration '=' '[' question_list ']' ';' {$$ = new ParserVal(new AssignmentOperatorNode((DeclarationNode)$1.obj, (ASTNode)$4.obj, line, column)); } 
 
 
+optional_question_list : question_list { $$ = $1; }
+| /* empty */   { QuestionListNode ql = new QuestionListNode(line, column);  $$ = new ParserVal(ql); }
+
 question_list : question_list ',' expression {  ((QuestionListNode)$1.obj).addChild((ASTNode)$3.obj);  }
 | expression { QuestionListNode ql = new QuestionListNode(line, column); ql.addChild((ASTNode)$1.obj); $$ = new ParserVal(ql); }
 
-set_literal : '[' question_list ']' { SetLiteralNode sl = new SetLiteralNode((ASTNode)$2.obj, line, column); $$ = new ParserVal(sl); }
+set_literal : '[' optional_question_list ']' { SetLiteralNode sl = new SetLiteralNode((ASTNode)$2.obj, line, column); $$ = new ParserVal(sl); }
 
 set_insert : set_insert INSERT expression { ((ASTNode)$1.obj).addChild((ASTNode)$3.obj); $$ = $1; }
 | ID INSERT expression { $$ = new ParserVal(new InsertOperatorNode(new IDNode($1.sval, false, line, column), (ASTNode)$3.obj, line, column)); }

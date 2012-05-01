@@ -18,6 +18,11 @@ public class SetLiteralNode extends ASTNode
 
 	public StringBuffer generateCode()
         {
+                StringBuffer output = new StringBuffer();
+                
+                output.append("new StlSetNode(");
+                output.append(this.getChildAt(0).generateCode());
+                output.append(")");
 
 		/*StringBuffer output = new StringBuffer();
 		output.append("new Question(");
@@ -28,7 +33,7 @@ public class SetLiteralNode extends ASTNode
 		output.append(this.answerChoices.generateCode());
 		output.append(")");*/
 		
-		return null;
+		return output;
 
 		
 	}

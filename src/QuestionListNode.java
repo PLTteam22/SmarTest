@@ -25,7 +25,22 @@ public class QuestionListNode extends ASTNode
 
 	public StringBuffer generateCode()
         {
-
+                StringBuffer output = new StringBuffer();
+                output.append("new QuestionList(");
+                boolean first = true;
+                for (ASTNode question : this.getChildren())
+                {
+                        if (!first)
+                        {
+                                output.append(", ");      
+                        }
+                        else
+                        {
+                                first = false;
+                        }
+                        output.append(question.generateCode());
+                }
+                output.append(")");
 		/*StringBuffer output = new StringBuffer();
 		output.append("new Question(");
 		output.append(this.questionCategory.generateCode());
@@ -35,7 +50,7 @@ public class QuestionListNode extends ASTNode
 		output.append(this.answerChoices.generateCode());
 		output.append(")");*/
 		
-		return null;
+		return output;
 
 		
 	}
