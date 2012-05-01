@@ -92,9 +92,6 @@ NL    = \n | \r | \r\n
 ">"		 		{ yyparser.column += yytext().length();  return (Parser.GT);}
 
 
-"%" 				{ yyparser.column += yytext().length();  return (Parser.MOD);}
-
-
 /*
 "("				{ yyparser.column += yytext().length(); System.out.println("lex: found percent\n"); return (Parser.LPARAN);}
 
