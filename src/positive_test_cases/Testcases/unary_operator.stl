@@ -1,0 +1,9 @@
+void main(){
+
+boolean a ;
+int  b ;
+
+boolean c = NOT a;
+
+
+}

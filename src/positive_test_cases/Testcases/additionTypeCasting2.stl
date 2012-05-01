@@ -3,5 +3,6 @@ int main()
 	int i;
 	float j;
 	float k = i+2.0;
+	printFloat(k);
 	return 4;
 }

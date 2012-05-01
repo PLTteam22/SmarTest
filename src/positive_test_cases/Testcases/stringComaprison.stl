@@ -1,0 +1,14 @@
+int main()
+{
+string str1="hi";
+string str2="hi";
+if(str1==str2)
+{
+print("Both the string are equal");
+}
+else
+{
+print("Strings are not equal");
+}
+return 0;
+}

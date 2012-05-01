@@ -1,0 +1,6 @@
+int main()
+{
+int x=10;
+printInteger(x MOD 4);
+return 0;
+}
