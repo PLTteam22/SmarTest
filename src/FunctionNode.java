@@ -70,7 +70,7 @@ public class FunctionNode extends ASTNode
         {
         		StringBuffer output = new StringBuffer();
         		StringBuffer statementsOutput;
-        		FunctionSymbolTableEntry entry = Parser.functionSymbolsTable.get(identifier);
+        		FunctionSymbolTableEntry entry = Parser.functionSymbolsTable.get(identifier.toLowerCase());
         		if (entry == null)
         			return null;
         		
