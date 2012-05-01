@@ -45,21 +45,25 @@ public class InsertOperatorNode extends ASTNode {
 	 */
 	@Override
 	public void checkSemantics() throws Exception {
-		getSet().checkSemantics();
-		question.checkSemantics();
+
+		for (ASTNode child : this.getChildren())
+                {
+                        child.checkSemantics();
+                }
 		
 		if (! getSet().getType().equals("set"))
 		{
 			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
 					+ " insert operator << left operand must be a set, found: " + getSet().getType());
 		}
-
-		if (! question.getType().equals("question"))
-		{
-			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
-					+ " insert operator << right operand must be a question, found: " + question.getType());
+                for (ASTNode quest : this.getChildren())
+                {
+		        if (quest != getSet() && !"question".equalsIgnoreCase(quest.getType()))
+		        {
+		        	throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
+					+ " insert operator << right operand must be a question, found: " + quest.getType());
+		        }
 		}
-		
 		this.setType("set");
 		
 
