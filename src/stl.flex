@@ -72,6 +72,8 @@ NL    = \n | \r | \r\n
 [sS][tT][rR][iI][nN][gG]                    { yyparser.column += yytext().length();  return (Parser.STRING);}
 
 
+[mM][oO][dD]			{ yyparser.column += yytext().length();  return (Parser.MOD);}
+
 "<<"                            { yyparser.column += yytext().length();  return (Parser.INSERT);}
 
 
