@@ -15,8 +15,6 @@
  */
 public class InsertOperatorNode extends ASTNode {
 
-	private ASTNode set;
-	private ASTNode question;
 	
 	/**
 	 * Instantiates an insert operator node, invoked by this grammar production:
@@ -30,8 +28,6 @@ public class InsertOperatorNode extends ASTNode {
 		super(yyline, yycolumn);
 		this.addChild(set);
 		this.addChild(question);
-		this.setSet(set);
-		this.question = question;
 		
 	}
 
@@ -51,7 +47,7 @@ public class InsertOperatorNode extends ASTNode {
                         child.checkSemantics();
                 }
 		
-		if (! getSet().getType().equals("set"))
+		if (! "set".equalsIgnoreCase(getSet().getType()))
 		{
 			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + " "
 					+ " insert operator << left operand must be a set, found: " + getSet().getType());
@@ -77,7 +73,7 @@ public class InsertOperatorNode extends ASTNode {
 	public StringBuffer generateCode() {
 		
 		StringBuffer output = new StringBuffer();
-                ASTNode setID = this.getChildAt(0);
+                ASTNode setID = getSet();
                 output.append(setID.generateCode());
                 for (ASTNode questionE : this.getChildren())
                 {
@@ -93,33 +89,14 @@ public class InsertOperatorNode extends ASTNode {
 		return output;
 	}
 
-	/**
-	 * @return the question
-	 */
-	public ASTNode getQuestion() {
-		return question;
-	}
-
-	/**
-	 * @param question the question to set
-	 */
-	public void setQuestion(ASTNode question) {
-		this.question = question;
-	}
 
 	/**
 	 * @return the set
 	 */
 	public ASTNode getSet() {
-		return set;
+		return this.getChildAt(0);
 	}
 
-	/**
-	 * @param set the set to set
-	 */
-	public void setSet(ASTNode set) {
-		this.set = set;
-	}
 
 	
 }
