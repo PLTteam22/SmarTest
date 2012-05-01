@@ -1,0 +1,10 @@
+int main()
+{
+int i=4;
+float f=4.5;
+if(i>f)
+{
+print("Could should not reach here");
+}
+return 0;
+}

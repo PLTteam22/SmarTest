@@ -408,6 +408,10 @@ public static void main(String args[]) throws IOException
   paraList9.add("set");
   functionSymbolsTable.put("save", new FunctionSymbolTableEntry("save", "BuiltInFunction.save" , "void", paraList9));
 
+  ArrayList<String> paraList10 = new ArrayList<String>();
+  paraList10.add("boolean");
+  functionSymbolsTable.put("printboolean", new FunctionSymbolTableEntry("printBoolean", "BuiltInFunction.printBoolean" , "void", paraList6));
+
 
   // Add 2 more pre-defined functions. 
 

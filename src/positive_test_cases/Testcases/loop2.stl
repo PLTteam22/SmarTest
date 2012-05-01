@@ -1,11 +1,14 @@
 int main()
 {
-	int i;
+	int i=2;
 	float j;
 	float k = i*2.0;
-	loop while(i>0)
+	loop while(k>0)
 	{
-		k=k+1;
+		k=k-1;
+		print("k is - ");
+		printFloat(k);
+		print("\n");		
 	}
 	return i;
 		

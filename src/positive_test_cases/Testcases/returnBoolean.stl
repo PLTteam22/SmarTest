@@ -1,0 +1,14 @@
+%%%
+func1 has a return type of boolean and the expression it returns evaluates
+to a boolean as expected. This program should compile.
+
+%%%
+
+void main()
+{
+}
+
+boolean func1()
+{
+        return 3 < 4;
+}

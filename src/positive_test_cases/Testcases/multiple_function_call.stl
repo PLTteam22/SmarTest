@@ -26,5 +26,6 @@ int n = 6;
 int result3;
 
 result3 = func1(m,n);
-
+print("Result is ");
+printInteger(result3);
 }

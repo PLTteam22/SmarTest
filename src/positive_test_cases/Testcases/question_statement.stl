@@ -1,7 +1,6 @@
 int main()
 {
 
-
 question q= $"Math-Easy":"What is 5*4?"["20":10, "9":-4, "10":0]$;
 return 0;
 

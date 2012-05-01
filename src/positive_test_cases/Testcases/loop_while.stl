@@ -9,4 +9,7 @@ j=j+1;
 i=i-1;
 
 }
+print("i and j are repectively - ");
+printInteger(i);
+printInteger(j);
 }

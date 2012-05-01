@@ -1,0 +1,18 @@
+void main()
+{
+int i=6;
+if(i>6)
+{
+
+i=i+1;
+
+}
+else
+{
+
+i=i-1;
+
+}
+printInteger(i);
+}
+

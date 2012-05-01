@@ -1,0 +1,13 @@
+void main(){
+string str;
+string str1;
+if(str == str1)
+{
+print("Two strings are equal");
+}
+char c;
+int i=5; int k=7 ;
+float j =  i + k;
+
+
+}

@@ -5,6 +5,7 @@ int main()
 	float k = i*2.0;
 	loop while(k>0.0)
 	{
+		print("Code in the loop");
 	}
 	return 2;
 		
