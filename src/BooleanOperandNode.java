@@ -82,16 +82,36 @@ public class BooleanOperandNode extends ASTNode{
 		StringBuffer output =  new StringBuffer();
 		if(this.equality==1)
 		{
-			output.append(this.getChildAt(0).generateCode());
-			output.append(" == ");
-			output.append(this.getChildAt(1).generateCode());
+			if(!this.getChildAt(0).getType().equalsIgnoreCase("string"))
+			{	
+				output.append(this.getChildAt(0).generateCode());
+				output.append(" == ");
+				output.append(this.getChildAt(1).generateCode());
+			}
+			else
+			{
+				output.append(this.getChildAt(0).generateCode());
+				output.append(".equalsIgnoreCase(");
+				output.append(this.getChildAt(1).generateCode());
+				output.append(")");
+			}
 		}
-		
 		else if(this.equality==0)
 		{
-			output.append(this.getChildAt(0).generateCode());
-			output.append(" != ");
-			output.append(this.getChildAt(1).generateCode());
+			if(!this.getChildAt(0).getType().equalsIgnoreCase("string"))
+			{
+				output.append(this.getChildAt(0).generateCode());
+				output.append(" != ");
+				output.append(this.getChildAt(1).generateCode());
+			}
+			else
+			{
+				output.append("!");
+				output.append(this.getChildAt(0).generateCode());
+				output.append(".equalsIgnoreCase(");
+				output.append(this.getChildAt(1).generateCode());
+				output.append(")");
+			}
 		}
 			
 		return output;
