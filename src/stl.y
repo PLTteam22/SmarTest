@@ -258,7 +258,7 @@ factor : INTLITERAL {  $$ = new ParserVal(new LiteralNode("int",(Object) $1.ival
 | ID 					{ $$ = new ParserVal(new IDNode($1.sval, false, line, column)); }
 | question_literal 		{ $$ = $1; }
 | set_literal           { $$ = $1; }
-| '(' expression ')'	{ $$ = $2; }  	
+| '(' expression ')'	{ $$ = new ParserVal(new ParenthesesNode((ASTNode)$2.obj, line, column)); }  	
 | function_call			{ $$ = $1; }
 
 function_call : ID '(' optional_factor_list ')' {  $$ = new ParserVal(new FunctionCallNode($1.sval, (FactorListNode)$3.obj, line,column)); }
