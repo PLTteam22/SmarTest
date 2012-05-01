@@ -1,0 +1,5 @@
+flex stl.flex>dump
+rm dump
+./yacc.linux -J stl.y
+javac Parser.java>dump
+rm dump
