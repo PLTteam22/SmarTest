@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class StlSetNode {
 	
 	/** The Question array list. */
-	ArrayList<Question> QuestionArrayList = new ArrayList<Question>();
+	ArrayList<Question> QuestionArrayList;
 	
 	
 	//hashmap to store info about a question is asked or not
@@ -20,6 +20,15 @@ public class StlSetNode {
 	HashMap<Question, Boolean> QuestionIsAskedHM = new HashMap<Question, Boolean>();
 
 	
+        public StlSetNode()
+        {
+                QuestionArrayList = new ArrayList<Question>();
+        }
+
+        public StlSetNode(QuestionList ql)
+        {
+                QuestionArrayList = ql.getQuestions();
+        }
 	/**
 	 * Gets the question array list.
 	 *

@@ -1,0 +1,2 @@
+java Parser $1>STL.java
+javac STL.java

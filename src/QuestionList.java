@@ -3,32 +3,31 @@ import java.util.ArrayList;
 
 public class QuestionList {
 
-	private ArrayList<Question> qlist = new ArrayList<Question>();
+	private ArrayList<Question> qList = new ArrayList<Question>();
 	
 	
 	public QuestionList(Question ... list)
 	{
 		for (int i = 0; i < list.length; i++)	
 		{
-			this.getQuestionList().add(list[i]);
+			qList.add(list[i]);
 		}
 	}
 
 
-	/**
-	 * @return the choices
-	 */
-	public ArrayList<AnswerChoice> getQuestionList() {
+	public ArrayList<Question> getQuestionList()
+        {
 		return qList;
 	}
 
 
-	/**
-	 * @param choices the choices to set
-	 */
-	public void setQuestionList(ArrayList<Question> list) {
+	public void setQuestionList(ArrayList<Question> list)
+        {
 		this.qList = list;
 	}
-
+        public ArrayList<Question> getQuestions()
+        {
+                return qList;
+        }
 	
 }
