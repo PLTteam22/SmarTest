@@ -1,0 +1,12 @@
+void mAiN()
+{
+        FUnc1();
+}
+
+vOId fuNC1()
+{
+        iNt hELlo = 6;
+        HEllo = 9;
+        int j = hellO;
+        stRIng g = "";
+}
