@@ -267,12 +267,12 @@ optional_factor_list : factor_list {  $$ = $1; }
 | /* empty */ { $$= new ParserVal(null); }
 
 
-factor_list: factor_list ',' factor { 
+factor_list: factor_list ',' expression { 
 					
                                         ((FactorListNode)$1.obj).addChild((ASTNode)$3.obj); 
 					$$ = $1;
 				    }
-| factor  { 
+| expression  { 
 		
 		$$ = new ParserVal(new FactorListNode((ASTNode)$1.obj, line, column)); 
 	}
