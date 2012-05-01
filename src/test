@@ -2,6 +2,7 @@ PTC="positive_test_cases"
 NTC="negative_test_cases"
 exitStatus=0
 
+echo "Testing..."
 for f in $( ls $PTC/Testcases);
 do
 
@@ -43,5 +44,3 @@ done
 #                break
 #        fi
 #done
-rm positive_test_cases/Testcases/*.java
-rm positive_test_cases/Testcases/*.class
