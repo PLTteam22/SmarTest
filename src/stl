@@ -1,1 +1,1 @@
-java STL
+java -cp .:positive_test_cases/Testcases/ $1

@@ -1,2 +1,24 @@
-java Parser $1>STL.java
-javac STL.java
+echo $1 >> sample1
+echo $1 >> sample2
+var="."
+if [[ "$1" == */* ]]
+then
+  var=`cut -d '/' -f 1-2 sample1`	
+#  echo "It's there!";
+fi
+cut -d '/' -f3 sample2 >> sample
+rm sample1
+rm sample2
+filename=$(cut -d '.' -f1 sample)
+laststring=$(cut -d '.' -f2 sample)
+rm sample
+#echo $laststring
+if [ "$laststring" != "stl" ] 
+then
+echo "Filename should end with .stl"
+exit 1
+fi
+#rm sample
+#echo $var/$filename.java
+java Parser $1>$var/$filename.java
+javac $var/$filename.java
