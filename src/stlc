@@ -21,4 +21,8 @@ fi
 #rm sample
 #echo $var/$filename.java
 java Parser $1>$var/$filename.java
+exitstatus=$?
+  if [ $exitstatus = 0 ]
+then
 javac $var/$filename.java
+ fi

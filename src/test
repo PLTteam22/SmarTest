@@ -8,7 +8,8 @@ do
 # Run the test case with runstl.sh and store it in a temporary file
         ./stlc $PTC/Testcases/$f > $PTC/RunResults/error
         exitStatus=$?
-
+	if [[ "$1" == *.stl* ]]
+then
 	if [ $exitStatus = 0 ] 
 then
 #		echo "$exitStatus is what is passed"
@@ -18,6 +19,7 @@ then
 	else
 		echo "$f - a positive test case failed"
 		break
+	fi
 	fi
 done 
 
