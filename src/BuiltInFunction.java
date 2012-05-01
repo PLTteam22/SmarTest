@@ -347,6 +347,16 @@ public class BuiltInFunction {
 	public static void printFloat(double x) {
 		System.out.print(x);
 	}
+	
+	// printVar for Boolean
+		/**
+		 * Prints the Boolean variable
+		 *
+		 * @param x the 
+		 */
+		public static void printBoolean(Boolean x) {
+			System.out.print(x);
+		}
 
 
 	// length of a set
