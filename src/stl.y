@@ -365,7 +365,7 @@ public static void main(String args[]) throws IOException
  
   // parse a file
   yyparser = new Parser(new FileReader(args[0]));
-  INPUT_FILE = args[0];
+  INPUT_FILE = new File(args[0]).getName();
   int lastIndex = INPUT_FILE.lastIndexOf('.');
   if (lastIndex != -1)
   {
