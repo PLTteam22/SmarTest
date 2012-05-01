@@ -1,6 +1,6 @@
 void main()
 {
 
-int i=4*5/6MOD10;
+int i=4*5/6MOD 10;
 
 }
