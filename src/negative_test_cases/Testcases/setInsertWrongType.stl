@@ -1,0 +1,8 @@
+void main()
+{
+        Set s = [];
+        Question q1;
+        Question q2;
+        Question q3;
+        s << q1 << q2 << $"Math-Easy":"What is 5*4?"["20":10, "9":-4, "10":0]$ << q3 << []; %% cannot only insert a question into a set
+}

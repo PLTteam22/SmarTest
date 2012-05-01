@@ -1,0 +1,13 @@
+void main()
+{
+        Set j;
+        Set k;
+        Question q1;
+        Question q2;
+        Question q3;
+        Set l = [q1, $"Math-Easy":"What is 5*4?"["20":10, "9":-4, "10":0]$, q3];
+        Set n = [];
+        k = [q2];
+        k = [];
+        k = [q1, q2];
+}

@@ -71,8 +71,9 @@ public class StlSetNode {
 	 * Add question literal node to set
 	 * @param q the question literal node
 	 */
-	void addQuestion(Question q){
+	StlSetNode addQuestion(Question q){
 		this.getQuestionArrayList().add(q);
+                return this;
 	}
 		
 	//mark if the question is asked from the set or not
