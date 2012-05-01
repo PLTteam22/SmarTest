@@ -6,10 +6,11 @@ for f in $( ls $PTC/Testcases);
 do
 
 # Run the test case with runstl.sh and store it in a temporary file
-        ./stlc $PTC/Testcases/$f > $PTC/RunResults/error
+#	if [[ "$f" == *.stl* ]]
+#then
+        ./runstl.sh $PTC/Testcases/$f > $PTC/RunResults/error
         exitStatus=$?
-	if [[ "$1" == *.stl* ]]
-then
+#	echo "$exitStatus is what is passed"
 	if [ $exitStatus = 0 ] 
 then
 #		echo "$exitStatus is what is passed"
@@ -20,7 +21,7 @@ then
 		echo "$f - a positive test case failed"
 		break
 	fi
-	fi
+#	fi
 done 
 
 
@@ -42,3 +43,5 @@ done
 #                break
 #        fi
 #done
+rm positive_test_cases/Testcases/*.java
+rm positive_test_cases/Testcases/*.class
