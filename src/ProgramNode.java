@@ -28,7 +28,7 @@ public class ProgramNode extends ASTNode
         	
         	output.append("public class " + file_name + " {\n");
         	output.append("public static void main(String[] args) {\n");
-        	output.append("_smartestFunction_main();\n}\n");
+        	output.append("_smartestFunction_" + Parser.functionSymbolsTable.get("main").getID() + "();\n}\n");
             for (ASTNode function : this.getChildren())
             {
                     output.append(function.generateCode());

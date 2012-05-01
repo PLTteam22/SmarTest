@@ -30,7 +30,11 @@ public class IDNode extends ASTNode {
 	 */
 	@Override
 	public void checkSemantics() throws Exception {
-                boolean inSymbolTable = Parser.symbolsTable.containsKey(this.name);
+                String lowerCase = null;
+                if (this.name != null)
+                        lowerCase = this.name.toLowerCase();
+                boolean inSymbolTable = Parser.symbolsTable.containsKey(lowerCase);
+
                 if (!isDeclaration)
                 {
                         if (! inSymbolTable)
@@ -38,7 +42,7 @@ public class IDNode extends ASTNode {
 		                throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " + 
 								"cannot find symbol: " + this.name + " make sure variable has been declared");
 		        }
-		        this.setType(Parser.symbolsTable.get(this.name)[0]);
+		        this.setType(Parser.symbolsTable.get(lowerCase)[0]);
                 }
                 else
                 {
@@ -49,7 +53,7 @@ public class IDNode extends ASTNode {
         		if (inSymbolTable)
         		{
         			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": variable " + name +
-        								" has already been declared at line " + Parser.symbolsTable.get(name)[2]);
+        								" has already been declared at line " + Parser.symbolsTable.get(lowerCase)[2]);
         		}
 		
 
@@ -64,7 +68,10 @@ public class IDNode extends ASTNode {
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		StringBuffer output = new StringBuffer();
-		String[] symbolTableEntry = Parser.symbolsTable.get(name);
+                String lowerCase = null;
+                if (name != null)
+                        lowerCase = name.toLowerCase();
+		String[] symbolTableEntry = Parser.symbolsTable.get(lowerCase);
 		if (symbolTableEntry != null)
 		{
 			output.append(symbolTableEntry[1]);

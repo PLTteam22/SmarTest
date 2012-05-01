@@ -57,7 +57,7 @@ public class DeclarationNode extends ASTNode {
 		
 		
 		
-		Parser.symbolsTable.put(this.getIdNode().getName(), data);
+		Parser.symbolsTable.put(this.getIdNode().getName().toLowerCase(), data);
                 this.getChildAt(0).setType(getDeclaredType());
 
 
@@ -69,7 +69,7 @@ public class DeclarationNode extends ASTNode {
 	public StringBuffer generateCode() 
 	{
 		StringBuffer output =  new StringBuffer();
-		String[] data = Parser.symbolsTable.get(this.getIdNode().getName());
+		String[] data = Parser.symbolsTable.get(this.getIdNode().getName().toLowerCase());
 		
 		String javaType = data[0];
 		if (javaType == "question")
