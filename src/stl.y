@@ -32,7 +32,7 @@ program : optional_function_list
         	e.printStackTrace();
 		System.exit(1);
         }
-        ((ASTNode)$$.obj).generateCode();
+        ((ProgramNode)$$.obj).generateCode(INPUT_FILE);
 }
 
 optional_function_list : function_list {  $$ = $1; }
@@ -283,6 +283,7 @@ factor_list: factor_list ',' factor {
 * Variables
 ***************************************/
 private Yylex lexer;
+private static String INPUT_FILE;
 public int line = 1, column;
 public static boolean DEBUG = false;
 
@@ -364,6 +365,15 @@ public static void main(String args[]) throws IOException
  
   // parse a file
   yyparser = new Parser(new FileReader(args[0]));
+  INPUT_FILE = args[0];
+  int lastIndex = INPUT_FILE.lastIndexOf('.');
+  if (lastIndex != -1)
+  {
+        if (lastIndex == INPUT_FILE.length() - 1)
+                INPUT_FILE = INPUT_FILE.substring(0, INPUT_FILE.length() - 1);
+        else
+                INPUT_FILE = INPUT_FILE.substring(0, lastIndex);
+  }
 
   //System.out.println("\nCompiling ...\n");
 

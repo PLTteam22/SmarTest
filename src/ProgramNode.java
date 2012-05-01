@@ -21,12 +21,12 @@ public class ProgramNode extends ASTNode
                 }
 
         }
-        public StringBuffer generateCode()
+        public StringBuffer generateCode(String file_name)
         {
         	StringBuffer output = new StringBuffer();
         	output.append("import java.util.ArrayList;\n");
         	
-        	output.append("public class STL {\n");
+        	output.append("public class " + file_name + " {\n");
         	output.append("public static void main(String[] args) {\n");
         	output.append("_smartestFunction_main();\n}\n");
             for (ASTNode function : this.getChildren())
@@ -39,6 +39,10 @@ public class ProgramNode extends ASTNode
         	System.out.println(output);
         	
                 return null;
+        }
+        public StringBuffer generateCode()
+        {
+                return generateCode("STL");
         }
         
 }
