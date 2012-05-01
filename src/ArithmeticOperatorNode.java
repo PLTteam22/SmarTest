@@ -105,8 +105,8 @@ public class ArithmeticOperatorNode extends ASTNode{
 			if (!(this.getChildAt(0).getType().equalsIgnoreCase("int")
 					|| this.getChildAt(0).getType().equalsIgnoreCase("double"))) 
 			{
-				throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
-						this.getYycolumn()+"should be of the same type. Unary");
+				throw new Exception("Invalid operand on line " + this.getYyline() + ":" + 
+						this.getYycolumn()+ " cannot compute unary minus on type " + this.getChildAt(0).getType());
 			}	
 			if(this.getChildAt(0).getType().equals("double"))
 				this.setType("double");
