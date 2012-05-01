@@ -1,0 +1,9 @@
+void main()
+{
+        func1(3 MOD (9 MOD 10), func1(3 + 4 + 5, 99));
+}
+
+int func1(int i, int j)
+{
+        return i + j;
+}
