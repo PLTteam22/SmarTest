@@ -69,6 +69,7 @@ public class BooleanOperandNode extends ASTNode{
 		if(!((this.getChildAt(0).getType().equals("double") || this.getChildAt(0).getType().equals("int"))
                                         && (this.getChildAt(1).getType().equals("double") || this.getChildAt(1).getType().equals("int"))))
 		{
+			if(!(this.getChildAt(0).getType().equalsIgnoreCase("string") && this.getChildAt(1).getType().equalsIgnoreCase("string")))
 			throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 
 						this.getYycolumn()+". Left is of type "+this.getChildAt(0).getType()+
 						" and Right operand is of type "+this.getChildAt(1).getType());
