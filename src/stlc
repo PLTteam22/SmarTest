@@ -29,8 +29,6 @@ cp smartest.jar stl_tmp/
 cd stl_tmp/
 jar -xf smartest.jar 
 rm -rf META-INF
-echo "Manifest-Version: 1.0" > manifest
-echo "Main-Class: $filename" >> manifest
 rm -f smartest.jar
 
 javac $filename.java
@@ -39,7 +37,10 @@ rm -f $filename.java
 jar -xf mysql-connector-java-5.1.19-bin.jar 
 rm -rf META-INF
 rm -r mysql-connector-java-5.1.19-bin.jar 
-jar -cmf manifest ../$filname.jar $filename.class org/* com/* smartest/*.class
+
+echo "Manifest-Version: 1.0" > manifest
+echo "Main-Class: $filename" >> manifest
+jar -cmf manifest ../$filename.jar $filename.class org/* com/* smartest/*.class
 cd ..
 rm -rf stl_tmp
 
