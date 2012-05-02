@@ -53,7 +53,6 @@ class RelationalOperatorNode extends ASTNode {
 		   this.getChildAt(0).checkSemantics();
 		   this.getChildAt(1).checkSemantics();
 
-	
 			if(!((this.getChildAt(0).getType().equals("double") || this.getChildAt(0).getType().equals("int"))
 					&& (this.getChildAt(1).getType().equals("double") || this.getChildAt(1).getType().equals("int"))))
 			{
