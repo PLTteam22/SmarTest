@@ -40,7 +40,8 @@ rm -r mysql-connector-java-5.1.19-bin.jar
 
 echo "Manifest-Version: 1.0" > manifest
 echo "Main-Class: $filename" >> manifest
-jar -cmf manifest ../$filename.jar $filename.class org/* com/* smartest/*.class
+jar -cmf manifest $filename.jar $filename.class org/* com/* smartest/*.class
+mv $filename.jar ../
 cd ..
 rm -rf stl_tmp
 
