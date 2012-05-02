@@ -89,9 +89,33 @@ public class AssignmentOperatorNode extends ASTNode {
 	public StringBuffer generateCode() {
 		// TODO Auto-generated method stub
 		StringBuffer output = new StringBuffer();
-		output.append(this.getChildAt(0).generateCode());
-		output.append(" = ");
-		output.append(this.getChildAt(1).generateCode());
+		if(this.isDeclaration)
+		{
+			
+			if(this.getChildAt(0) instanceof DeclarationNode)
+				((DeclarationNode)this.getChildAt(0)).setIsStatement(true);
+				
+			output.append(this.getChildAt(0).generateCode());
+			
+			output.append(";");
+			output.append("try {");
+			output.append(this.getChildAt(0).getChildAt(0).generateCode());
+			output.append(" = ");
+			output.append(this.getChildAt(1).generateCode());
+			output.append(";");
+			output.append("}");
+			output.append("\n");
+			output.append("catch(Exception e) {");
+			output.append("System.out.println(\"SmarTest: Error found at line: ");
+			output.append(this.getChildAt(0).getYyline());
+			output.append(" \"+e.getMessage()); }");
+		}	
+		else
+		{
+			output.append(this.getChildAt(0).generateCode());
+			output.append(" = ");
+			output.append(this.getChildAt(1).generateCode());
+		}
 		return output;
 	}
 
