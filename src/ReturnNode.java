@@ -39,6 +39,15 @@ public class ReturnNode extends ASTNode{
 	public StringBuffer generateCode() 
 	{
 		StringBuffer output = new StringBuffer();
+                if (this.getChildAt(0) != null)
+                {
+                        output.append(this.getChildAt(0).getType());
+                        output.append(" temp_var = ");
+                        output.append(initialValueForType(this.getChildAt(0).getType()));
+                        output.append(";\ntry {\ntemp_var = ");
+                        output.append(this.getChildAt(0).generateCode());
+                        output.append(";\n} catch (Expression e) {\n throw new Exception(
+                }
 		output.append("return ");
 		if (this.getChildAt(0) != null)
 			output.append(this.getChildAt(0).generateCode());
