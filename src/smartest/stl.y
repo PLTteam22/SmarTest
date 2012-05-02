@@ -423,7 +423,7 @@ public static void main(String args[]) throws IOException
 
   ArrayList<String> paraList10 = new ArrayList<String>();
   paraList10.add("boolean");
-  functionSymbolsTable.put("printboolean", new FunctionSymbolTableEntry("printBoolean", "BuiltInFunction.printBoolean" , "void", paraList6));
+  functionSymbolsTable.put("printboolean", new FunctionSymbolTableEntry("printBoolean", "BuiltInFunction.printBoolean" , "void", paraList10));
 
 
   // Add 2 more pre-defined functions. 
