@@ -20,9 +20,29 @@ exit 1
 fi
 #rm sample
 #echo $var/$filename.java
-java Parser $1>$var/$filename.java
+mkdir stl_tmp
+java -cp smartest.jar smartest.Parser $1>stl_tmp/$filename.java
 exitstatus=$?
-  if [ $exitstatus = 0 ]
+if [ $exitstatus = 0 ]
 then
-javac $var/$filename.java
- fi
+cp smartest.jar stl_tmp/
+cd stl_tmp/
+jar -xf smartest.jar 
+rm -rf META-INF
+rm -f smartest.jar
+
+javac $filename.java
+rm -f $filename.java
+
+jar -xf mysql-connector-java-5.1.19-bin.jar 
+rm -rf META-INF
+rm -r mysql-connector-java-5.1.19-bin.jar 
+
+echo "Manifest-Version: 1.0" > manifest
+echo "Main-Class: $filename" >> manifest
+jar -cmf manifest $filename.jar $filename.class org/* com/* smartest/*.class
+mv $filename.jar ../
+cd ..
+rm -rf stl_tmp
+
+fi
