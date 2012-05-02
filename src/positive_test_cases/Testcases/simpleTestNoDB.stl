@@ -1,0 +1,10 @@
+void main()
+{
+        question q1 = $"Some category":"What is 5*4?"["20":10, "9":-4, "10":0]$;
+        set s = [q1];
+        int points = askQuestion(s);
+        print("You received: ");
+        printInteger(points);
+        print(" points!\n");
+
+}
