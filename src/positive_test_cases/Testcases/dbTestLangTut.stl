@@ -1,0 +1,79 @@
+void main()
+
+{
+
+set Math_Easy = load("jdbc:mysql://localhost:3306/smartest", "root", "root", "Easy");
+
+%% Loads Math-Easy questions from repository “smartest” into set
+
+%% math_easy
+
+set Math_Difficult = load("jdbc:mysql://localhost:3306/smartest", "root", "root", "Difficult");%% similar to theprevious statement
+
+print("set created...");
+
+question q1 = $"Easy":"What is 1+1?" ["2":5, "3":-4, "5":-5]$;
+question q2 = $"Easy":"What is 2+2?" ["2":5, "3":-4, "5":-5]$;
+question q3 = $"Easy":"What is 3+3?" ["2":5, "3":-4, "5":-5]$;
+question q4 = $"Easy":"What is 4+4?" ["2":5, "3":-4, "5":-5]$;
+
+question q5 = $"Difficult":"What is MD1?" ["2":5, "3":-4, "5":-5]$;
+question q6 = $"Difficult":"What is MD2?" ["2":5, "3":-4, "5":-5]$;
+question q7 = $"Difficult":"What is MD3?" ["2":5, "3":-4, "5":-5]$;
+
+ %% Defines new question q
+
+Math_Easy = [ q1,q2,q3,q4]; %% Loads question q into set math_easy
+Math_Difficult = [ q5,q6,q7];
+
+int i;
+
+int total_score = 0;
+
+int len1 = len(Math_Easy);
+
+int len2 = len(Math_Difficult);
+
+int count;
+
+if(len1>len2)
+{
+
+count=len1;
+
+}
+
+else
+{
+
+count=len2;
+
+}
+
+loop while (i < count)
+
+{
+
+if (total_score < 50)
+
+{
+
+total_score = total_score + askQuestion(Math_Easy);
+
+}
+
+else
+
+{
+
+total_score = total_score + askQuestion(Math_Difficult);
+
+}
+
+i = i + 1;
+
+}
+
+print("Total Score: ");
+printFloat(total_score);
+}

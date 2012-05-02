@@ -1,5 +1,9 @@
+cd smartest
 flex stl.flex>dump
 rm dump
-./yacc.linux -J stl.y
-javac Parser.java>dump
+../yacc.linux -Jpackage=smartest stl.y
+cd ..
+javac smartest/Parser.java>dump
 rm dump
+jar -cf smartest.jar mysql-connector-java-5.1.19-bin.jar smartest/*
+rm smartest/*.class
