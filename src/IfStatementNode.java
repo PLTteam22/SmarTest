@@ -67,8 +67,8 @@ public class IfStatementNode extends ASTNode implements NoSemiColonStatement{
 		{	
 			this.getChildAt(0).checkSemantics();
 			this.getChildAt(1).checkSemantics();
-                        if ("return".equalsIgnoreCase(this.getChildAt(1).getType()))
-                                this.setType("return");
+                       // if ("return".equalsIgnoreCase(this.getChildAt(1).getType()))
+                       //         this.setType("return");
 		}
 		else if(this.getChildCount()==3)
 		{	
