@@ -73,7 +73,7 @@ public class StlSetNode {
 	 * Add question literal node to set
 	 * @param q the question literal node
 	 */
-	StlSetNode addQuestion(Question q){
+	public StlSetNode addQuestion(Question q){
 		this.getQuestionArrayList().add(q);
                 return this;
 	}
@@ -85,7 +85,7 @@ public class StlSetNode {
 	 * @param s the stlset node
 	 * @param q the question literal node
 	 */
-	void markIsCheckedTrue(StlSetNode s, Question q){
+	public void markIsCheckedTrue(StlSetNode s, Question q){
 		s.getQuestionIsAskedHM().put(q, true);
 		
 	}
