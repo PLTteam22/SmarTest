@@ -3,12 +3,14 @@ NTC="negative_test_cases"
 exitStatus=0
 
 echo "Testing..."
+echo "Begin positive test cases..."
 for f in $( ls $PTC/Testcases);
 do
 
 # Run the test case with runstl.sh and store it in a temporary file
 #	if [[ "$f" == *.stl* ]]
 #then
+#        echo "testing postive: $f"
         ./runstl.sh $PTC/Testcases/$f > $PTC/RunResults/error
         exitStatus=$?
 #	echo "$exitStatus is what is passed"
@@ -24,23 +26,29 @@ then
 	fi
 #	fi
 done 
+echo "All positive test cases passed"
 
-
-#for f in $( ls $NTC/Testcases);
-#do
+echo "Begin negative test cases..."
+for f in $( ls $NTC/Testcases);
+do
 
 # Run the test case with runstl.sh and store it in a temporary file
-#        ./runstl.sh $NTC/Testcases/$f > $NTC/RunResults/error
-#        exitStatus=$?
+        if [[ "$f" == *.stl ]]
+then
+#        echo "testing negative: $f"
+        ./runstl.sh $NTC/Testcases/$f > $NTC/RunResults/error
+        exitStatus=$?
 
-#        if [ $exitStatus != 0 ] 
-#then
+        if [ $exitStatus != 0 ] 
+then
 #               echo "$exitStatus is what is passed"
 # calculate the differences with previous test output for the same file
-#               diff $NTC/RunResults/$f $NTC/RunResults/error > $NTC/Differences/$f
-#                mv $NTC/RunResults/error $NTC/RunResults/$f
-#        else
-#                echo "$f - a negative test case succeeded"
-#                break
-#        fi
-#done
+               diff $NTC/RunResults/$f $NTC/RunResults/error > $NTC/Differences/$f
+                mv $NTC/RunResults/error $NTC/RunResults/$f
+        else
+                echo "$f - a negative test case succeeded"
+                break
+        fi
+        fi
+done
+echo "All negative test cases failed"
