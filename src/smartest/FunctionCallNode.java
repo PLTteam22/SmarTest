@@ -58,7 +58,7 @@ public class FunctionCallNode extends ASTNode {
 				arrayList = functionSymbolTableEntry.getParamTypes();
 				for (int i = 0; i < arrayList.size(); i++) {
 					if (arrayList.get(i).equalsIgnoreCase("float")
-							& this.getChildAt(0).getChildAt(i).getType()
+							&& this.getChildAt(0).getChildAt(i).getType()
 							.equalsIgnoreCase("int"))
 						continue;
 
