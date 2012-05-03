@@ -1,0 +1,13 @@
+void main()
+{
+        length();
+}
+
+int length()
+{
+        int switch = 3;
+        float new = 9.0;
+        float double = 4.0;
+        int short = 5;
+        return 9;
+}
