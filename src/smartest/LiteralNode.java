@@ -60,7 +60,18 @@ public class LiteralNode extends ASTNode {
 		}
 		else if(type.equalsIgnoreCase("float"))
 		{
-			output.append(this.getDvalue());
+                        if (this.getDvalue() == Double.POSITIVE_INFINITY)
+                        {
+                                output.append("Double.POSITIVE_INFINITY");
+                        }
+                        else if (this.getDvalue() == Double.NEGATIVE_INFINITY)
+                        {
+                                output.append("Double.NEGATIVE_INFINITY");
+                        }
+                        else
+                        {
+			        output.append(this.getDvalue());
+                        }
 		}
 		else if(type.equalsIgnoreCase("string"))
 		{
