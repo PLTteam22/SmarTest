@@ -32,7 +32,7 @@ public class ReturnNode extends ASTNode{
 
 			if (!returnType.equalsIgnoreCase(returnExpressionType))
 			{
-                                if(!("double".equalsIgnoreCase(returnType) && "int".equalsIgnoreCase(returnExpressionType)))
+                                if(!("float".equalsIgnoreCase(returnType) && "int".equalsIgnoreCase(returnExpressionType)))
 				        throw new Exception("Expecting return type " + returnType + " not " + returnExpressionType);
 			}
                         this.setType("return");
@@ -42,7 +42,10 @@ public class ReturnNode extends ASTNode{
 		StringBuffer output = new StringBuffer();
                 if (this.getChildAt(0) != null)
                 {
-                        output.append(this.getChildAt(0).getType());
+                        String type = this.getChildAt(0).getType();
+                        if ("float".equalsIgnoreCase(type))
+                                type = "double";
+                        output.append(type);
                         output.append(" temp_var = ");
                         output.append(initialValueForType(this.getChildAt(0).getType()));
                         output.append(";\ntry {\ntemp_var = ");
@@ -67,7 +70,7 @@ public class ReturnNode extends ASTNode{
         {
                 if ("string".equalsIgnoreCase(type))
                         return "\"\"";
-                if ("double".equalsIgnoreCase(type))
+                if ("float".equalsIgnoreCase(type))
                         return "" + 0.0;
                 if ("int".equalsIgnoreCase(type))
                         return "" + 0;

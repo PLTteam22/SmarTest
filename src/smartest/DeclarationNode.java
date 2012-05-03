@@ -77,6 +77,8 @@ public class DeclarationNode extends ASTNode {
 			javaType = "Question";
 		else if (javaType == "set")
 			javaType = "StlSetNode";
+                else if (javaType == "float")
+                        javaType = "double";
 		
 		output.append(javaType+" ");
 		output.append(this.getChildAt(0).generateCode());
@@ -90,7 +92,7 @@ public class DeclarationNode extends ASTNode {
                         {
                                 output.append(" = false");
                         }
-                        else if ("double".equalsIgnoreCase(getType()))
+                        else if ("float".equalsIgnoreCase(getType()))
                         {
                                 output.append(" = 0");
                         }

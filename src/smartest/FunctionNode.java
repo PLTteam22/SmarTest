@@ -78,6 +78,8 @@ public class FunctionNode extends ASTNode
         		
         		
         		output.append("public static ");
+                        if ("float".equalsIgnoreCase(rtrnType))
+                                rtrnType = "double";
         		output.append(rtrnType);
         		output.append(" ");
         		output.append(entry.getJavaID());

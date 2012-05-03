@@ -93,7 +93,7 @@ set_insert : set_insert INSERT expression { ((ASTNode)$1.obj).addChild((ASTNode)
 | ID INSERT expression { $$ = new ParserVal(new InsertOperatorNode(new IDNode($1.sval, false, line, column), (ASTNode)$3.obj, line, column)); }
 
 type : INT {  $$ = new ParserVal("int"); }
-| FLOAT {  $$ = new ParserVal("double"); }
+| FLOAT {  $$ = new ParserVal("float"); }
 | CHAR {  $$ = new ParserVal("char"); }
 | BOOLEAN {  $$ = new ParserVal("boolean"); }
 | STRING {  $$ = new ParserVal("String"); } 
@@ -251,7 +251,7 @@ term : term '*' factor
 
 
 factor : INTLITERAL {  $$ = new ParserVal(new LiteralNode("int",(Object) $1.ival, line, column)); }
-| FLOATLITERAL {  $$ = new ParserVal(new LiteralNode("double", (Object) $1.dval, line, column)); }
+| FLOATLITERAL {  $$ = new ParserVal(new LiteralNode("float", (Object) $1.dval, line, column)); }
 | CHARLITERAL {  $$ = new ParserVal(new LiteralNode("char", (Object) $1.ival,line, column)); }
 | STRINGLITERAL {  $$ = new ParserVal(new LiteralNode("String", (Object) $1.sval, line, column));}
 | BOOLLITERAL {  $$ = new ParserVal(new LiteralNode("boolean", (Object) $1.sval,line, column)); }		// Do checking for true and false ignoreCase
@@ -400,7 +400,7 @@ public static void main(String args[]) throws IOException
   functionSymbolsTable.put("printchar", new FunctionSymbolTableEntry("printChar", "BuiltInFunction.printChar" , "void", paraList5));
 
   ArrayList<String> paraList6 = new ArrayList<String>();
-  paraList6.add("double");
+  paraList6.add("float");
   functionSymbolsTable.put("printfloat", new FunctionSymbolTableEntry("printFloat", "BuiltInFunction.printFloat" , "void", paraList6));
  
 

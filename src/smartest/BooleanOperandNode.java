@@ -67,8 +67,8 @@ public class BooleanOperandNode extends ASTNode{
 		this.getChildAt(1).checkSemantics();
 		
 		//if (! this.getChildAt(0).getType().equals(this.getChildAt(1).getType()))
-		if(!((this.getChildAt(0).getType().equals("double") || this.getChildAt(0).getType().equals("int"))
-                                        && (this.getChildAt(1).getType().equals("double") || this.getChildAt(1).getType().equals("int"))))
+		if(!((this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))
+                                        && (this.getChildAt(1).getType().equals("float") || this.getChildAt(1).getType().equals("int"))))
 		{
 			if(!(this.getChildAt(0).getType().equalsIgnoreCase("string") && this.getChildAt(1).getType().equalsIgnoreCase("string")))
 			throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + 

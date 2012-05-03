@@ -104,28 +104,28 @@ public class ArithmeticOperatorNode extends ASTNode{
 		if(this.getChildCount() == 1)
 		{
 			if (!(this.getChildAt(0).getType().equalsIgnoreCase("int")
-					|| this.getChildAt(0).getType().equalsIgnoreCase("double"))) 
+					|| this.getChildAt(0).getType().equalsIgnoreCase("float"))) 
 			{
 				throw new Exception("Invalid operand on line " + this.getYyline() + ":" + 
 						this.getYycolumn()+ " cannot compute unary minus on type " + this.getChildAt(0).getType());
 			}	
-			if(this.getChildAt(0).getType().equals("double"))
-				this.setType("double");
+			if(this.getChildAt(0).getType().equals("float"))
+				this.setType("float");
 			else
 				this.setType("int");
 		}
 		else
 		{
 
-			if(!((this.getChildAt(0).getType().equals("double") || this.getChildAt(0).getType().equals("int"))
-					&& (this.getChildAt(1).getType().equals("double") || this.getChildAt(1).getType().equals("int"))))
+			if(!((this.getChildAt(0).getType().equals("float") || this.getChildAt(0).getType().equals("int"))
+					&& (this.getChildAt(1).getType().equals("float") || this.getChildAt(1).getType().equals("int"))))
 			{
 				throw new Exception("Cannot do Arithmetic operation on "+this.getChildAt(0).getType()+ " & " + 
 						this.getChildAt(1).getType()+" on line "+ this.getYyline() + ":" + 
 						this.getYycolumn());
 			}
-			if(this.getChildAt(0).getType().equals("double") || this.getChildAt(1).getType().equals("double"))
-				this.setType("double");
+			if(this.getChildAt(0).getType().equals("float") || this.getChildAt(1).getType().equals("float"))
+				this.setType("float");
 			else
 				this.setType("int");
 		}
