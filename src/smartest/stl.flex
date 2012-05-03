@@ -147,8 +147,14 @@ NL    = \n | \r | \r\n
 
 
 [0-9]+ 				{
-					
-					yyparser.yylval = new ParserVal(Integer.parseInt(yytext())); 
+					yyparser.yylval = new ParserVal(0);
+                                        try {
+					        yyparser.yylval = new ParserVal(Integer.parseInt(yytext())); 
+                                        }
+                                        catch (NumberFormatException e)
+                                        {
+                                                throw new Error("Invalid int literal at line: " + yyparser.line);
+                                        }
 					return (Parser.INTLITERAL);
 				}
 
@@ -168,7 +174,13 @@ NL    = \n | \r | \r\n
 
 [0-9]+\.[0-9]+          	{	
 					
-					yyparser.yylval = new ParserVal(Double.parseDouble(yytext())); 
+                                        yyparser.yylval = new ParserVal(0.0);
+                                        try {			
+                                                yyparser.yylval = new ParserVal(Double.parseDouble(yytext()));
+                                        } catch (NumberFormatException e)
+                                        {
+                                                throw new Error("Invalid float literal at line: " + yyparser.line);
+                                        }
 					return (Parser.FLOATLITERAL);
 				}
 

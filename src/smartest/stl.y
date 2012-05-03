@@ -345,6 +345,10 @@ private int yylex()
   {
     System.err.println("IO error: " + e.getMessage());
   }
+  catch (Error ex)
+  {
+    System.out.println(ex.getMessage());
+  }
   
   return yyl_return;
 }
