@@ -108,9 +108,9 @@ public class AssignmentOperatorNode extends ASTNode {
 			output.append("}");
 			output.append("\n");
 			output.append("catch(Exception e) {");
-			output.append("System.out.println(\"SmarTest: Error found at line: ");
+			output.append("System.out.println(\"SmarTest: Runtime error found at line: ");
 			output.append(this.getChildAt(0).getYyline());
-			output.append(" \"+e.getMessage()); }");
+			output.append(" (\"+e.getMessage() + \")\"); \nSystem.exit(0);\n}");
 		}	
 		else
 		{

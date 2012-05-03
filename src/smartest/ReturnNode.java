@@ -47,11 +47,12 @@ public class ReturnNode extends ASTNode{
                         output.append(initialValueForType(this.getChildAt(0).getType()));
                         output.append(";\ntry {\ntemp_var = ");
                         output.append(this.getChildAt(0).generateCode());
-                        output.append(";\n} catch (Expression e) {\n System.out.println(\"SmarTest: Runtime error at line: " + getYyline() + " \" \" + e.getMessage() + \"); System.exit(0);}");
+                        output.append(";\n} catch (Exception e) {\n System.out.println(\"SmarTest: Runtime error at line: " + getYyline() + " (\" + e.getMessage() + \")\"); \nSystem.exit(0);}");
                 }
 		output.append("return ");
 		if (this.getChildAt(0) != null)
 			output.append("temp_var");
+
 		return output;
 	}
 	public String getReturnType()

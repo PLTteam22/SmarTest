@@ -66,7 +66,7 @@ public class StatementsNode extends ASTNode
         			}
 
         			else if (needsSemi && !(statement instanceof DeclarationNode)
-        					&& !(statement instanceof AssignmentOperatorNode))
+        					&& !(statement instanceof AssignmentOperatorNode) && !(statement instanceof ReturnNode))
         				output.append("try {");
         			
         			output.append(statement.generateCode());
@@ -79,9 +79,9 @@ public class StatementsNode extends ASTNode
             				output.append("}");
             				output.append("\n");
             				output.append("catch(Exception e) {");
-            				output.append("System.out.println(\"SmarTest: Error found at line: ");
+            				output.append("System.out.println(\"SmarTest: Runtime error at line: ");
             				output.append(statement.getYyline());
-            				output.append(" \"+e.getMessage()); }");
+            				output.append(" (\"+e.getMessage() + \")\"); \nSystem.exit(0);\n}");
             				
             				output.append("\n");
         				}
@@ -90,16 +90,16 @@ public class StatementsNode extends ASTNode
         					output.append(";");
         				}
         			}
-        			else if (needsSemi & !(statement instanceof DeclarationNode)
-        					& !(statement instanceof AssignmentOperatorNode))
+        			else if (needsSemi && !(statement instanceof DeclarationNode)
+        					&& !(statement instanceof AssignmentOperatorNode) && !(statement instanceof ReturnNode))
         			{
         				output.append(";");
         				output.append("}");
         				output.append("\n");
         				output.append("catch(Exception e) {");
-        				output.append("System.out.println(\"SmarTest: Error found at line: ");
+        				output.append("System.out.println(\"SmarTest: Runtime error at line: ");
         				output.append(statement.getYyline());
-        				output.append(" \"+e.getMessage()); }");
+        				output.append(" (\"+e.getMessage() + \")\"); \nSystem.exit(0);\n}");
         				
         				output.append("\n");
         			}
