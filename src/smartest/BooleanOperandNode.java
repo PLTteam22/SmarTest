@@ -95,7 +95,7 @@ public class BooleanOperandNode extends ASTNode{
 			else
 			{
 				output.append(this.getChildAt(0).generateCode());
-				output.append(".equalsIgnoreCase(");
+				output.append(".equals(");
 				output.append(this.getChildAt(1).generateCode());
 				output.append(")");
 			}
@@ -112,7 +112,7 @@ public class BooleanOperandNode extends ASTNode{
 			{
 				output.append("!");
 				output.append(this.getChildAt(0).generateCode());
-				output.append(".equalsIgnoreCase(");
+				output.append(".equals(");
 				output.append(this.getChildAt(1).generateCode());
 				output.append(")");
 			}
