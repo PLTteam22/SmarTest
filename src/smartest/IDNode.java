@@ -8,7 +8,8 @@ public class IDNode extends ASTNode {
 
 
 	private String name;
-        private boolean isDeclaration;
+    private boolean isDeclaration;
+    private String scopeId; /* this is set after the identifier has been inserted into symbol table */
 	
 	/**
 	 * Instantiates IDNode
@@ -35,29 +36,30 @@ public class IDNode extends ASTNode {
                 String lowerCase = null;
                 if (this.name != null)
                         lowerCase = this.name.toLowerCase();
-                boolean inSymbolTable = Parser.symbolsTable.containsKey(lowerCase);
+                boolean inSymbolTable = SymbolsTables.containsSymbol(lowerCase);
 
                 if (!isDeclaration)
                 {
-                        if (! inSymbolTable)
-		        {
-		                throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " + 
-								"cannot find symbol: " + this.name + " make sure variable has been declared");
-		        }
-		        this.setType(Parser.symbolsTable.get(lowerCase)[0]);
+                	if (! inSymbolTable)
+                	{
+                		throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": " + 
+                				"cannot find symbol: " + this.name + " make sure variable has been declared");
+                	}
+                	this.setType(SymbolsTables.lookupSymbol(lowerCase)[0]);
+                	this.setScopeId(SymbolsTables.lookupSymbol(lowerCase)[3]);
                 }
                 else
                 {
 
 
 
-		        // Verify that this variable has not been already declared before
-        		if (inSymbolTable)
-        		{
-        			throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": variable " + name +
-        								" has already been declared at line " + Parser.symbolsTable.get(lowerCase)[2]);
-        		}
-		
+                	// Verify that this variable has not been already declared before
+                	if (inSymbolTable)
+                	{
+                		throw new Exception("Line " + this.getYyline() + ":" + this.getYycolumn() + ": variable " + name +
+                				" has already been declared at line " + SymbolsTables.lookupSymbol(lowerCase)[2]);
+                	}
+
 
                 }
 
@@ -73,7 +75,7 @@ public class IDNode extends ASTNode {
                 String lowerCase = null;
                 if (name != null)
                         lowerCase = name.toLowerCase();
-		String[] symbolTableEntry = Parser.symbolsTable.get(lowerCase);
+		String[] symbolTableEntry = SymbolsTables.lookupInScope(lowerCase, scopeId);
 		if (symbolTableEntry != null)
 		{
 			output.append(symbolTableEntry[1]);
@@ -95,6 +97,22 @@ public class IDNode extends ASTNode {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	/**
+	 * @return the scopeId
+	 */
+	public String getScopeId() {
+		return scopeId;
+	}
+
+
+	/**
+	 * @param scopeId the scopeId to set
+	 */
+	public void setScopeId(String scopeId) {
+		this.scopeId = scopeId;
 	}
 
 }

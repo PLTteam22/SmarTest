@@ -20,6 +20,7 @@ import java.util.*;
 program : optional_function_list
 {
         
+        success = true;
         $$ = new ParserVal(new ProgramNode((ArrayList<ASTNode>)$1.obj, line, column));
         try
         {
@@ -29,10 +30,14 @@ program : optional_function_list
         catch (Exception e)
         {
         	System.out.println(e.getMessage());
-        	e.printStackTrace();
-		System.exit(1);
+        	if (Parser.DEBUG)
+        	{
+        		e.printStackTrace();
+        	}
+        	success = false;
+			
         }
-        ((ProgramNode)$$.obj).generateCode(INPUT_FILE);
+        if ( success ) ((ProgramNode)$$.obj).generateCode(INPUT_FILE);
 }
 
 optional_function_list : function_list {  $$ = $1; }
@@ -51,7 +56,7 @@ function : return_type ID '(' optional_param_list ')' '{' statements '}'
 	catch (Exception e)
         {
         	System.out.println(e.getMessage());
-        	e.printStackTrace();
+        	if (Parser.DEBUG) e.printStackTrace();
 		System.exit(1);
         }
 }
@@ -286,15 +291,8 @@ private Yylex lexer;
 private static String INPUT_FILE;
 public int line = 1, column;
 public static boolean DEBUG = false;
+public static boolean success;
 
-/* 
- * symbolsTable: Keys are the identifier names as found in the source code
- * Values are three-element arrays where the first element represents the type of the identifier
- * and the second element represents a generated variable name to be used in the target code
- * and the third element is the line which this symbol was declared first at
- * For more details see DeclarationNode
- */
-public static HashMap<String, String[]> symbolsTable = new HashMap<String, String[]>();
 
 
 public static HashMap<String, FunctionSymbolTableEntry> functionSymbolsTable = new HashMap<String, FunctionSymbolTableEntry>();
@@ -356,6 +354,9 @@ public static void main(String args[]) throws IOException
 
   Parser yyparser;
   boolean createFile = false;
+  
+  // Initialize symbols tables
+  SymbolsTables.initialize();
 
   if (args.length < 1)
   {
@@ -430,6 +431,11 @@ public static void main(String args[]) throws IOException
 
 
   yyparser.yyparse();
+  
+  if ( ! success ) 
+  {
+  	System.exit(1);
+  }
   
 /*  
   System.out.println("\n========================\n");

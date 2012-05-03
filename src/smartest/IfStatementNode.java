@@ -61,7 +61,8 @@ public class IfStatementNode extends ASTNode implements NoSemiColonStatement{
 	 */
 	@Override
 	public void checkSemantics() throws Exception{
-		// TODO Auto-generated method stub
+		
+		SymbolsTables.enterNewScope();
 		
 		if(this.getChildCount()==2)
 		{	
@@ -82,6 +83,7 @@ public class IfStatementNode extends ASTNode implements NoSemiColonStatement{
 			throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + this.getYycolumn()+" should be a boolean; found: " + this.getChildAt(0).getType());
 		}
 		
+		SymbolsTables.leaveCurrentScope();
 	}
 
 	@Override

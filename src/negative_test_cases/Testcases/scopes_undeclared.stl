@@ -1,0 +1,16 @@
+void main()
+{
+        int a;
+        a = 5;
+        int b = 3;
+
+        if (a>=5)
+        {
+                int j = a;
+                b =2;
+
+        }
+
+        printInteger(j);
+        print("\n");
+}

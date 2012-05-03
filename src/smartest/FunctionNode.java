@@ -42,7 +42,7 @@ public class FunctionNode extends ASTNode
         }
 	public void checkSemantics() throws Exception
         {
-                
+				SymbolsTables.enterNewScope();
                 if (paramList != null)
                 {
                         for (ASTNode param : paramList)
@@ -52,7 +52,9 @@ public class FunctionNode extends ASTNode
                 }
                 if (stmtList != null)
                 {
+                		
                         stmtList.checkSemantics();
+                        
                 }
 
                 if (!"void".equalsIgnoreCase(rtrnType) && !"return".equalsIgnoreCase(stmtList.getType()))
@@ -61,6 +63,7 @@ public class FunctionNode extends ASTNode
                                 ": Missing return statement");
                 }
                 setType(rtrnType);
+                SymbolsTables.leaveCurrentScope();
         }
 	
 		public String getIdentifier()

@@ -1,0 +1,16 @@
+void main()
+{
+        int a;
+        a = 5;
+        int b = 3;
+
+        loop while (a>=5)
+        {
+                int j = a;
+                int b;
+
+        }
+
+        printInteger(b);
+        print("\n");
+}

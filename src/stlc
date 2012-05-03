@@ -43,6 +43,8 @@ echo "Main-Class: $filename" >> manifest
 jar -cmf manifest $filename.jar $filename.class org/* com/* smartest/*.class
 mv $filename.jar ../
 cd ..
-rm -rf stl_tmp
-
+else
+cat stl_tmp/$filename.java
 fi
+
+rm -rf stl_tmp

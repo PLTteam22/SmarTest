@@ -54,15 +54,11 @@ public class DeclarationNode extends ASTNode {
 		}
 		
 		
-		String[] data = { this.getDeclaredType(),varName, ""+this.getYyline() }; 
 		
-		
-		
-		Parser.symbolsTable.put(this.getIdNode().getName().toLowerCase(), data);
-                this.getChildAt(0).setType(getDeclaredType());
-
-
-                this.setType(this.getChildAt(0).getType());
+		String scopeId = SymbolsTables.insertSymbol(this.getDeclaredType(), this.getIdNode().getName().toLowerCase(),  varName, ""+this.getYyline());
+		this.getChildAt(0).setType(getDeclaredType());
+		this.idNode.setScopeId(scopeId);
+		this.setType(this.getChildAt(0).getType());
 
 	}
 
@@ -70,7 +66,7 @@ public class DeclarationNode extends ASTNode {
 	public StringBuffer generateCode() 
 	{
 		StringBuffer output =  new StringBuffer();
-		String[] data = Parser.symbolsTable.get(this.getIdNode().getName().toLowerCase());
+		String[] data = SymbolsTables.lookupInScope(this.getIdNode().getName().toLowerCase(),this.getIdNode().getScopeId());
 		
 		String javaType = data[0];
 		if (javaType == "question")
