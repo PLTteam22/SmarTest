@@ -1,7 +1,7 @@
 rm -f smartest.jar
 rm -f smartest/*.class
 cd smartest
-flex stl.flex>dump
+jflex stl.flex>dump
 rm dump
 ../yacc.linux -Jpackage=smartest stl.y
 cd ..
