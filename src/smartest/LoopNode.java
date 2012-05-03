@@ -33,6 +33,8 @@ public class LoopNode extends ASTNode implements NoSemiColonStatement{
 	@Override
 	public void checkSemantics() throws Exception
 	{
+		SymbolsTables.enterNewScope();
+		
 		this.getChildAt(0).checkSemantics();
 		this.getChildAt(1).checkSemantics();
 		/*
@@ -42,6 +44,8 @@ public class LoopNode extends ASTNode implements NoSemiColonStatement{
 		{
 			throw new Exception("Type mismatch: statement at Line " + this.getYyline() + ":" + this.getYycolumn()+" should be a boolean; found: " + this.getChildAt(0).getType());
 		}
+		
+		SymbolsTables.leaveCurrentScope();
 	}
 	
 	@Override
