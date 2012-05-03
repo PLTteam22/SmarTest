@@ -1,0 +1,23 @@
+void main()
+{
+        float fl = 3;
+        float fl2 = 4.5;
+
+        int jjj = func1(5, 8 * 9.0, true);
+        float jjjk = func1(3, 9.9, true);
+        func2(3, fl);
+        func2(3, fl2);
+        float jj = func2(3, 5);
+
+        
+}
+
+int func1(int ii, float k, boolean b)
+{
+        return 9 * 8;
+}
+
+float func2(int i, float kpp)
+{
+        return kpp;
+}
