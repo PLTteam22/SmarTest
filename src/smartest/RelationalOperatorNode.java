@@ -89,7 +89,7 @@ class RelationalOperatorNode extends ASTNode {
 		}
 		else if ("GE".equalsIgnoreCase(operator))
 		{
-			output.append(" <= ");
+			output.append(" >= ");
 
 		}
 		output.append(this.getChildAt(1).generateCode());
