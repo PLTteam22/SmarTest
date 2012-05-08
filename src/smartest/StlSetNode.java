@@ -45,7 +45,7 @@ public class StlSetNode {
 	 *
 	 * @param questionArrayList the new question array list
 	 */
-	public void setQuestionArrayList(ArrayList questionArrayList) {
+	public void setQuestionArrayList(ArrayList<Question> questionArrayList) {
 		QuestionArrayList = questionArrayList;
 	}
 
