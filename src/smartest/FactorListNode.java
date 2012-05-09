@@ -1,85 +1,64 @@
 package smartest;
 
-/*
- * Implements Semantic checking and code output generation for
- * FactorListNode
- * 
- */
 /**
- * The Class FactorListNode.
+ * A FactorListNode represents a comma-separated list of parameters passed to a
+ * function call
+ * <p>
+ * Example:
+ * 
+ * <pre>
+ * 38, some_variable, "hi"
+ * </pre>
+ * 
+ * </p>
+ * 
  * @author Parth
  */
 class FactorListNode extends ASTNode {
-	/*
-	 * Instantiates FactorListNode invoked by this grammar:
-	 *
-	 *  @param lcNode represent child node
-	 *  @param yyline,yycolumn represents nodes line number and column number 
-	 */
-	/**
-	 * Instantiates a new factor list node.
-	 *
-	 * @param lcNode the lc node
-	 * @param rcNode the rc node
-	 * @param yyline the yyline
-	 * @param yycolumn the yycolumn
-	 */
-	public FactorListNode(ASTNode lcNode, ASTNode rcNode, int yyline, int yycolumn) {
-		super(yyline, yycolumn);
-		this.addChild(lcNode);
-		this.addChild(rcNode);
-	}
-	
-	/**
-	 * Instantiates a new factor list node.
-	 *
-	 * @param lcNode the lc node
-	 * @param yyline the yyline
-	 * @param yycolumn the yycolumn
-	 */
-	public FactorListNode(ASTNode lcNode, int yyline, int yycolumn) {
-		super(yyline, yycolumn);
-		
-		this.addChild(lcNode);
-	}
+    /**
+     * Instantiates a FactorListNode
+     * 
+     * @param node
+     *            the first parameter in the list
+     * @param yyline
+     *            the corresponding line in the input file
+     * @param yycolumn
+     *            the corresponding column in the input file
+     */
+    public FactorListNode(ASTNode node, int yyline, int yycolumn) {
+        super(yyline, yycolumn);
+        this.addChild(node);
+    }
 
-	/*
-	 * symnatic check
-	 * 
-	 */
-	/* (non-Javadoc)
-	 * @see ASTNode#checkSemantics()
-	 */
-	@Override
-	public void checkSemantics() throws Exception{
-			//symantic check for children
+    /*
+     * (non-Javadoc)
+     * 
+     * @see ASTNode#checkSemantics()
+     */
+    @Override
+    public void checkSemantics() throws Exception {
+        for (ASTNode factor : this.getChildren()) {
+            factor.checkSemantics();
+        }
+    }
 
-                for (ASTNode factor : this.getChildren())
-                   {
-                        factor.checkSemantics();
-                   }
-		   //no symantic check required for the parent node 
-		   
-		   return;	
-	}
-
-	/* (non-Javadoc)
-	 * @see ASTNode#generateCode()
-	 */
-	@Override
-	public StringBuffer generateCode() {
-		// TODO Auto-generated method stub
-		StringBuffer output = new StringBuffer();
-		boolean firstFactor = true;
-		for (ASTNode factor : this.getChildren())
-		{
-			if (!firstFactor)
-				output.append(", ");
-			else
-				firstFactor = false;
-			output.append(factor.generateCode());
-		}
-		return output;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see ASTNode#generateCode()
+     */
+    @Override
+    public StringBuffer generateCode() {
+        StringBuffer output = new StringBuffer();
+        boolean firstFactor = true;
+        for (ASTNode factor : this.getChildren()) {
+            if (!firstFactor)
+                output.append(", ");
+            else
+                firstFactor = false;
+            output.append(factor.generateCode());
+        }
+        return output;
+    }
 
 }
