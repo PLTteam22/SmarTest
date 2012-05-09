@@ -13,11 +13,11 @@ package smartest;
  * Examples:
  * 
  * <pre>
- * if (i &lt;= 4) {
+ * if (i <= 4) {
  *     i = i + 1;
  * }
  * 
- * if (i &lt;= 4) {
+ * if (i <= 4) {
  *     i = i + 1;
  * } else {
  *     i = i - 1;
