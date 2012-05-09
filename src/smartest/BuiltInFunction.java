@@ -23,12 +23,13 @@ public class BuiltInFunction {
      * The built-in load method. This method connects to the specified database
      * with the specified credentials, and loads the questions of the specified
      * category into a STL Set
-     * 
+     * <p>
      * Example:
      * 
      * <pre>
-     * load(&quot;jdbc:mysql://localhost:8889/smartest&quot;, &quot;root&quot;, &quot;root&quot;, &quot;math&quot;)
+     * load("jdbc:mysql://localhost:8889/smartest", "root", "root", "math")
      * </pre>
+     * </p>
      * 
      * @param connection_string
      *            the connection string for the database
@@ -92,13 +93,13 @@ public class BuiltInFunction {
      * The built-in save method. This method connects to the specified database
      * with the specified credentials, and adds any questions from the specified
      * set to the repository if they are not already present.
-     * 
+     * <p>
      * Example:
      * 
      * <pre>
-     * save(&quot;jdbc:mysql://localhost:8889/smartest&quot;, &quot;root&quot;, &quot;root&quot;, set_of_questions);
+     * save("jdbc:mysql://localhost:8889/smartest", "root", "root", set_of_questions);
      * </pre>
-     * 
+     * </p>
      * @param connection_string
      *            the connection string
      * @param userName
