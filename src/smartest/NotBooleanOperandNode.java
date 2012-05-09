@@ -2,7 +2,8 @@ package smartest;
 
 /**
  * Implements semantic checking and output code generation for the unary NOT
- * operation.<br />
+ * operation.
+ * <br />
  * Example:
  * 
  * <pre>

@@ -2,7 +2,8 @@ package smartest;
 
 /**
  * Implements semantic checking and output code generation for a 'loop while'
- * statement.<br />
+ * statement.
+ * <br />
  * Example:
  * 
  * <pre>
