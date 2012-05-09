@@ -89,12 +89,12 @@ NL    = \n | \r | \r\n
 }
 
 [qQ][uU][eE][sS][tT][iI][oO][nN] {
-    yyparser.column += yytext().length()
+    yyparser.column += yytext().length();
     return (Parser.QUESTION);
 }
 
 [sS][eE][tT] {
-    yyparser.column += yytext().length()
+    yyparser.column += yytext().length();
     return (Parser.SET);
 }
 
