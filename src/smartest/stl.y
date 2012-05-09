@@ -222,7 +222,7 @@ expression : expression AND not_boolean_operand {
 }
 
 not_boolean_operand: NOT not_boolean_operand { 
-    $$ = new ParserVal(new NotBooleanOperandNode("not",(ASTNode)$2.obj, line, column));	
+    $$ = new ParserVal(new NotBooleanOperandNode((ASTNode)$2.obj, line, column));	
 }
 | boolean_operand { 
 	$$ = $1;			
