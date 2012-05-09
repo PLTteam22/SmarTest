@@ -1,19 +1,25 @@
 package smartest;
 
 /**
- * Represents a single answer choice as defined in this grammar production:
- * answer_choice : expr1 ':' expr2 Example: "Answer 1":55 Semantics: expr1 must
- * be a string expr2 must be an integer
+ * Represents a single answer choice of a question. It is defined as the grammar
+ * production:
+ * 
+ * <pre>
+ * answer_choice : expr1 ':' expr2
+ * </pre>
+ * 
+ * <br />
+ * Example:</pre>"Answer 1":55</pre>Semantics: expr1 must be a string. expr2
+ * must be an integer.
  * 
  * @author Aiman
  */
 public class AnswerChoiceNode extends ASTNode {
-
     private ASTNode answerCaption;
     private ASTNode answerPoints;
 
     /**
-     * Instantiates a single answer choice node
+     * Instantiates a single answer choice node.
      * 
      * @param expr1
      *            the answer caption
@@ -30,8 +36,8 @@ public class AnswerChoiceNode extends ASTNode {
     }
 
     /**
-     * Verifies the semantics of answer choice: The answer caption must be a
-     * string Answer points must be an integer
+     * Verifies the semantics of answer choice. The answer caption must be a
+     * string, Answer points must be an integer.
      * 
      * @see ASTNode#checkSemantics()
      */
@@ -39,23 +45,19 @@ public class AnswerChoiceNode extends ASTNode {
     public void checkSemantics() throws Exception {
         answerCaption.checkSemantics();
         answerPoints.checkSemantics();
-
         if (!answerCaption.getType().equalsIgnoreCase("string")) {
             throw new Exception("Line " + this.getYyline() + ":"
                     + this.getYycolumn() + " "
                     + " answer caption must be a string, found: "
                     + answerCaption.getType());
         }
-
         if (!answerPoints.getType().equalsIgnoreCase("int")) {
             throw new Exception("Line " + this.getYyline() + ":"
                     + this.getYycolumn() + " "
                     + " answer points must be an int, found: "
                     + answerPoints.getType());
         }
-
         this.setType("answer");
-
     }
 
     /*
@@ -65,16 +67,13 @@ public class AnswerChoiceNode extends ASTNode {
      */
     @Override
     public StringBuffer generateCode() {
-
         StringBuffer output = new StringBuffer();
         output.append("new AnswerChoice(");
         output.append(this.answerCaption.generateCode());
         output.append(", ");
         output.append(this.answerPoints.generateCode());
         output.append(")");
-
         return output;
-
     }
 
     /**
@@ -106,5 +105,4 @@ public class AnswerChoiceNode extends ASTNode {
     public void setAnswerPoints(ASTNode answerPoints) {
         this.answerPoints = answerPoints;
     }
-
 }

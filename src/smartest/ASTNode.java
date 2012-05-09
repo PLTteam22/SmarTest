@@ -3,40 +3,31 @@ package smartest;
 import java.util.ArrayList;
 
 /**
- * The Class ASTNode. This class represents a node in the STL Abstract Syntax
- * Tree that is constructed during parsing of the source file. Each node
- * represents a single production or family of productions in the grammar. After
- * the tree is constructed, each ASTNode is called upon in a top down fashion to
+ * The Class ASTNode represents a node in the STL Abstract Syntax Tree. The AST
+ * is constructed during parsing of the source file. Each node represents a
+ * single production or family of productions in the grammar. After the tree is
+ * constructed, each ASTNode is called upon in a top down fashion to
  * semantically verify itself, and later generate target code for itself.
  * 
  * @author Daniel Walker
  */
 public abstract class ASTNode {
-
     /** The children of this node */
     private ArrayList<ASTNode> children;
-
     /** The type that this node evaluates to. */
     private String type;
-
     /** The line in the source file. */
     private int yyline;
-
     /** The column in the source file. */
     private int yycolumn;
-
     /** The integer value, if this node evaluates to one. */
     private int ivalue;
-
     /** The double value, if this node evaluates to one. */
     private double dvalue;
-
     /** The boolean value, if this node evaluates to one. */
     private String bvalue;
-
     /** The String value, if this node evaluates to one. */
     private String svalue;
-
     /** The char value, if this node evaluates to one. */
     private char cvalue;
 
@@ -70,7 +61,6 @@ public abstract class ASTNode {
         this.setChildren(new ArrayList<ASTNode>());
         this.yyline = yyline;
         this.yycolumn = yycolumn;
-
     }
 
     /**
@@ -273,5 +263,4 @@ public abstract class ASTNode {
     public void setDvalue(double dvalue) {
         this.dvalue = dvalue;
     }
-
 }

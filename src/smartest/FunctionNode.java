@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * The Class FunctionNode. A FunctionNode represents a function definition,
- * which has the following form:
+ * The Class FunctionNode represents a function definition. An STL function
+ * definition has the following form:
  * 
  * <pre>
  * return_type identifier(optional_parameter_list)
@@ -15,16 +15,12 @@ import java.util.HashMap;
  * </pre>
  */
 public class FunctionNode extends ASTNode {
-
     /** The parameter list. */
     private ArrayList<ASTNode> paramList;
-
     /** The statement block of the body. */
     private ASTNode stmtList;
-
     /** The return type. */
     private String rtrnType;
-
     /** The function identifier. */
     private String identifier;
 
@@ -55,7 +51,6 @@ public class FunctionNode extends ASTNode {
         paramList = parameterList;
         stmtList = statementList;
         identifier = id;
-
         if (Parser.functionSymbolsTable.containsKey(identifier.toLowerCase())) {
             throw new Exception("Line " + this.getYyline() + ": Function "
                     + identifier.toLowerCase() + " is already defined");
@@ -72,7 +67,6 @@ public class FunctionNode extends ASTNode {
                             myParameterList));
             HashMap<String, FunctionSymbolTableEntry> hashMap = Parser.functionSymbolsTable;
         }
-
     }
 
     /**
@@ -88,11 +82,8 @@ public class FunctionNode extends ASTNode {
             }
         }
         if (stmtList != null) {
-
             stmtList.checkSemantics();
-
         }
-
         if (!"void".equalsIgnoreCase(rtrnType)
                 && !"return".equalsIgnoreCase(stmtList.getType())) {
             throw new Exception("Line " + this.getYyline()
@@ -123,7 +114,6 @@ public class FunctionNode extends ASTNode {
                 .get(identifier.toLowerCase());
         if (entry == null)
             return null;
-
         output.append("public static ");
         if ("float".equalsIgnoreCase(rtrnType))
             rtrnType = "double";
@@ -138,10 +128,8 @@ public class FunctionNode extends ASTNode {
                     output.append(", ");
                 else
                     firstParam = false;
-
                 output.append(param.generateCode());
                 firstParam = false;
-
             }
         }
         output.append(" )\n");
@@ -152,5 +140,4 @@ public class FunctionNode extends ASTNode {
         output.append("}\n");
         return output;
     }
-
 }

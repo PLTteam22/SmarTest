@@ -7,10 +7,8 @@ package smartest;
  * @author Daniel Walker
  */
 public class AnswerChoice {
-
     /** The text of this answer */
     private String text;
-
     /** The points for this answer */
     private int points;
 
@@ -28,7 +26,7 @@ public class AnswerChoice {
     }
 
     /**
-     * Gets the text of this answer choice
+     * Gets the text of this answer choice.
      * 
      * @return the text
      */
@@ -37,7 +35,7 @@ public class AnswerChoice {
     }
 
     /**
-     * Sets the text of this answer choice
+     * Sets the text of this answer choice.
      * 
      * @param text
      *            the text to set
@@ -47,7 +45,7 @@ public class AnswerChoice {
     }
 
     /**
-     * Gets the points associated with this answer
+     * Gets the points associated with this answer.
      * 
      * @return the points
      */
@@ -56,7 +54,7 @@ public class AnswerChoice {
     }
 
     /**
-     * Sets the points associated with this answer
+     * Sets the points associated with this answer.
      * 
      * @param points
      *            the points to set
@@ -64,5 +62,4 @@ public class AnswerChoice {
     public void setPoints(int points) {
         this.points = points;
     }
-
 }

@@ -3,18 +3,17 @@ package smartest;
 import java.util.ArrayList;
 
 /**
- * A wrapper for an arbitrarily-long list of AnswerChoice's, to be used in
+ * A wrapper for an arbitrarily-long list of AnswerChoice's. It is used in
  * target code generation to allow for nesting question literals within other
  * expressions.
  */
 public class AnswerChoicesList {
-
     /** Internal representation of the answer choices. */
     private ArrayList<AnswerChoice> choices = new ArrayList<AnswerChoice>();
 
     /**
      * Instantiates a new answer choices list with an arbitrary number of
-     * AnswerChoice parameters
+     * AnswerChoice parameters.
      * 
      * @param answers
      *            a comma-separated list of AnswerChoice's
@@ -43,5 +42,4 @@ public class AnswerChoicesList {
     public void setChoices(ArrayList<AnswerChoice> choices) {
         this.choices = choices;
     }
-
 }
