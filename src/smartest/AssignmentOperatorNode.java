@@ -11,6 +11,8 @@ package smartest;
  * <pre>
  * x = y * d (without declaration)
  * int x = y + z (with declaration)
+ * </pre>
+ * </p>
  * 
  * @author Aiman
  */
