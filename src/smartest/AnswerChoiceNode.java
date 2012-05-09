@@ -9,7 +9,7 @@ package smartest;
  * </pre>
  * 
  * <br />
- * Example:</pre>"Answer 1":55</pre>Semantics: expr1 must be a string. expr2
+ * Example:<pre>"Answer 1":55</pre>Semantics: expr1 must be a string. expr2
  * must be an integer.
  * 
  * @author Aiman
