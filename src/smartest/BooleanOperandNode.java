@@ -59,7 +59,6 @@ public class BooleanOperandNode extends ASTNode {
     public BooleanOperandNode(String str, ASTNode expr1, ASTNode expr2,
             int yyline, int yycolumn) {
         super(yyline, yycolumn);
-        // TODO Auto-generated constructor stub
         this.addChild(expr1);
         this.addChild(expr2);
         if (str.equals("equal"))

@@ -75,7 +75,6 @@ public class IDNode extends ASTNode {
      */
     @Override
     public StringBuffer generateCode() {
-        // TODO Auto-generated method stub
         StringBuffer output = new StringBuffer();
         String lowerCase = null;
         if (name != null)
