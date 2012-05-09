@@ -19,25 +19,15 @@ package smartest;
  * @author Kshitij
  */
 public class BooleanOperandNode extends ASTNode {
-
     /** The equality. */
     private int equality; // is 1 for equality and 0 for inequality
 
     /**
-     * Instantiates AssignmentOperatorNode invoked by this grammar:
-     * boolean_operand EQUALEQUAL equality_operand .
+     * Determines if this ASTNode represents an equality operation or inequality
+     * operation
      * 
-     * OR
-     * 
-     * boolean_operand NOTEQUAL equality_operand
-     * 
-     * Example: true == false 1+2 == 3*1 i == j
-     * 
-     * true != false 1+2 != 3*1 i != j
-     * 
-     * @return the equality
+     * @return 0 for equal 1 for not equal
      */
-
     public int getEquality() {
         return equality;
     }
@@ -72,7 +62,6 @@ public class BooleanOperandNode extends ASTNode {
         // TODO Auto-generated constructor stub
         this.addChild(expr1);
         this.addChild(expr2);
-
         if (str.equals("equal"))
             this.equality = 1;
         else if (str.equals("not_equal"))
@@ -91,7 +80,6 @@ public class BooleanOperandNode extends ASTNode {
     public void checkSemantics() throws Exception {
         this.getChildAt(0).checkSemantics();
         this.getChildAt(1).checkSemantics();
-
         if (!((this.getChildAt(0).getType().equals("float") || this
                 .getChildAt(0).getType().equals("int")) && (this.getChildAt(1)
                 .getType().equals("float") || this.getChildAt(1).getType()
@@ -105,7 +93,6 @@ public class BooleanOperandNode extends ASTNode {
                         + this.getChildAt(1).getType());
         }
         this.setType("boolean");
-
     }
 
     /**
@@ -116,7 +103,6 @@ public class BooleanOperandNode extends ASTNode {
      */
     @Override
     public StringBuffer generateCode() {
-
         StringBuffer output = new StringBuffer();
         if (this.equality == 1) {
             if (!this.getChildAt(0).getType().equalsIgnoreCase("string")) {
@@ -142,8 +128,6 @@ public class BooleanOperandNode extends ASTNode {
                 output.append(")");
             }
         }
-
         return output;
     }
-
 }
