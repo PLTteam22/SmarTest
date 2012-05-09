@@ -38,7 +38,7 @@ public abstract class ASTNode {
      * node based on the types of the children.
      * 
      * @throws Exception
-     *             the exception
+     *             if a semantic error is found
      */
     public abstract void checkSemantics() throws Exception;
 
