@@ -28,8 +28,9 @@ public class ProgramNode extends ASTNode {
             this.getChildren().addAll(functionList);
     }
 
-    /*
-     * (non-Javadoc)
+    /**
+     * Checks semantics of Program. Ensures there is a main function with an
+     * empty parameter list defined.
      * 
      * @see ASTNode#checkSemantics()
      */
@@ -41,7 +42,16 @@ public class ProgramNode extends ASTNode {
             throw new Exception(this.getYyline() + ":" + this.getYycolumn()
                     + ": No function called main defined");
         }
-
+        FunctionSymbolTableEntry symbol_entry = Parser.functionSymbolsTable
+                .get("main");
+        if (symbol_entry.getParamTypes() != null
+                && symbol_entry.getParamTypes().size() != 0) {
+            throw new Exception(
+                    this.getYyline()
+                            + ":"
+                            + this.getYycolumn()
+                            + ": Main function must be defined with empty parameter list");
+        }
     }
 
     /**
