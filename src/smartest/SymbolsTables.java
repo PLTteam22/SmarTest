@@ -47,7 +47,7 @@ public class SymbolsTables {
      * Looks up a symbol in a specific scope.
      * 
      * @param sourceName
-     * @return
+     * @return a String array representing the symbol table entry
      */
     public static String[] lookupInScope(String sourceName, String scopeId) {
         if (Parser.DEBUG)
@@ -60,7 +60,7 @@ public class SymbolsTables {
      * Returns whether a variable is defined within a specific scope.
      * 
      * @param sourceName
-     * @return
+     * @return true if defined, false otherwise
      */
     public static boolean scopeContains(String sourceName, String scopeId) {
         if (Parser.DEBUG)
@@ -74,7 +74,7 @@ public class SymbolsTables {
      * scope,...etc.
      * 
      * @param sourceName
-     * @return
+     * @return a String array representing the symbol table entry
      */
     public static String[] lookupSymbol(String sourceName) {
         if (Parser.DEBUG)
@@ -97,8 +97,8 @@ public class SymbolsTables {
     /**
      * Returns whether a symbol exists in current context.
      * 
-     * @param lowerCase
-     * @return
+     * @param name Name of variable
+     * @return true if it exists, false otherwise
      */
     public static boolean containsSymbol(String name) {
         if (Parser.DEBUG)

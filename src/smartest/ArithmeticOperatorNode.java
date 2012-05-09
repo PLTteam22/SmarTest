@@ -46,16 +46,16 @@ public class ArithmeticOperatorNode extends ASTNode {
      * 
      * @param str
      *            specifies whether the expression was addition or subtraction
-     * @param expr
-     *            represents a relational operand
-     * @param stmt
-     *            represents terms
+     * @param expr1
+     *            represents the left side
+     * @param expr2
+     *            represents the right side
      */
-    public ArithmeticOperatorNode(String str, ASTNode relOp, ASTNode terms,
+    public ArithmeticOperatorNode(String str, ASTNode expr1, ASTNode expr2,
             int yyline, int yycolumn) {
         super(yyline, yycolumn);
-        addChild(relOp);
-        addChild(terms);
+        addChild(expr1);
+        addChild(expr2);
         this.setArithType(str);
     }
 
